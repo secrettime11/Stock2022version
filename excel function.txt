@@ -1,0 +1,39 @@
+F 開盤 G最高 H最低 I收盤 K停利 M停損 Z進場價 AA2手續 AA4交易 AA6交易參數
+
+if(最高G = 進場Z){未達進場proift=0;}
+else
+{
+	if(開盤F < 進場Z)
+	{
+		if(最高G < 進場Z) {未達進場proift=0;}
+		else
+		{
+			if(最高G >= 停損M)
+				停損profit= (進場Z - 停損M*手續AA2 - 進場Z *AA6) / 停損M;
+			else
+			{
+				if(最低H <= 停利K)
+					停利profit= (進場Z - 停利K*手續AA2 - 進場Z *AA6) / 停利K;
+				else
+					一般profit= (進場Z - 收盤I*手續AA2 - 進場Z *AA6) / 收盤I
+			}
+		}
+	}
+	else
+	{
+		if(最高G >= 停損M)
+			停損profit= (開盤F - 停損M*手續AA2 - 開盤F * AA6) / 停損M2;
+		else
+		{
+			if(最低H <= 停利K)
+				停利profit= (開盤F - 停利K*手續AA2 - 開盤F * AA6) / 停利K;
+			else
+				一般profit= (開盤F - 收盤I*手續AA2 - 開盤F * AA6) / 收盤I;
+		}
+	}
+}
+
+IF(F3<Z3,
+IF(G3<Z3,0,IF(G3>=M3,
+(Z3-M3*$AA$2-Z3*0.0015-Z3*$AA$4)/M3,
+IF(H3<=K3,(Z3-K3*$AA$2-Z3*0.0015-Z3*$AA$4)/K3,IF(G3=Z3,0,(Z3-I3*$AA$2-Z3*0.0015-Z3*$AA$4)/I3)))),IF(G3<Z3,0,IF(G3>=M3,(F3-M3*$AA$2-F3*0.0015-F3*$AA$4)/M3,IF(H3<=K3,(F3-K3*$AA$2-F3*0.0015-F3*$AA$4)/K3,IF(G3=Z3,0,(F3-I3*$AA$2-F3*0.0015-F3*$AA$4)/I3)))))
