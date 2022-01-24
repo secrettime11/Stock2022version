@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.capitalDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,6 +83,9 @@
             this.rdb_s1MajorBuy = new Sunny.UI.UIRadioButton();
             this.rdb_s1MajorSell = new Sunny.UI.UIRadioButton();
             this.uiRadioButtonGroup1 = new Sunny.UI.UIRadioButtonGroup();
+            this.ckcb_s1FlDown = new Sunny.UI.UICheckBox();
+            this.ckcb_redK = new Sunny.UI.UICheckBox();
+            this.ckcb_s1FlUp = new Sunny.UI.UICheckBox();
             this.uiSymbolLabel1 = new Sunny.UI.UISymbolLabel();
             this.uiCheckBoxGroup1 = new Sunny.UI.UICheckBoxGroup();
             this.ud_s1TurnoverSmaller = new Sunny.UI.UIIntegerUpDown();
@@ -197,9 +200,9 @@
             this.rdb_InUnder = new Sunny.UI.UIRadioButton();
             this.rdb_InOpen = new Sunny.UI.UIRadioButton();
             this.uiToolTip1 = new Sunny.UI.UIToolTip(this.components);
-            this.ckcb_redK = new Sunny.UI.UICheckBox();
-            this.ckcb_s1FlDown = new Sunny.UI.UICheckBox();
-            this.ckcb_s1FlUp = new Sunny.UI.UICheckBox();
+            this.DonateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BlogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.QueryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_result)).BeginInit();
             this.tabC_Strategy.SuspendLayout();
@@ -245,7 +248,10 @@
             this.securitiesLendingToolStripMenuItem,
             this.restartToolStripMenuItem,
             this.MarkToolStripMenuItem,
-            this.smartPickerToolStripMenuItem});
+            this.smartPickerToolStripMenuItem,
+            this.DonateToolStripMenuItem,
+            this.BlogToolStripMenuItem,
+            this.QueryToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(1302, 24);
@@ -308,42 +314,42 @@
             // dgv_result
             // 
             this.dgv_result.AllowUserToAddRows = false;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.dgv_result.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.dgv_result.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_result.BackgroundColor = System.Drawing.Color.DimGray;
             this.dgv_result.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("微软雅黑", 12F);
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_result.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_result.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_result.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("微软雅黑", 12F);
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_result.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_result.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgv_result.EnableHeadersVisualStyles = false;
             this.dgv_result.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.dgv_result.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.dgv_result.Location = new System.Drawing.Point(687, 167);
             this.dgv_result.Name = "dgv_result";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("微软雅黑", 12F);
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_result.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.White;
-            this.dgv_result.RowsDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_result.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            this.dgv_result.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgv_result.RowTemplate.Height = 29;
             this.dgv_result.SelectedIndex = -1;
             this.dgv_result.ShowGridLine = true;
@@ -935,6 +941,51 @@
             this.uiRadioButtonGroup1.Style = Sunny.UI.UIStyle.Custom;
             this.uiRadioButtonGroup1.TabIndex = 127;
             this.uiRadioButtonGroup1.Text = "漲跌";
+            // 
+            // ckcb_s1FlDown
+            // 
+            this.ckcb_s1FlDown.BackColor = System.Drawing.Color.Transparent;
+            this.ckcb_s1FlDown.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ckcb_s1FlDown.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.ckcb_s1FlDown.Location = new System.Drawing.Point(71, 25);
+            this.ckcb_s1FlDown.MinimumSize = new System.Drawing.Size(1, 1);
+            this.ckcb_s1FlDown.Name = "ckcb_s1FlDown";
+            this.ckcb_s1FlDown.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
+            this.ckcb_s1FlDown.Size = new System.Drawing.Size(55, 29);
+            this.ckcb_s1FlDown.Style = Sunny.UI.UIStyle.Custom;
+            this.ckcb_s1FlDown.TabIndex = 128;
+            this.ckcb_s1FlDown.Text = "跌";
+            this.ckcb_s1FlDown.ValueChanged += new Sunny.UI.UICheckBox.OnValueChanged(this.ckcb_s1FlDown_ValueChanged);
+            // 
+            // ckcb_redK
+            // 
+            this.ckcb_redK.BackColor = System.Drawing.Color.Transparent;
+            this.ckcb_redK.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ckcb_redK.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.ckcb_redK.Location = new System.Drawing.Point(132, 25);
+            this.ckcb_redK.MinimumSize = new System.Drawing.Size(1, 1);
+            this.ckcb_redK.Name = "ckcb_redK";
+            this.ckcb_redK.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
+            this.ckcb_redK.Size = new System.Drawing.Size(63, 29);
+            this.ckcb_redK.Style = Sunny.UI.UIStyle.Custom;
+            this.ckcb_redK.TabIndex = 127;
+            this.ckcb_redK.Text = "紅K";
+            // 
+            // ckcb_s1FlUp
+            // 
+            this.ckcb_s1FlUp.BackColor = System.Drawing.Color.Transparent;
+            this.ckcb_s1FlUp.Checked = true;
+            this.ckcb_s1FlUp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ckcb_s1FlUp.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.ckcb_s1FlUp.Location = new System.Drawing.Point(11, 25);
+            this.ckcb_s1FlUp.MinimumSize = new System.Drawing.Size(1, 1);
+            this.ckcb_s1FlUp.Name = "ckcb_s1FlUp";
+            this.ckcb_s1FlUp.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
+            this.ckcb_s1FlUp.Size = new System.Drawing.Size(55, 29);
+            this.ckcb_s1FlUp.Style = Sunny.UI.UIStyle.Custom;
+            this.ckcb_s1FlUp.TabIndex = 129;
+            this.ckcb_s1FlUp.Text = "漲";
+            this.ckcb_s1FlUp.ValueChanged += new Sunny.UI.UICheckBox.OnValueChanged(this.ckcb_s1FlUp_ValueChanged);
             // 
             // uiSymbolLabel1
             // 
@@ -2677,50 +2728,26 @@
             this.uiToolTip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.uiToolTip1.OwnerDraw = true;
             // 
-            // ckcb_redK
+            // DonateToolStripMenuItem
             // 
-            this.ckcb_redK.BackColor = System.Drawing.Color.Transparent;
-            this.ckcb_redK.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ckcb_redK.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.ckcb_redK.Location = new System.Drawing.Point(132, 25);
-            this.ckcb_redK.MinimumSize = new System.Drawing.Size(1, 1);
-            this.ckcb_redK.Name = "ckcb_redK";
-            this.ckcb_redK.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.ckcb_redK.Size = new System.Drawing.Size(63, 29);
-            this.ckcb_redK.Style = Sunny.UI.UIStyle.Custom;
-            this.ckcb_redK.TabIndex = 127;
-            this.ckcb_redK.Text = "紅K";
+            this.DonateToolStripMenuItem.Name = "DonateToolStripMenuItem";
+            this.DonateToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.DonateToolStripMenuItem.Text = "贊助";
+            this.DonateToolStripMenuItem.Click += new System.EventHandler(this.DonateToolStripMenuItem_Click);
             // 
-            // ckcb_s1FlDown
+            // BlogToolStripMenuItem
             // 
-            this.ckcb_s1FlDown.BackColor = System.Drawing.Color.Transparent;
-            this.ckcb_s1FlDown.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ckcb_s1FlDown.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.ckcb_s1FlDown.Location = new System.Drawing.Point(71, 25);
-            this.ckcb_s1FlDown.MinimumSize = new System.Drawing.Size(1, 1);
-            this.ckcb_s1FlDown.Name = "ckcb_s1FlDown";
-            this.ckcb_s1FlDown.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.ckcb_s1FlDown.Size = new System.Drawing.Size(55, 29);
-            this.ckcb_s1FlDown.Style = Sunny.UI.UIStyle.Custom;
-            this.ckcb_s1FlDown.TabIndex = 128;
-            this.ckcb_s1FlDown.Text = "跌";
-            this.ckcb_s1FlDown.ValueChanged += new Sunny.UI.UICheckBox.OnValueChanged(this.ckcb_s1FlDown_ValueChanged);
+            this.BlogToolStripMenuItem.Name = "BlogToolStripMenuItem";
+            this.BlogToolStripMenuItem.Size = new System.Drawing.Size(91, 20);
+            this.BlogToolStripMenuItem.Text = "開發者部落格";
+            this.BlogToolStripMenuItem.Click += new System.EventHandler(this.BlogToolStripMenuItem_Click);
             // 
-            // ckcb_s1FlUp
+            // QueryToolStripMenuItem
             // 
-            this.ckcb_s1FlUp.BackColor = System.Drawing.Color.Transparent;
-            this.ckcb_s1FlUp.Checked = true;
-            this.ckcb_s1FlUp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ckcb_s1FlUp.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.ckcb_s1FlUp.Location = new System.Drawing.Point(11, 25);
-            this.ckcb_s1FlUp.MinimumSize = new System.Drawing.Size(1, 1);
-            this.ckcb_s1FlUp.Name = "ckcb_s1FlUp";
-            this.ckcb_s1FlUp.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.ckcb_s1FlUp.Size = new System.Drawing.Size(55, 29);
-            this.ckcb_s1FlUp.Style = Sunny.UI.UIStyle.Custom;
-            this.ckcb_s1FlUp.TabIndex = 129;
-            this.ckcb_s1FlUp.Text = "漲";
-            this.ckcb_s1FlUp.ValueChanged += new Sunny.UI.UICheckBox.OnValueChanged(this.ckcb_s1FlUp_ValueChanged);
+            this.QueryToolStripMenuItem.Name = "QueryToolStripMenuItem";
+            this.QueryToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
+            this.QueryToolStripMenuItem.Text = "資料庫查詢";
+            this.QueryToolStripMenuItem.Click += new System.EventHandler(this.QueryToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -2957,6 +2984,9 @@
         private Sunny.UI.UICheckBox ckcb_redK;
         private Sunny.UI.UICheckBox ckcb_s1FlDown;
         private Sunny.UI.UICheckBox ckcb_s1FlUp;
+        private System.Windows.Forms.ToolStripMenuItem DonateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem BlogToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem QueryToolStripMenuItem;
     }
 }
 

@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgv_data = new Sunny.UI.UIDataGridView();
             this.btn_add = new Sunny.UI.UIButton();
             this.btn_replace = new Sunny.UI.UIButton();
@@ -39,31 +39,32 @@
             this.txt_date = new Sunny.UI.UITextBox();
             this.txt_companyId = new Sunny.UI.UITextBox();
             this.Lbox_cmd = new System.Windows.Forms.ListBox();
+            this.lb_status = new Sunny.UI.UILabel();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_data)).BeginInit();
             this.SuspendLayout();
             // 
             // dgv_data
             // 
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.dgv_data.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.dgv_data.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgv_data.BackgroundColor = System.Drawing.Color.White;
             this.dgv_data.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("微软雅黑", 12F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_data.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("微软雅黑", 12F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_data.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgv_data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_data.EnableHeadersVisualStyles = false;
             this.dgv_data.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.dgv_data.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.dgv_data.Location = new System.Drawing.Point(12, 111);
             this.dgv_data.Name = "dgv_data";
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
-            this.dgv_data.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            this.dgv_data.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgv_data.RowTemplate.Height = 29;
             this.dgv_data.SelectedIndex = -1;
             this.dgv_data.ShowGridLine = true;
@@ -155,11 +156,22 @@
             this.Lbox_cmd.TabIndex = 2;
             this.Lbox_cmd.Click += new System.EventHandler(this.Lbox_cmd_Click);
             // 
+            // lb_status
+            // 
+            this.lb_status.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.lb_status.Location = new System.Drawing.Point(492, 79);
+            this.lb_status.Name = "lb_status";
+            this.lb_status.Size = new System.Drawing.Size(113, 23);
+            this.lb_status.TabIndex = 8;
+            this.lb_status.Text = "查詢狀態";
+            this.lb_status.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // QueryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(847, 573);
+            this.Controls.Add(this.lb_status);
             this.Controls.Add(this.Lbox_cmd);
             this.Controls.Add(this.txt_companyId);
             this.Controls.Add(this.txt_date);
@@ -186,5 +198,6 @@
         private Sunny.UI.UITextBox txt_date;
         private Sunny.UI.UITextBox txt_companyId;
         private System.Windows.Forms.ListBox Lbox_cmd;
+        private Sunny.UI.UILabel lb_status;
     }
 }

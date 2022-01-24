@@ -1353,5 +1353,21 @@ namespace Stock
                 ckcb_s1FlUp.Checked = false;
             }
         }
+
+        private void DonateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("歡迎贊助開發人員 Eric Huang，您的支持是我持續更新的動力哦 ! 贊助帳號如下 :"+Environment.NewLine + "(013) 699510138591","贊助起來");
+        }
+
+        private void BlogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://secrettime11.github.io/Brumby/");
+        }
+
+        private void QueryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            QueryForm queryForm = new QueryForm();
+            queryForm.Show();
+        }
     }
 }
