@@ -38,7 +38,7 @@
             this.uiLabel2 = new Sunny.UI.UILabel();
             this.txt_date = new Sunny.UI.UITextBox();
             this.txt_companyId = new Sunny.UI.UITextBox();
-            this.Lbox_cmd = new Sunny.UI.UIListBox();
+            this.Lbox_cmd = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_data)).BeginInit();
             this.SuspendLayout();
             // 
@@ -146,20 +146,14 @@
             // 
             // Lbox_cmd
             // 
-            this.Lbox_cmd.FillColor = System.Drawing.Color.White;
-            this.Lbox_cmd.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.Lbox_cmd.FormatString = "";
-            this.Lbox_cmd.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.Lbox_cmd.Font = new System.Drawing.Font("新細明體", 11F);
+            this.Lbox_cmd.FormattingEnabled = true;
+            this.Lbox_cmd.ItemHeight = 15;
             this.Lbox_cmd.Location = new System.Drawing.Point(12, 11);
-            this.Lbox_cmd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Lbox_cmd.MinimumSize = new System.Drawing.Size(1, 1);
             this.Lbox_cmd.Name = "Lbox_cmd";
-            this.Lbox_cmd.Padding = new System.Windows.Forms.Padding(2);
-            this.Lbox_cmd.Size = new System.Drawing.Size(471, 92);
-            this.Lbox_cmd.Style = Sunny.UI.UIStyle.Custom;
+            this.Lbox_cmd.Size = new System.Drawing.Size(472, 94);
             this.Lbox_cmd.TabIndex = 2;
-            this.Lbox_cmd.Text = "uiListBox1";
-            this.Lbox_cmd.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Lbox_cmd_MouseClick);
+            this.Lbox_cmd.Click += new System.EventHandler(this.Lbox_cmd_Click);
             // 
             // QueryForm
             // 
@@ -191,6 +185,6 @@
         private Sunny.UI.UILabel uiLabel2;
         private Sunny.UI.UITextBox txt_date;
         private Sunny.UI.UITextBox txt_companyId;
-        private Sunny.UI.UIListBox Lbox_cmd;
+        private System.Windows.Forms.ListBox Lbox_cmd;
     }
 }

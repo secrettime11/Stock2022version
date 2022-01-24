@@ -43,16 +43,25 @@ namespace Stock
 
         private void Lbox_cmd_MouseClick(object sender, MouseEventArgs e)
         {
-            Console.WriteLine("HHH");
-            string query = Lbox_cmd.SelectedItem.ToString();
-            if (!string.IsNullOrEmpty(query))
+           
+        }
+
+        private void Lbox_cmd_Click(object sender, EventArgs e)
+        {
+            try
             {
-                DataTable result = sQliteDb.GetDataTable(FilePath.DB_saveDir, query);
-                if (result != null)
+                string query = Lbox_cmd.SelectedItem.ToString();
+                if (!string.IsNullOrEmpty(query))
                 {
-                    dgv_data.DataSource = result;
+                    DataTable result = sQliteDb.GetDataTable(FilePath.DB_saveDir, query);
+                    if (result != null)
+                    {
+                        dgv_data.DataSource = result;
+                    }
                 }
             }
+            catch (Exception) { }
+            
         }
     }
 }
