@@ -127,6 +127,7 @@
   <ItemGroup>
     <Compile Include="CS\Args.cs" />
     <Compile Include="CS\ExcelWriter.cs" />
+    <Compile Include="CS\xmlOperation.cs" />
     <Compile Include="LinqToDB.Templates\CopyMe.SQLite1.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -26,45 +27,62 @@ namespace Stock
 
         }
 
-        protected void Initial()
-        {
-            txt_date.Text = DateTime.Now.ToString("yyyyMMdd");
-
-            Lbox_cmd.Items.Add($"SELECT * FROM Listed WHERE date='{txt_date.Text}'");
-        }
-
-        private void btn_replace_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        #region Control
         private void Lbox_cmd_MouseClick(object sender, MouseEventArgs e)
         {
 
         }
-
         private void Lbox_cmd_Click(object sender, EventArgs e)
         {
+        }
+        private void Lbox_cmd_DoubleClick(object sender, EventArgs e)
+        {
             lb_status.ForeColor = Color.Orange;
-            lb_status.Text = "查詢中...";
+            Thread mission = new Thread(searchMisson);
+            mission.Start();
+        }
+        #endregion
+
+        #region Function
+        protected void Initial()
+        {
+            txt_date.Text = DateTime.Now.AddDays(-5).ToString("yyyyMMdd");
+
+            Lbox_cmd.Items.Add($"SELECT * FROM Listed WHERE date='{txt_date.Text}'");
+        }
+        private void searchMisson()
+        {
+            string query = String.Empty;
             try
             {
-                string query = Lbox_cmd.SelectedItem.ToString();
+                this.Invoke((MethodInvoker)delegate ()
+                {
+                    lb_status.Text = "查詢中...";
+                    query = Lbox_cmd.SelectedItem.ToString();
+                });
+
                 if (!string.IsNullOrEmpty(query))
                 {
                     DataTable result = sQliteDb.GetDataTable(FilePath.DB_saveDir, query);
-                    if (result != null)
-                        dgv_data.DataSource = result;
-                    lb_status.ForeColor = Color.Green;
-                    lb_status.Text = "查詢結束 !!!";
+                    this.Invoke((MethodInvoker)delegate ()
+                    {
+                        if (result != null)
+                            dgv_data.DataSource = result;
+                        lb_status.Text = "查詢結束 !!!";
+                        lb_status.ForeColor = Color.Green;
+                    });
                 }
+
             }
             catch (Exception)
             {
-                lb_status.ForeColor = Color.Red;
-                lb_status.Text = "查詢失敗...";
+                this.Invoke((MethodInvoker)delegate ()
+                {
+                    lb_status.Text = "查詢失敗...";
+                    lb_status.ForeColor = Color.Red;
+                });
             }
-
         }
+        #endregion
     }
 }

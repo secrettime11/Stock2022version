@@ -33,7 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgv_data = new Sunny.UI.UIDataGridView();
             this.btn_add = new Sunny.UI.UIButton();
-            this.btn_replace = new Sunny.UI.UIButton();
             this.uiLabel1 = new Sunny.UI.UILabel();
             this.uiLabel2 = new Sunny.UI.UILabel();
             this.txt_date = new Sunny.UI.UITextBox();
@@ -68,31 +67,19 @@
             this.dgv_data.RowTemplate.Height = 29;
             this.dgv_data.SelectedIndex = -1;
             this.dgv_data.ShowGridLine = true;
-            this.dgv_data.Size = new System.Drawing.Size(823, 450);
+            this.dgv_data.Size = new System.Drawing.Size(754, 450);
             this.dgv_data.TabIndex = 0;
             // 
             // btn_add
             // 
             this.btn_add.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_add.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btn_add.Location = new System.Drawing.Point(761, 12);
+            this.btn_add.Location = new System.Drawing.Point(692, 12);
             this.btn_add.MinimumSize = new System.Drawing.Size(1, 1);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(74, 93);
             this.btn_add.TabIndex = 2;
             this.btn_add.Text = "新增";
-            // 
-            // btn_replace
-            // 
-            this.btn_replace.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_replace.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btn_replace.Location = new System.Drawing.Point(681, 12);
-            this.btn_replace.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btn_replace.Name = "btn_replace";
-            this.btn_replace.Size = new System.Drawing.Size(74, 93);
-            this.btn_replace.TabIndex = 3;
-            this.btn_replace.Text = "取代";
-            this.btn_replace.Click += new System.EventHandler(this.btn_replace_Click);
             // 
             // uiLabel1
             // 
@@ -155,6 +142,7 @@
             this.Lbox_cmd.Size = new System.Drawing.Size(472, 94);
             this.Lbox_cmd.TabIndex = 2;
             this.Lbox_cmd.Click += new System.EventHandler(this.Lbox_cmd_Click);
+            this.Lbox_cmd.DoubleClick += new System.EventHandler(this.Lbox_cmd_DoubleClick);
             // 
             // lb_status
             // 
@@ -170,14 +158,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(847, 573);
+            this.ClientSize = new System.Drawing.Size(785, 573);
             this.Controls.Add(this.lb_status);
             this.Controls.Add(this.Lbox_cmd);
             this.Controls.Add(this.txt_companyId);
             this.Controls.Add(this.txt_date);
             this.Controls.Add(this.uiLabel2);
             this.Controls.Add(this.uiLabel1);
-            this.Controls.Add(this.btn_replace);
             this.Controls.Add(this.btn_add);
             this.Controls.Add(this.dgv_data);
             this.Name = "QueryForm";
@@ -192,7 +179,6 @@
 
         private Sunny.UI.UIDataGridView dgv_data;
         private Sunny.UI.UIButton btn_add;
-        private Sunny.UI.UIButton btn_replace;
         private Sunny.UI.UILabel uiLabel1;
         private Sunny.UI.UILabel uiLabel2;
         private Sunny.UI.UITextBox txt_date;
