@@ -10,6 +10,27 @@ namespace Stock.CS
 {
     public class xmlOperation
     {
+        /* Element example
+         * 
+         XElement xElement = new XElement(
+                new XElement("BookStore",
+                    new XElement("Book",
+                        new XElement("Name", "A", new XAttribute("BookName", "C#")),
+                        new XElement("Author", "B", new XAttribute("Name", "Martin")),
+                        new XElement("Adress", "C"),
+                        new XElement("Date", DateTime.Now.ToString("yyyy-MM-dd"))
+                        ),
+                    new XElement("Book",
+                        new XElement("Name", "D", new XAttribute("BookName", "WCF")),
+                        new XElement("Author", "E", new XAttribute("Name", "Mary")),
+                        new XElement("Adress", "F"),
+                        new XElement("Date", DateTime.Now.ToString("yyyy-MM-dd"))
+                        )
+                        )
+                );
+         *
+         */
+
         /// <summary>
         /// 產生XML檔
         /// </summary>
@@ -17,25 +38,6 @@ namespace Stock.CS
         /// <param name="xElement">XML內容格式</param>
         public void CreatXmlTree(string xmlPath, XElement xElement)
         {
-            /*
-            XElement xElement = new XElement(
-                new XElement("BookStore",
-                    new XElement("Book",
-                        new XElement("Name", "C#入門", new XAttribute("BookName", "C#")),
-                        new XElement("Author", "Martin", new XAttribute("Name", "Martin")),
-                        new XElement("Adress", "上海"),
-                        new XElement("Date", DateTime.Now.ToString("yyyy-MM-dd"))
-                        ),
-                    new XElement("Book",
-                        new XElement("Name", "WCF入門", new XAttribute("BookName", "WCF")),
-                        new XElement("Author", "Mary", new XAttribute("Name", "Mary")),
-                        new XElement("Adress", "北京"),
-                        new XElement("Date", DateTime.Now.ToString("yyyy-MM-dd"))
-                        )
-                        )
-                );
-            */
-
             // 需要指定編碼格式，否則在讀取時會拋：根級別上的資料無效。 第 1 行 位置 1異常
             XmlWriterSettings settings = new XmlWriterSettings();
             settings.Encoding = new UTF8Encoding(false);
@@ -48,7 +50,6 @@ namespace Stock.CS
                 xw.Close();
             }
         }
-
         /// <summary>
         /// 新增根元素的第一層子節點
         /// </summary>
@@ -69,7 +70,6 @@ namespace Stock.CS
             root.AppendChild(newNode);
             xmlDoc.Save(xmlPath);
         }
-
         /// <summary>
         /// 設定節點屬性
         /// </summary>
@@ -101,7 +101,6 @@ namespace Stock.CS
             root.RemoveChild(element);
             xmlDoc.Save(xmlPath);
         }
-
         /// <summary>
         /// 刪除節點屬性
         /// </summary>
