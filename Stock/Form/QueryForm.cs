@@ -46,7 +46,7 @@ namespace Stock
             string path = Application.StartupPath + @"/inifile.xml";
             CS.xmlOperation xmlOperation = new CS.xmlOperation();
             //xmlOperation.CreatXmlTree(path);
-            xmlOperation.ModifyAttribute(path);
+            //xmlOperation.ModifyAttribute(path);
         }
         #endregion
 
