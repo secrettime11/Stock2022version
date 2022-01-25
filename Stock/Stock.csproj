@@ -37,7 +37,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>icons8_get_a_discount_1.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
@@ -124,8 +125,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Args.cs" />
-    <Compile Include="ExcelWriter.cs" />
+    <Compile Include="CS\Args.cs" />
+    <Compile Include="CS\ExcelWriter.cs" />
     <Compile Include="LinqToDB.Templates\CopyMe.SQLite1.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -139,30 +140,30 @@
     <Compile Include="Model\OTC.cs" />
     <Compile Include="Model\OTCAlert.cs" />
     <Compile Include="Model\OTCBuySell.cs" />
-    <Compile Include="MyFunction.cs" />
-    <Compile Include="MainForm.cs">
+    <Compile Include="CS\MyFunction.cs" />
+    <Compile Include="Form\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="Form\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ParseData.cs" />
+    <Compile Include="CS\ParseData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QueryForm.cs">
+    <Compile Include="Form\QueryForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="QueryForm.Designer.cs">
+    <Compile Include="Form\QueryForm.Designer.cs">
       <DependentUpon>QueryForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SQliteDb.cs" />
-    <Compile Include="WaitF.cs">
+    <Compile Include="CS\SQliteDb.cs" />
+    <Compile Include="Form\WaitF.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WaitF.Designer.cs">
+    <Compile Include="Form\WaitF.Designer.cs">
       <DependentUpon>WaitF.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="Form\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -174,10 +175,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="QueryForm.resx">
+    <EmbeddedResource Include="Form\QueryForm.resx">
       <DependentUpon>QueryForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WaitF.resx">
+    <EmbeddedResource Include="Form\WaitF.resx">
       <DependentUpon>WaitF.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="LinqToDB.Templates\DataAnnotations.ttinclude" />
@@ -211,7 +212,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="icons8_get_a_discount_1.ico" />
     <Content Include="LinqToDB.Templates\CopyMe.SQLite.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CopyMe.SQLite1.generated.cs</LastGenOutput>
