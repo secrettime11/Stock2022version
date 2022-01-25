@@ -41,6 +41,13 @@ namespace Stock
             Thread mission = new Thread(searchMisson);
             mission.Start();
         }
+        private void btn_add_Click(object sender, EventArgs e)
+        {
+            string path = Application.StartupPath + @"/inifile.xml";
+            CS.xmlOperation xmlOperation = new CS.xmlOperation();
+            //xmlOperation.CreatXmlTree(path);
+            xmlOperation.ModifyAttribute(path);
+        }
         #endregion
 
         #region Function
@@ -84,5 +91,7 @@ namespace Stock
             }
         }
         #endregion
+
+        
     }
 }
