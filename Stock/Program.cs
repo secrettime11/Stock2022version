@@ -18,8 +18,8 @@ namespace Stock
             Application.SetCompatibleTextRenderingDefault(false);
 
             //Application.Run(new MainForm());
-            //Application.Run(new QueryForm());
-            WaitF();
+            Application.Run(new QueryForm());
+            //WaitF();
         }
 
         static void WaitF() 
