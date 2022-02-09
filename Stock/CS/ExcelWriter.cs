@@ -157,30 +157,17 @@ namespace Stock
 
         public void SmartPickToExcel(string fileName, List<Model.MS1.SmartExcelResult> SmartData)
         {
-            
+
             string[] Header = new string[] { "代號", "名稱", "價位", "  ", "停利", "停損", "張數", "總價", "  ", "周轉", "成交金額", "漲停" };
-
-            //表頭
-            for (int i = 0; i < Header.Length; ++i)
-            {
-                HSSFCell headCell = (HSSFCell)n_objHeadRow.CreateCell(i, CellType.String);
-                headCell.SetCellValue(Header[i]);
-            }
-
-            // 數據寫入
-            for (int i = 0; i < SmartData.Count(); i++)
-            {
-                HSSFRow n_Row = (HSSFRow)n_objSheet.CreateRow(i + 1);
-            }
-
 
             // 新建一個工作簿，獲取第一個工作表
             Workbook workbook = new Workbook();
             Worksheet sheet = workbook.Worksheets[0];
+            workbook.ActiveSheetIndex = 0;
+
             // 初始化currentRow、currentFormula
             int HeaderRow = 1;
             string currentFormula = string.Empty;
-
             // 表頭
             for (int i = 0; i < Header.Length; ++i)
                 sheet.Range[HeaderRow, i + 1].Value = Header[i];
