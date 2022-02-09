@@ -53,7 +53,7 @@ namespace Stock
         #region Function
         protected void Initial()
         {
-            txt_date.Text = DateTime.Now.AddDays(-5).ToString("yyyyMMdd");
+            txt_date.Text = DateTime.Now.AddDays(-1).ToString("yyyyMMdd");
 
             Lbox_cmd.Items.Add($"SELECT * FROM Listed WHERE date='{txt_date.Text}'");
         }

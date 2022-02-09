@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using Sunny.UI;
 using LinqToDB;
 using DataModels;
+using System.Globalization;
 
 namespace Stock
 {
@@ -63,6 +64,7 @@ namespace Stock
         DataTable OutputTable = new DataTable();
         bool IsPick = false;
         bool Pause = false;
+        bool dataReady = false;
         public MainForm()
         {
             InitializeComponent();
@@ -78,11 +80,18 @@ namespace Stock
             dp_end.Value = myFunction.GetOpenDay(DateTime.Today.ToShortDateString(), -1);
             dp_pickDate.Value = myFunction.GetOpenDay(DateTime.Today.ToShortDateString(), 0);
             TipMessage();
+        }
 
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            Thread getData = new Thread(ParseData);
+            getData.Start();
         }
 
         private void btn_run_Click(object sender, EventArgs e)
         {
+            if (!dataGetReady())
+                return;
             IsPick = false;
             Pause = false;
             lb_status.ForeColor = Color.Orange;
@@ -125,7 +134,7 @@ namespace Stock
                             }
                         }
                     }
-                    OutputTable = myFunction.S1ListToDGV(FinalResult, IsPick);
+                    OutputTable = myFunction.S1ListToDGV(FinalResult, IsPick, args.DisplayDealpriceAvg);
                     this.Invoke((MethodInvoker)delegate
                     {
                         dgv_result.DataSource = OutputTable;
@@ -182,6 +191,7 @@ namespace Stock
                 {
                     lb_status.Text = $"完成";
                     lb_status.ForeColor = Color.DarkGreen;
+                    Console.WriteLine("Finish");
                 });
             }
         }
@@ -203,6 +213,10 @@ namespace Stock
                     where o.Date == myFunction.VidsDumpSlash(Day) && o.TurnoverRate != "N" && o.TurnoverRate != null
                     select new { o.Id, o.Type, o.TurnoverRate, o.Close, o.High, o.Open, o.Low, o.UpDown, o.DealPrice }
                 ).OrderByDescending(m => Convert.ToDouble(m.TurnoverRate)).Take(Convert.ToInt32(args.TurnoverDic["Top"])).ToList();
+
+            // 以成交值排行
+            if (ckcb_dealpriceOrder.Checked)
+                data = data.OrderByDescending(x => Int64.Parse(x.DealPrice, NumberStyles.AllowThousands)).ToList();
 
             List<Model.MS1.First> First = new List<Model.MS1.First>();
 
@@ -270,7 +284,6 @@ namespace Stock
                     }
                 }
                 catch (Exception) { }
-
             }
             List<Model.MS1.Second> Second = new List<Model.MS1.Second>();
             int counter = 0;
@@ -400,6 +413,7 @@ namespace Stock
             // 結果
             int OrderC = 1;
             double total = 0;
+            long dealpriceTotal = 0;
 
             foreach (var item in Second)
             {
@@ -433,10 +447,6 @@ namespace Stock
                             temp.Status = profit[0];
                             temp.Profit = profit[1];
                             total += Convert.ToDouble(temp.Profit);
-                            if (OrderC == Second.Count)
-                                temp.Average = (total / Second.Count).ToString("F3");
-                            else
-                                temp.Average = "*";
 
                             temp.yOpen = yinfo.Open;
                             temp.yHigh = yinfo.High;
@@ -451,6 +461,22 @@ namespace Stock
                             temp.HighVolume = item.HighVolume;
                             temp.highPercent = item.HighPercent;
                             temp.BuySell = item.BuySell;
+
+                            if (ckcb_displayDealpriceAvg.Checked)
+                                dealpriceTotal += Int64.Parse(temp.yDealprice, NumberStyles.AllowThousands);
+
+                            if (OrderC == Second.Count)
+                            {
+                                temp.Average = (total / Second.Count).ToString("F3");
+                                if (args.DisplayDealpriceAvg)
+                                    temp.AvgDealPrice = (dealpriceTotal / Second.Count).ToString();
+                            }
+                            else
+                            {
+                                temp.Average = "*";
+                                if (args.DisplayDealpriceAvg)
+                                    temp.AvgDealPrice = "*";
+                            }
                         }
                         else
                         {
@@ -474,6 +500,16 @@ namespace Stock
                             temp.HighVolume = item.HighVolume;
                             temp.highPercent = item.HighPercent;
                             temp.BuySell = item.BuySell;
+
+                            if (args.DisplayDealpriceAvg)
+                            {
+                                dealpriceTotal += Int64.Parse(temp.DealPrice, NumberStyles.AllowThousands);
+
+                                if (OrderC == Second.Count)
+                                    temp.AvgDealPrice = (dealpriceTotal / Second.Count).ToString();
+                                else
+                                    temp.AvgDealPrice = "*";
+                            }
                         }
                         temp.Order = OrderC.ToString();
                     }
@@ -505,11 +541,6 @@ namespace Stock
                             temp.Profit = profit[1];
                             total += Convert.ToDouble(temp.Profit);
 
-                            if (OrderC == Second.Count)
-                                temp.Average = (total / Second.Count).ToString("F3");
-                            else
-                                temp.Average = "*";
-
                             temp.yOpen = yinfo.Open;
                             temp.yHigh = yinfo.High;
                             temp.yLow = yinfo.Low;
@@ -522,6 +553,22 @@ namespace Stock
                             temp.HighVolume = item.HighVolume;
                             temp.highPercent = item.HighPercent;
                             temp.BuySell = item.BuySell;
+
+                            if (args.DisplayDealpriceAvg)
+                                dealpriceTotal += Int64.Parse(temp.yDealprice, NumberStyles.AllowThousands);
+
+                            if (OrderC == Second.Count)
+                            {
+                                temp.Average = (total / Second.Count).ToString("F3");
+                                if (args.DisplayDealpriceAvg)
+                                    temp.AvgDealPrice = (dealpriceTotal / Second.Count).ToString();
+                            }
+                            else
+                            {
+                                temp.Average = "*";
+                                if (args.DisplayDealpriceAvg)
+                                    temp.AvgDealPrice = "*";
+                            }
                         }
                         else
                         {
@@ -545,6 +592,16 @@ namespace Stock
                             temp.HighVolume = item.HighVolume;
                             temp.highPercent = item.HighPercent;
                             temp.BuySell = item.BuySell;
+
+                            if (args.DisplayDealpriceAvg)
+                            {
+                                dealpriceTotal += Int64.Parse(temp.DealPrice, NumberStyles.AllowThousands);
+
+                                if (OrderC == Second.Count)
+                                    temp.AvgDealPrice = (dealpriceTotal / Second.Count).ToString();
+                                else
+                                    temp.AvgDealPrice = "*";
+                            }
                         }
                         temp.Order = OrderC.ToString();
                     }
@@ -1085,7 +1142,12 @@ namespace Stock
             if (ckcb_notHighDis.Checked)
                 args.NotHighDisValue = txt_notHighDisValue.Text.Trim();
 
+            if (ckcb_displayDealpriceAvg.Checked)
+                args.DisplayDealpriceAvg = true;
+            else
+                args.DisplayDealpriceAvg = false;
         }
+
         public void S2Initial(Args args)
         {
             if (rdb_S2Turnoverrate.Checked)
@@ -1096,11 +1158,13 @@ namespace Stock
             else
                 args.s2virtualLine = false;
         }
+
         public void S3Initial(Args args)
         {
             if (rdb_S3Turnoverrate.Checked)
                 args.s3turnovertValue = ud_S3Turnoverrate.Value.ToString();
         }
+
         private void databaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process DbOpener = new Process();
@@ -1180,12 +1244,9 @@ namespace Stock
             }
         }
 
-        /// <summary>
-        /// Backtest date fool prooof
-        /// </summary>
-        /// <param name="args"></param>
         private bool FoolProof(Args args)
         {
+
             if (!IsPick)
             {
                 if (cb_Strategy.SelectedIndex == 0)
@@ -1246,6 +1307,8 @@ namespace Stock
 
         private void btn_pick_Click(object sender, EventArgs e)
         {
+            if (!dataGetReady())
+                return;
             if (cb_Strategy.SelectedIndex != 0)
             {
                 MessageBox.Show("Not allowed !");
@@ -1357,7 +1420,7 @@ namespace Stock
 
         private void DonateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("歡迎贊助開發人員 Eric Huang，您的支持是我持續更新的動力哦 ! 贊助帳號如下 :"+Environment.NewLine + "(013) 699510138591","贊助起來");
+            MessageBox.Show("歡迎贊助開發人員 Eric Huang，您的支持是我持續更新的動力哦 ! 贊助帳號如下 :" + Environment.NewLine + "(013) 699510138591", "贊助起來");
         }
 
         private void BlogToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1369,12 +1432,6 @@ namespace Stock
         {
             QueryForm queryForm = new QueryForm();
             queryForm.Show();
-        }
-
-        private void getDataToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Thread getData = new Thread(ParseData);
-            getData.Start();
         }
 
         private void ParseData()
@@ -1389,33 +1446,20 @@ namespace Stock
                 this.Invoke((MethodInvoker)delegate ()
                 {
                     lb_status.Text = Date;
-                    lb_status.ForeColor = Color.Orange;
+                    lb_status.ForeColor = Color.DarkRed;
                 });
-                
-                var info = db.Listeds.Where(p => p.Date == Date).FirstOrDefault();
-                
-                if (info == null)
-                {
-                    parseData.Excuted(Date,"市");
-                    parseData.Excuted(Date,"櫃");
 
-                    parseData.DayTradeExcuted(Date,"市");
-                    parseData.DayTradeExcuted(Date,"櫃");
-                    
-                    parseData.BuySellExcuted(Date,"市");
-                    parseData.BuySellExcuted(Date,"櫃");
-
-                    Thread.Sleep(300);
-                }
+                dataClaw(Date);
             }
             this.Invoke((MethodInvoker)delegate ()
             {
+                dataReady = true;
                 lb_status.Text = "資料爬取完成";
                 lb_status.ForeColor = Color.DarkGreen;
             });
         }
 
-        private void dataCheck(string Date) 
+        private void dataClaw(string Date)
         {
             var A = db.Listeds.Where(p => p.Date == Date).FirstOrDefault();
             if (A == null)
@@ -1440,6 +1484,32 @@ namespace Stock
             var F = db.OTCBuySells.Where(p => p.Date == Date).FirstOrDefault();
             if (F == null)
                 parseData.BuySellExcuted(Date, "櫃");
+        }
+
+        private bool dataGetReady()
+        {
+            if (!dataReady)
+            {
+                MessageBox.Show("資料爬取中，請稍後再試...", "提醒");
+                return false;
+            }
+            return true;
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!dataReady)
+            {
+
+                if (MessageBox.Show("資料爬取中，若強制關閉可能導致資料庫錯誤，您確認退出嗎?", "渣男關心您", MessageBoxButtons.YesNoCancel) == DialogResult.Yes)
+                {
+                    Dispose(); Application.Exit();
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+            }
         }
     }
 }

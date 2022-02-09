@@ -326,7 +326,7 @@ namespace Stock
         /// <param name="resultList"></param>
         /// <param name="PickStock"></param>
         /// <returns></returns>
-        public DataTable S1ListToDGV(List<Model.MS1.Result> result, bool IsPick)
+        public DataTable S1ListToDGV(List<Model.MS1.Result> result, bool IsPick, bool DisplayDealprice)
         {
             DataTable dataTable = new DataTable();
             if (result.Count > 0)
@@ -334,13 +334,21 @@ namespace Stock
                 // Add column
                 if (!IsPick)
                 {
-                    foreach (var item in Header.Output_header)
-                        dataTable.Columns.Add(item);
+                    if (DisplayDealprice)
+                        foreach (var item in Header.Output_headerAvg)
+                            dataTable.Columns.Add(item);
+                    else
+                        foreach (var item in Header.Output_header)
+                            dataTable.Columns.Add(item);
                 }
                 else
                 {
-                    foreach (var item in Header.OutputPick_header)
-                        dataTable.Columns.Add(item);
+                    if (DisplayDealprice)
+                        foreach (var item in Header.OutputPick_headerAvg)
+                            dataTable.Columns.Add(item);
+                    else
+                        foreach (var item in Header.OutputPick_header)
+                            dataTable.Columns.Add(item);
                 }
                 int rowC = 0;
                 foreach (var item in result)
@@ -373,6 +381,8 @@ namespace Stock
                         dataTable.Rows[rowC][21] = item.HighVolume;
                         dataTable.Rows[rowC][22] = item.highPercent;
                         dataTable.Rows[rowC][23] = item.BuySell;
+                        if (DisplayDealprice)
+                            dataTable.Rows[rowC][24] = item.AvgDealPrice;
                     }
                     else
                     {
@@ -391,6 +401,8 @@ namespace Stock
                         dataTable.Rows[rowC][12] = item.HighVolume;
                         dataTable.Rows[rowC][13] = item.highPercent;
                         dataTable.Rows[rowC][14] = item.BuySell;
+                        if (DisplayDealprice)
+                            dataTable.Rows[rowC][15] = item.AvgDealPrice;
                     }
 
                     rowC++;
@@ -1391,7 +1403,7 @@ namespace Stock
                 // 寫入SQLite
                 SQliteDb sQlite = new SQliteDb();
                 string insertString = "";
-                if (sQlite.DataAdd(FilePath.DB_saveDir, "ListedAlert", Header.ListedAlert_header, Data, insertString)) 
+                if (sQlite.DataAdd(FilePath.DB_saveDir, "ListedAlert", Header.ListedAlert_header, Data, insertString))
                 {
                     Console.WriteLine($"{date} ListedAlert 新增成功!");
                     return true;
@@ -1595,7 +1607,7 @@ namespace Stock
                 // 寫入SQLite
                 SQliteDb sQlite = new SQliteDb();
                 string insertString = "";
-                if (sQlite.DataAdd(FilePath.DB_saveDir, "ListedBuySell", Header.ListedBuySell_header, Data, insertString)) 
+                if (sQlite.DataAdd(FilePath.DB_saveDir, "ListedBuySell", Header.ListedBuySell_header, Data, insertString))
                 {
                     Console.WriteLine($"{date} ListedBuySell 新增成功!");
                     return true;
@@ -1632,7 +1644,7 @@ namespace Stock
                 // write into SQLite
                 SQliteDb sQlite = new SQliteDb();
                 string insertString = "";
-                if (sQlite.DataAdd(FilePath.DB_saveDir, "OTCAlert", Header.OTCAlert_header, Data, insertString)) 
+                if (sQlite.DataAdd(FilePath.DB_saveDir, "OTCAlert", Header.OTCAlert_header, Data, insertString))
                 {
                     Console.WriteLine($"{date} OTCAlert 新增成功!");
                     return true;

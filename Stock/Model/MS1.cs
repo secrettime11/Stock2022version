@@ -67,6 +67,7 @@ namespace Stock.Model
             public string HighVolume { get; set; }
             public string highPercent { get; set; }
             public string BuySell { get; set; }
+            public string AvgDealPrice { get; set; }
         }
 
         public class SmartExcelResult
