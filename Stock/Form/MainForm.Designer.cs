@@ -39,8 +39,6 @@
             this.capitalDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.databaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.securitiesLendingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.smartPickerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -99,6 +97,8 @@
             this.ckcb_s1TurnoverTop = new Sunny.UI.UICheckBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.uiCheckBoxGroup2 = new Sunny.UI.UICheckBoxGroup();
+            this.ckcb_displayDealpriceAvg = new Sunny.UI.UICheckBox();
+            this.ckcb_dealpriceOrder = new Sunny.UI.UICheckBox();
             this.uiLabel11 = new Sunny.UI.UILabel();
             this.uiRadioButtonGroup12 = new Sunny.UI.UIRadioButtonGroup();
             this.rdb_noneMax = new Sunny.UI.UIRadioButton();
@@ -203,8 +203,7 @@
             this.rdb_InUnder = new Sunny.UI.UIRadioButton();
             this.rdb_InOpen = new Sunny.UI.UIRadioButton();
             this.uiToolTip1 = new Sunny.UI.UIToolTip(this.components);
-            this.ckcb_dealpriceOrder = new Sunny.UI.UICheckBox();
-            this.ckcb_displayDealpriceAvg = new Sunny.UI.UICheckBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_result)).BeginInit();
             this.tabC_Strategy.SuspendLayout();
@@ -246,11 +245,9 @@
             this.capitalDataToolStripMenuItem,
             this.databaseToolStripMenuItem,
             this.openExcelToolStripMenuItem,
-            this.settingToolStripMenuItem,
-            this.securitiesLendingToolStripMenuItem,
+            this.smartPickerToolStripMenuItem,
             this.restartToolStripMenuItem,
             this.MarkToolStripMenuItem,
-            this.smartPickerToolStripMenuItem,
             this.DonateToolStripMenuItem,
             this.BlogToolStripMenuItem,
             this.QueryToolStripMenuItem});
@@ -279,18 +276,6 @@
             this.openExcelToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
             this.openExcelToolStripMenuItem.Text = "開啟 Excel";
             this.openExcelToolStripMenuItem.Click += new System.EventHandler(this.openExcelToolStripMenuItem_Click);
-            // 
-            // settingToolStripMenuItem
-            // 
-            this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
-            this.settingToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
-            this.settingToolStripMenuItem.Text = "設置";
-            // 
-            // securitiesLendingToolStripMenuItem
-            // 
-            this.securitiesLendingToolStripMenuItem.Name = "securitiesLendingToolStripMenuItem";
-            this.securitiesLendingToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
-            this.securitiesLendingToolStripMenuItem.Text = "融券";
             // 
             // restartToolStripMenuItem
             // 
@@ -1177,6 +1162,36 @@
             this.uiCheckBoxGroup2.Style = Sunny.UI.UIStyle.Custom;
             this.uiCheckBoxGroup2.TabIndex = 4;
             this.uiCheckBoxGroup2.Text = "Extend Condition";
+            // 
+            // ckcb_displayDealpriceAvg
+            // 
+            this.ckcb_displayDealpriceAvg.BackColor = System.Drawing.Color.Transparent;
+            this.ckcb_displayDealpriceAvg.Checked = true;
+            this.ckcb_displayDealpriceAvg.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ckcb_displayDealpriceAvg.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.ckcb_displayDealpriceAvg.Location = new System.Drawing.Point(9, 322);
+            this.ckcb_displayDealpriceAvg.MinimumSize = new System.Drawing.Size(1, 1);
+            this.ckcb_displayDealpriceAvg.Name = "ckcb_displayDealpriceAvg";
+            this.ckcb_displayDealpriceAvg.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
+            this.ckcb_displayDealpriceAvg.Size = new System.Drawing.Size(137, 29);
+            this.ckcb_displayDealpriceAvg.Style = Sunny.UI.UIStyle.Custom;
+            this.ckcb_displayDealpriceAvg.TabIndex = 156;
+            this.ckcb_displayDealpriceAvg.Text = "顯示成交均值";
+            // 
+            // ckcb_dealpriceOrder
+            // 
+            this.ckcb_dealpriceOrder.BackColor = System.Drawing.Color.Transparent;
+            this.ckcb_dealpriceOrder.Checked = true;
+            this.ckcb_dealpriceOrder.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ckcb_dealpriceOrder.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.ckcb_dealpriceOrder.Location = new System.Drawing.Point(9, 287);
+            this.ckcb_dealpriceOrder.MinimumSize = new System.Drawing.Size(1, 1);
+            this.ckcb_dealpriceOrder.Name = "ckcb_dealpriceOrder";
+            this.ckcb_dealpriceOrder.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
+            this.ckcb_dealpriceOrder.Size = new System.Drawing.Size(192, 29);
+            this.ckcb_dealpriceOrder.Style = Sunny.UI.UIStyle.Custom;
+            this.ckcb_dealpriceOrder.TabIndex = 155;
+            this.ckcb_dealpriceOrder.Text = "成交值排行(前x成交值)";
             // 
             // uiLabel11
             // 
@@ -2753,41 +2768,21 @@
             this.uiToolTip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.uiToolTip1.OwnerDraw = true;
             // 
-            // ckcb_dealpriceOrder
+            // button1
             // 
-            this.ckcb_dealpriceOrder.BackColor = System.Drawing.Color.Transparent;
-            this.ckcb_dealpriceOrder.Checked = true;
-            this.ckcb_dealpriceOrder.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ckcb_dealpriceOrder.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.ckcb_dealpriceOrder.Location = new System.Drawing.Point(9, 287);
-            this.ckcb_dealpriceOrder.MinimumSize = new System.Drawing.Size(1, 1);
-            this.ckcb_dealpriceOrder.Name = "ckcb_dealpriceOrder";
-            this.ckcb_dealpriceOrder.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.ckcb_dealpriceOrder.Size = new System.Drawing.Size(192, 29);
-            this.ckcb_dealpriceOrder.Style = Sunny.UI.UIStyle.Custom;
-            this.ckcb_dealpriceOrder.TabIndex = 155;
-            this.ckcb_dealpriceOrder.Text = "成交值排行(前x成交值)";
-            // 
-            // ckcb_displayDealpriceAvg
-            // 
-            this.ckcb_displayDealpriceAvg.BackColor = System.Drawing.Color.Transparent;
-            this.ckcb_displayDealpriceAvg.Checked = true;
-            this.ckcb_displayDealpriceAvg.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ckcb_displayDealpriceAvg.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.ckcb_displayDealpriceAvg.Location = new System.Drawing.Point(9, 322);
-            this.ckcb_displayDealpriceAvg.MinimumSize = new System.Drawing.Size(1, 1);
-            this.ckcb_displayDealpriceAvg.Name = "ckcb_displayDealpriceAvg";
-            this.ckcb_displayDealpriceAvg.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.ckcb_displayDealpriceAvg.Size = new System.Drawing.Size(137, 29);
-            this.ckcb_displayDealpriceAvg.Style = Sunny.UI.UIStyle.Custom;
-            this.ckcb_displayDealpriceAvg.TabIndex = 156;
-            this.ckcb_displayDealpriceAvg.Text = "顯示成交均值";
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 151;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1302, 807);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.uiRadioButtonGroup11);
             this.Controls.Add(this.uiRadioButtonGroup10);
             this.Controls.Add(this.uiRadioButtonGroup9);
@@ -2859,8 +2854,6 @@
         private System.Windows.Forms.ToolStripMenuItem capitalDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem databaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openExcelToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem settingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem securitiesLendingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem restartToolStripMenuItem;
         private Sunny.UI.UIDataGridView dgv_result;
         private Sunny.UI.UITabControlMenu tabC_Strategy;
@@ -3025,6 +3018,7 @@
         private System.Windows.Forms.ToolStripMenuItem QueryToolStripMenuItem;
         private Sunny.UI.UICheckBox ckcb_dealpriceOrder;
         private Sunny.UI.UICheckBox ckcb_displayDealpriceAvg;
+        private System.Windows.Forms.Button button1;
     }
 }
 

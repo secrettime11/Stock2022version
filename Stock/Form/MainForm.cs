@@ -19,58 +19,40 @@ namespace Stock
 {
     public partial class MainForm : Form
     {
-        #region Equal scaling
-        private System.Drawing.Size m_szInit;   // 初始窗體大小
-        private Dictionary<Control, Rectangle> m_dicSize = new Dictionary<Control, Rectangle>();
-        protected override void OnLoad(EventArgs e)
-        {
-            m_szInit = this.Size;//get initial size
-            this.GetInitSize(this);
-            base.OnLoad(e);
-        }
-
-        private void GetInitSize(Control ctrl)
-        {
-            foreach (Control c in ctrl.Controls)
-            {
-                m_dicSize.Add(c, new Rectangle(c.Location, c.Size));
-                this.GetInitSize(c);
-            }
-        }
-        protected override void OnResize(EventArgs e)
-        {
-            //Calculate size propotion between present and initial
-            float fx = (float)this.Width / m_szInit.Width;
-            float fy = (float)this.Height / m_szInit.Height;
-            foreach (var v in m_dicSize)
-            {
-                v.Key.Left = (int)(v.Value.Left * fx);
-                v.Key.Top = (int)(v.Value.Top * fy);
-                v.Key.Width = (int)(v.Value.Width * fx);
-                v.Key.Height = (int)(v.Value.Height * fy);
-            }
-            base.OnResize(e);
-        }
-        #endregion
-
+        #region 初始宣告
         MyFunction myFunction = new MyFunction();
         SQliteDb SQlite = new SQliteDb();
         StockDB db = new StockDB();
         ParseData parseData = new ParseData();
 
-        public List<Model.MS1.Result> FinalResult = new List<Model.MS1.Result>();
+        public List<Model.MS1.Result> S1FinalResult = new List<Model.MS1.Result>();
         public List<Model.MS1.S2Result> S2FinalResult = new List<Model.MS1.S2Result>();
         public List<Model.MS1.S3Result> S3FinalResult = new List<Model.MS1.S3Result>();
         DataTable OutputTable = new DataTable();
+
+        /// <summary>
+        /// 選股 true 回測 false
+        /// </summary>
         bool IsPick = false;
+        /// <summary>
+        /// 暫停
+        /// </summary>
         bool Pause = false;
+        /// <summary>
+        /// 資料爬取狀態
+        /// </summary>
         bool dataReady = false;
+        #endregion
         public MainForm()
         {
             InitializeComponent();
+            // 策略預設
             cb_Strategy.SelectedIndex = 0;
         }
 
+        #region 控制項事件
+        
+        #region Form
         private void MainForm_Load(object sender, EventArgs e)
         {
             myFunction.DataTableCheckExist();
@@ -81,13 +63,29 @@ namespace Stock
             dp_pickDate.Value = myFunction.GetOpenDay(DateTime.Today.ToShortDateString(), 0);
             TipMessage();
         }
-
         private void MainForm_Shown(object sender, EventArgs e)
         {
             Thread getData = new Thread(ParseData);
             getData.Start();
         }
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!dataReady)
+            {
 
+                if (MessageBox.Show("資料爬取中，若強制關閉可能導致資料庫錯誤，您確認退出嗎?", "渣男關心您", MessageBoxButtons.YesNoCancel) == DialogResult.Yes)
+                {
+                    Dispose(); Application.Exit();
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
+        #endregion
+
+        #region Button
         private void btn_run_Click(object sender, EventArgs e)
         {
             if (!dataGetReady())
@@ -98,7 +96,166 @@ namespace Stock
             Thread Run = new Thread(Mission);
             Run.Start();
         }
+        private void btn_excelOutput_Click(object sender, EventArgs e)
+        {
+            ExcelWriter excel = new ExcelWriter();
+            if (string.IsNullOrEmpty(txt_fileName.Text))
+            {
+                MessageBox.Show("請輸入檔名", "提醒", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (dgv_result.Rows.Count < 1)
+            {
+                MessageBox.Show("沒有資料", "提醒", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (File.Exists(Application.StartupPath + @"\Excel\" + txt_fileName.Text + ".xls"))
+            {
+                if (MessageBox.Show("檔名已存在，是否覆蓋", "文件已存在", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    excel.DataGridViewToExcel(txt_fileName.Text, dgv_result, OutputTable);
+                else
+                    return;
+            }
+            else
+            {
+                excel.DataGridViewToExcel(txt_fileName.Text, dgv_result, OutputTable);
+            }
+        }
+        private void btn_pick_Click(object sender, EventArgs e)
+        {
+            if (!dataGetReady())
+                return;
+            if (cb_Strategy.SelectedIndex != 0)
+            {
+                MessageBox.Show("Not allowed !");
+            }
+            IsPick = true;
+            lb_status.ForeColor = Color.Orange;
+            Thread Run = new Thread(Mission);
+            Run.Start();
+        }
+        private void btn_pause_Click(object sender, EventArgs e)
+        {
+            Pause = true;
+            //ListedFunction xx = new ListedFunction();
+            //xx.WriteListedBuySellToSQL("20211119");
+            //Console.WriteLine("adasdsa");
+        }
+        private void btn_smartExcel_Click(object sender, EventArgs e)
+        {
+            ExcelWriter writer = new ExcelWriter();
 
+            string Path = Application.StartupPath + @"\Excel\SmartPicker";
+            if (!Directory.Exists(Path))
+                Directory.CreateDirectory(Path);
+
+            List<Model.MS1.SmartExcelResult> SmartData = new List<Model.MS1.SmartExcelResult>();
+
+            // -1 => 最後一行為空
+            for (int rows = 0; rows < dgv_result.Rows.Count - 1; rows++)
+            {
+                Model.MS1.SmartExcelResult data = new Model.MS1.SmartExcelResult();
+                data.Id = dgv_result.Rows[rows].Cells[2].Value.ToString();
+                data.Name = dgv_result.Rows[rows].Cells[3].Value.ToString();
+                data.Close = dgv_result.Rows[rows].Cells[7].Value.ToString();
+                data.TurnoverRate = dgv_result.Rows[rows].Cells[8].Value.ToString();
+                data.DealPrice = dgv_result.Rows[rows].Cells[9].Value.ToString();
+                data.MaxPrice = myFunction.LookUpDown(Convert.ToDecimal(dgv_result.Rows[rows].Cells[10].Value))[0].ToString();
+                SmartData.Add(data);
+            }
+
+            if (dgv_result.Rows.Count < 1)
+            {
+                MessageBox.Show("沒有資料", "提醒", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (File.Exists(Application.StartupPath + @"\Excel\SmartPicker\" + dp_pickDate.Value.ToString("yyyyMMdd") + ".xlsx"))
+            {
+                if (MessageBox.Show("檔名已存在，是否覆蓋", "文件已存在", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    writer.SmartPickToExcel(dp_pickDate.Value.ToString("yyyyMMdd"), SmartData);
+                else
+                    return;
+            }
+            else
+                writer.SmartPickToExcel(dp_pickDate.Value.ToString("yyyyMMdd"), SmartData);
+        }
+        #endregion
+
+        #region Others
+        private void ckcb_s1FlUp_ValueChanged(object sender, bool value)
+        {
+            if (ckcb_s1FlUp.Checked)
+            {
+                ckcb_s1FlDown.Checked = false;
+            }
+        }
+        private void ckcb_s1FlDown_ValueChanged(object sender, bool value)
+        {
+            if (ckcb_s1FlDown.Checked)
+            {
+                ckcb_s1FlUp.Checked = false;
+            }
+        }
+
+        private void databaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process DbOpener = new Process();
+            DbOpener.StartInfo.FileName = @"C:Data\";
+            DbOpener.Start();
+        }
+        private void restartToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+        }
+        private void openExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (Process Open = new Process())
+            {
+                string Path = Application.StartupPath + @"\Excel";
+                if (!Directory.Exists(Path))
+                    Directory.CreateDirectory(Path);
+
+                Open.StartInfo.FileName = Path;
+                Open.Start();
+            }
+        }
+        private void smartPickerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (Process Open = new Process())
+            {
+                string Path = Application.StartupPath + @"\Excel\SmartPicker";
+                if (!Directory.Exists(Path))
+                    Directory.CreateDirectory(Path);
+
+                Open.StartInfo.FileName = Path;
+                Open.Start();
+            }
+        }
+        private void DonateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("歡迎贊助開發人員 Eric Huang，您的支持是我持續更新的動力哦 ! 贊助帳號如下 :" + Environment.NewLine + "(013) 699510138591", "贊助起來");
+        }
+        private void QueryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            QueryForm queryForm = new QueryForm();
+            queryForm.Show();
+        }
+        private void BlogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://secrettime11.github.io/Brumby/");
+        }
+        private void MarkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("自104年 6月1日起，將漲跌幅度由7%放寬為10%。\n信用交易整戶擔保維持率自104年5月4日起調整為130%");
+        }
+        #endregion
+
+        #endregion
+
+        #region 自訂義函數
+        /// <summary>
+        /// 主要執行函數
+        /// </summary>
         private void Mission()
         {
             Args args = new Args();
@@ -134,7 +291,7 @@ namespace Stock
                             }
                         }
                     }
-                    OutputTable = myFunction.S1ListToDGV(FinalResult, IsPick, args.DisplayDealpriceAvg);
+                    OutputTable = myFunction.S1ListToDGV(S1FinalResult, IsPick, args.DisplayDealpriceAvg);
                     this.Invoke((MethodInvoker)delegate
                     {
                         dgv_result.DataSource = OutputTable;
@@ -195,7 +352,12 @@ namespace Stock
                 });
             }
         }
-
+        /// <summary>
+        /// 策略一
+        /// </summary>
+        /// <param name="args"></param>
+        /// <param name="Day"></param>
+        /// <param name="IsPick"></param>
         private void S1(Args args, string Day, bool IsPick)
         {
             // 單次回測所有前高比對日期
@@ -606,16 +768,20 @@ namespace Stock
                         temp.Order = OrderC.ToString();
                     }
 
-                    FinalResult.Add(temp);
+                    S1FinalResult.Add(temp);
                     OrderC++;
                 }
                 catch (Exception)
                 { }
             }
             // Add empty row on datagridview
-            FinalResult.Add(new Model.MS1.Result());
+            S1FinalResult.Add(new Model.MS1.Result());
         }
-
+        /// <summary>
+        /// 策略二
+        /// </summary>
+        /// <param name="args"></param>
+        /// <param name="Day"></param>
         private void S2(Args args, string Day)
         {
             // 單次回測所有前高比對日期
@@ -754,7 +920,11 @@ namespace Stock
             // Add empty row on datagridview
             S2FinalResult.Add(new Model.MS1.S2Result());
         }
-
+        /// <summary>
+        /// 策略三
+        /// </summary>
+        /// <param name="args"></param>
+        /// <param name="Day"></param>
         private void S3(Args args, string Day)
         {
             // 單次回測所有前高比對日期
@@ -1013,17 +1183,17 @@ namespace Stock
             // Add empty row on datagridview
             S3FinalResult.Add(new Model.MS1.S3Result());
         }
-
         /// <summary>
-        /// Initail public arguments
+        /// 初始化公用變數
         /// </summary>
         private void InitialArgs(Args args)
         {
             // Save data
             if (rdb_notsave.Checked)
             {
-                FinalResult.Clear();
+                S1FinalResult.Clear();
                 S2FinalResult.Clear();
+                S3FinalResult.Clear();
                 OutputTable.Clear();
                 this.Invoke((MethodInvoker)delegate ()
                 {
@@ -1087,9 +1257,8 @@ namespace Stock
             else if (rdb_between.Checked)
                 args.closeCondition = 3;
         }
-
         /// <summary>
-        /// Initial each run arguments
+        /// 初始化單次所需List Dictionary
         /// </summary>
         private void InitialEachTime(Args args)
         {
@@ -1101,7 +1270,10 @@ namespace Stock
             args.ListedBuySellDic = new Dictionary<string, string>();
             args.OTCBuySellDic = new Dictionary<string, string>();
         }
-
+        /// <summary>
+        /// Sl參數初始化
+        /// </summary>
+        /// <param name="args"></param>
         public void S1Initial(Args args)
         {
             args.s1tPrice = ud_tPrice.Value.ToString();
@@ -1147,7 +1319,10 @@ namespace Stock
             else
                 args.DisplayDealpriceAvg = false;
         }
-
+        /// <summary>
+        /// S2參數初始化
+        /// </summary>
+        /// <param name="args"></param>
         public void S2Initial(Args args)
         {
             if (rdb_S2Turnoverrate.Checked)
@@ -1158,92 +1333,20 @@ namespace Stock
             else
                 args.s2virtualLine = false;
         }
-
+        /// <summary>
+        /// S3參數初始化
+        /// </summary>
+        /// <param name="args"></param>
         public void S3Initial(Args args)
         {
             if (rdb_S3Turnoverrate.Checked)
                 args.s3turnovertValue = ud_S3Turnoverrate.Value.ToString();
         }
-
-        private void databaseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Process DbOpener = new Process();
-            DbOpener.StartInfo.FileName = @"C:Data\";
-            DbOpener.Start();
-        }
-
-        private void restartToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Restart();
-        }
-
-        private void openExcelToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (Process Open = new Process())
-            {
-                string Path = Application.StartupPath + @"\Excel";
-                if (!Directory.Exists(Path))
-                    Directory.CreateDirectory(Path);
-
-                Open.StartInfo.FileName = Path;
-                Open.Start();
-            }
-        }
-
-        public string AvgCal(string StockId, List<string> TotalavgDays, bool OTC)
-        {
-            double result = 0;
-            List<double> Each = new List<double>();
-            // new way = 一次搜尋當股全部日期 抓 成交金額 => 加起來平均
-            foreach (var Day in TotalavgDays)
-            {
-                string Command = $"SELECT DealPrice FROM Listed WHERE Date='{Day}' AND Id='{StockId}'";
-                if (OTC)
-                {
-                    Command = $"SELECT DealPrice FROM OTC WHERE Date='{Day}' AND Id='{StockId}'";
-                }
-                DataTable searchTable = SQlite.GetDataTable(FilePath.DB_saveDir, Command);
-                foreach (DataRow item in searchTable.Rows)
-                {
-                    string price = (string)item["DealPrice"];
-                    Each.Add(Convert.ToDouble(price.Replace(",", "")));
-                }
-            }
-            if (Each.Count == TotalavgDays.Count)
-            {
-                result = Convert.ToDouble(Math.Round(Each.Average()));
-            }
-
-            return String.Format("{0:N0}", result);
-            //return result;
-        }
-
-        private void btn_excelOutput_Click(object sender, EventArgs e)
-        {
-            ExcelWriter excel = new ExcelWriter();
-            if (string.IsNullOrEmpty(txt_fileName.Text))
-            {
-                MessageBox.Show("請輸入檔名", "提醒", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (dgv_result.Rows.Count < 1)
-            {
-                MessageBox.Show("沒有資料", "提醒", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (File.Exists(Application.StartupPath + @"\Excel\" + txt_fileName.Text + ".xls"))
-            {
-                if (MessageBox.Show("檔名已存在，是否覆蓋", "文件已存在", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    excel.DataGridViewToExcel(txt_fileName.Text, dgv_result, OutputTable);
-                else
-                    return;
-            }
-            else
-            {
-                excel.DataGridViewToExcel(txt_fileName.Text, dgv_result, OutputTable);
-            }
-        }
-
+        /// <summary>
+        /// 防呆
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
         private bool FoolProof(Args args)
         {
 
@@ -1304,73 +1407,9 @@ namespace Stock
 
             return true;
         }
-
-        private void btn_pick_Click(object sender, EventArgs e)
-        {
-            if (!dataGetReady())
-                return;
-            if (cb_Strategy.SelectedIndex != 0)
-            {
-                MessageBox.Show("Not allowed !");
-            }
-            IsPick = true;
-            lb_status.ForeColor = Color.Orange;
-            Thread Run = new Thread(Mission);
-            Run.Start();
-        }
-
-        private void btn_pause_Click(object sender, EventArgs e)
-        {
-            Pause = true;
-            //ListedFunction xx = new ListedFunction();
-            //xx.WriteListedBuySellToSQL("20211119");
-            //Console.WriteLine("adasdsa");
-        }
-
-        private void btn_smartExcel_Click(object sender, EventArgs e)
-        {
-            ExcelWriter writer = new ExcelWriter();
-
-            string Path = Application.StartupPath + @"\Excel\SmartPicker";
-            if (!Directory.Exists(Path))
-                Directory.CreateDirectory(Path);
-
-            List<Model.MS1.SmartExcelResult> SmartData = new List<Model.MS1.SmartExcelResult>();
-
-            // -1 => 最後一行為空
-            for (int rows = 0; rows < dgv_result.Rows.Count - 1; rows++)
-            {
-                Model.MS1.SmartExcelResult data = new Model.MS1.SmartExcelResult();
-                data.Id = dgv_result.Rows[rows].Cells[2].Value.ToString();
-                data.Name = dgv_result.Rows[rows].Cells[3].Value.ToString();
-                data.Close = dgv_result.Rows[rows].Cells[7].Value.ToString();
-                data.TurnoverRate = dgv_result.Rows[rows].Cells[8].Value.ToString();
-                data.DealPrice = dgv_result.Rows[rows].Cells[9].Value.ToString();
-                data.MaxPrice = myFunction.LookUpDown(Convert.ToDecimal(dgv_result.Rows[rows].Cells[10].Value))[0].ToString();
-                SmartData.Add(data);
-            }
-
-            if (dgv_result.Rows.Count < 1)
-            {
-                MessageBox.Show("沒有資料", "提醒", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (File.Exists(Application.StartupPath + @"\Excel\SmartPicker\" + dp_pickDate.Value.ToString("yyyyMMdd") + ".xlsx"))
-            {
-                if (MessageBox.Show("檔名已存在，是否覆蓋", "文件已存在", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    writer.SmartPickToExcel(dp_pickDate.Value.ToString("yyyyMMdd"), SmartData);
-                else
-                    return;
-            }
-            else
-                writer.SmartPickToExcel(dp_pickDate.Value.ToString("yyyyMMdd"), SmartData);
-        }
-
-        private void MarkToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("自104年 6月1日起，將漲跌幅度由7%放寬為10%。\n信用交易整戶擔保維持率自104年5月4日起調整為130%");
-        }
-
+        /// <summary>
+        /// 標籤提示
+        /// </summary>
         private void TipMessage()
         {
             Random random = new Random();
@@ -1388,52 +1427,9 @@ namespace Stock
             toolTip1.SetToolTip(rdb_highReal, "新高以收盤價為主");
             toolTip1.SetToolTip(btn_pick, $"本次選股獲利 {lucky}%");
         }
-
-        private void smartPickerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (Process Open = new Process())
-            {
-                string Path = Application.StartupPath + @"\Excel\SmartPicker";
-                if (!Directory.Exists(Path))
-                    Directory.CreateDirectory(Path);
-
-                Open.StartInfo.FileName = Path;
-                Open.Start();
-            }
-        }
-
-        private void ckcb_s1FlUp_ValueChanged(object sender, bool value)
-        {
-            if (ckcb_s1FlUp.Checked)
-            {
-                ckcb_s1FlDown.Checked = false;
-            }
-        }
-
-        private void ckcb_s1FlDown_ValueChanged(object sender, bool value)
-        {
-            if (ckcb_s1FlDown.Checked)
-            {
-                ckcb_s1FlUp.Checked = false;
-            }
-        }
-
-        private void DonateToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("歡迎贊助開發人員 Eric Huang，您的支持是我持續更新的動力哦 ! 贊助帳號如下 :" + Environment.NewLine + "(013) 699510138591", "贊助起來");
-        }
-
-        private void BlogToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://secrettime11.github.io/Brumby/");
-        }
-
-        private void QueryToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            QueryForm queryForm = new QueryForm();
-            queryForm.Show();
-        }
-
+        /// <summary>
+        /// 取得資料
+        /// </summary>
         private void ParseData()
         {
             List<string> All = myFunction.GetEachTestDates(DateTime.Now.AddDays(1).ToString("yyyy/MM/dd"), "30");
@@ -1458,7 +1454,10 @@ namespace Stock
                 lb_status.ForeColor = Color.DarkGreen;
             });
         }
-
+        /// <summary>
+        /// 資料爬取
+        /// </summary>
+        /// <param name="Date"></param>
         private void dataClaw(string Date)
         {
             var A = db.Listeds.Where(p => p.Date == Date).FirstOrDefault();
@@ -1485,7 +1484,10 @@ namespace Stock
             if (F == null)
                 parseData.BuySellExcuted(Date, "櫃");
         }
-
+        /// <summary>
+        /// 資料取得完畢
+        /// </summary>
+        /// <returns></returns>
         private bool dataGetReady()
         {
             if (!dataReady)
@@ -1495,21 +1497,71 @@ namespace Stock
             }
             return true;
         }
+        #endregion
 
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        #region 暫時用不著
+        public string AvgCal(string StockId, List<string> TotalavgDays, bool OTC)
         {
-            if (!dataReady)
+            double result = 0;
+            List<double> Each = new List<double>();
+            // new way = 一次搜尋當股全部日期 抓 成交金額 => 加起來平均
+            foreach (var Day in TotalavgDays)
             {
-
-                if (MessageBox.Show("資料爬取中，若強制關閉可能導致資料庫錯誤，您確認退出嗎?", "渣男關心您", MessageBoxButtons.YesNoCancel) == DialogResult.Yes)
+                string Command = $"SELECT DealPrice FROM Listed WHERE Date='{Day}' AND Id='{StockId}'";
+                if (OTC)
                 {
-                    Dispose(); Application.Exit();
+                    Command = $"SELECT DealPrice FROM OTC WHERE Date='{Day}' AND Id='{StockId}'";
                 }
-                else
+                DataTable searchTable = SQlite.GetDataTable(FilePath.DB_saveDir, Command);
+                foreach (DataRow item in searchTable.Rows)
                 {
-                    e.Cancel = true;
+                    string price = (string)item["DealPrice"];
+                    Each.Add(Convert.ToDouble(price.Replace(",", "")));
                 }
             }
+            if (Each.Count == TotalavgDays.Count)
+            {
+                result = Convert.ToDouble(Math.Round(Each.Average()));
+            }
+
+            return String.Format("{0:N0}", result);
+            //return result;
         }
+        #endregion
+
+        #region 窗體自適應
+        // 初始窗體大小
+        private System.Drawing.Size m_szInit;
+        private Dictionary<Control, Rectangle> m_dicSize = new Dictionary<Control, Rectangle>();
+        protected override void OnLoad(EventArgs e)
+        {
+            m_szInit = this.Size;//get initial size
+            this.GetInitSize(this);
+            base.OnLoad(e);
+        }
+
+        private void GetInitSize(Control ctrl)
+        {
+            foreach (Control c in ctrl.Controls)
+            {
+                m_dicSize.Add(c, new Rectangle(c.Location, c.Size));
+                this.GetInitSize(c);
+            }
+        }
+        protected override void OnResize(EventArgs e)
+        {
+            //Calculate size propotion between present and initial
+            float fx = (float)this.Width / m_szInit.Width;
+            float fy = (float)this.Height / m_szInit.Height;
+            foreach (var v in m_dicSize)
+            {
+                v.Key.Left = (int)(v.Value.Left * fx);
+                v.Key.Top = (int)(v.Value.Top * fy);
+                v.Key.Width = (int)(v.Value.Width * fx);
+                v.Key.Height = (int)(v.Value.Height * fy);
+            }
+            base.OnResize(e);
+        }
+        #endregion
     }
 }
