@@ -1391,8 +1391,11 @@ namespace Stock
                 // 寫入SQLite
                 SQliteDb sQlite = new SQliteDb();
                 string insertString = "";
-                if (sQlite.DataAdd(FilePath.DB_saveDir, "ListedAlert", Header.ListedAlert_header, Data, insertString))
+                if (sQlite.DataAdd(FilePath.DB_saveDir, "ListedAlert", Header.ListedAlert_header, Data, insertString)) 
+                {
+                    Console.WriteLine($"{date} ListedAlert 新增成功!");
                     return true;
+                }
             }
 
             //Stock_Form.Log.Debug($"{date}:上市當沖標的取得失敗!");
@@ -1592,8 +1595,11 @@ namespace Stock
                 // 寫入SQLite
                 SQliteDb sQlite = new SQliteDb();
                 string insertString = "";
-                if (sQlite.DataAdd(FilePath.DB_saveDir, "ListedBuySell", Header.ListedBuySell_header, Data, insertString))
+                if (sQlite.DataAdd(FilePath.DB_saveDir, "ListedBuySell", Header.ListedBuySell_header, Data, insertString)) 
+                {
+                    Console.WriteLine($"{date} ListedBuySell 新增成功!");
                     return true;
+                }
             }
 
             //Stock_Form.Log.Debug($"{date}:上市三大法人買賣超取得失敗!");
@@ -1626,8 +1632,11 @@ namespace Stock
                 // write into SQLite
                 SQliteDb sQlite = new SQliteDb();
                 string insertString = "";
-                if (sQlite.DataAdd(FilePath.DB_saveDir, "OTCAlert", Header.OTCAlert_header, Data, insertString))
+                if (sQlite.DataAdd(FilePath.DB_saveDir, "OTCAlert", Header.OTCAlert_header, Data, insertString)) 
+                {
+                    Console.WriteLine($"{date} OTCAlert 新增成功!");
                     return true;
+                }
             }
 
             return false;
@@ -1886,6 +1895,7 @@ namespace Stock
                 string insertString = "";
                 if (sQlite.DataAdd(FilePath.DB_saveDir, "OTCBuySell", Header.OTCBuySell_header, Data, insertString))
                 {
+                    Console.WriteLine($"{date} OTCBuySell 新增成功!");
                     return true;
                 }
 
@@ -1894,5 +1904,7 @@ namespace Stock
             //Stock_Form.Log.Debug($"{date}:上櫃三大法人買賣超取得失敗!");
             return false;
         }
+
+
     }
 }

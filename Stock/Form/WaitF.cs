@@ -61,10 +61,15 @@ namespace Stock
                 var info = db.Listeds.Where(p => p.Date == Date).FirstOrDefault();
                 if (info == null)
                 {
-                    parseData.ListedExcuted(Date);
-                    parseData.OTCExcuted(Date);
-                    parseData.DayTradeExcuted(Date);
-                    parseData.BuySellExcuted(Date);
+                    parseData.Excuted(Date, "市");
+                    parseData.Excuted(Date, "櫃");
+
+                    parseData.DayTradeExcuted(Date, "市");
+                    parseData.DayTradeExcuted(Date, "櫃");
+
+                    parseData.BuySellExcuted(Date, "市");
+                    parseData.BuySellExcuted(Date, "櫃");
+
                     Thread.Sleep(300);
                 }
             }

@@ -55,6 +55,7 @@ namespace Stock
         MyFunction myFunction = new MyFunction();
         SQliteDb SQlite = new SQliteDb();
         StockDB db = new StockDB();
+        ParseData parseData = new ParseData();
 
         public List<Model.MS1.Result> FinalResult = new List<Model.MS1.Result>();
         public List<Model.MS1.S2Result> S2FinalResult = new List<Model.MS1.S2Result>();
@@ -1368,6 +1369,77 @@ namespace Stock
         {
             QueryForm queryForm = new QueryForm();
             queryForm.Show();
+        }
+
+        private void getDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Thread getData = new Thread(ParseData);
+            getData.Start();
+        }
+
+        private void ParseData()
+        {
+            List<string> All = myFunction.GetEachTestDates(DateTime.Now.AddDays(1).ToString("yyyy/MM/dd"), "30");
+            if (Convert.ToInt32(DateTime.Now.ToString("HH")) < 18)
+            {
+                All = myFunction.GetEachTestDates(DateTime.Now.ToString("yyyy/MM/dd"), "30");
+            }
+            foreach (var Date in All)
+            {
+                this.Invoke((MethodInvoker)delegate ()
+                {
+                    lb_status.Text = Date;
+                    lb_status.ForeColor = Color.Orange;
+                });
+                
+                var info = db.Listeds.Where(p => p.Date == Date).FirstOrDefault();
+                
+                if (info == null)
+                {
+                    parseData.Excuted(Date,"市");
+                    parseData.Excuted(Date,"櫃");
+
+                    parseData.DayTradeExcuted(Date,"市");
+                    parseData.DayTradeExcuted(Date,"櫃");
+                    
+                    parseData.BuySellExcuted(Date,"市");
+                    parseData.BuySellExcuted(Date,"櫃");
+
+                    Thread.Sleep(300);
+                }
+            }
+            this.Invoke((MethodInvoker)delegate ()
+            {
+                lb_status.Text = "資料爬取完成";
+                lb_status.ForeColor = Color.DarkGreen;
+            });
+        }
+
+        private void dataCheck(string Date) 
+        {
+            var A = db.Listeds.Where(p => p.Date == Date).FirstOrDefault();
+            if (A == null)
+                parseData.Excuted(Date, "市");
+
+            var B = db.Otcs.Where(p => p.Date == Date).FirstOrDefault();
+            if (B == null)
+                parseData.Excuted(Date, "櫃");
+
+            var C = db.ListedAlerts.Where(p => p.Date == Date).FirstOrDefault();
+            if (C == null)
+                parseData.DayTradeExcuted(Date, "市");
+
+            var D = db.OTCAlerts.Where(p => p.Date == Date).FirstOrDefault();
+            if (D == null)
+                parseData.DayTradeExcuted(Date, "櫃");
+
+            var E = db.ListedBuySells.Where(p => p.Date == Date).FirstOrDefault();
+            if (E == null)
+                parseData.BuySellExcuted(Date, "市");
+
+            var F = db.OTCBuySells.Where(p => p.Date == Date).FirstOrDefault();
+            if (F == null)
+                parseData.BuySellExcuted(Date, "櫃");
         }
     }
 }

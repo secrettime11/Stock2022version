@@ -44,6 +44,9 @@
             this.restartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.smartPickerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DonateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BlogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.QueryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dgv_result = new Sunny.UI.UIDataGridView();
             this.tabC_Strategy = new Sunny.UI.UITabControlMenu();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -200,9 +203,8 @@
             this.rdb_InUnder = new Sunny.UI.UIRadioButton();
             this.rdb_InOpen = new Sunny.UI.UIRadioButton();
             this.uiToolTip1 = new Sunny.UI.UIToolTip(this.components);
-            this.DonateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.BlogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.QueryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ckcb_dealvalueOrder = new Sunny.UI.UICheckBox();
+            this.getDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_result)).BeginInit();
             this.tabC_Strategy.SuspendLayout();
@@ -251,7 +253,8 @@
             this.smartPickerToolStripMenuItem,
             this.DonateToolStripMenuItem,
             this.BlogToolStripMenuItem,
-            this.QueryToolStripMenuItem});
+            this.QueryToolStripMenuItem,
+            this.getDataToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(1302, 24);
@@ -310,6 +313,27 @@
             this.smartPickerToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
             this.smartPickerToolStripMenuItem.Text = "Smart Picker";
             this.smartPickerToolStripMenuItem.Click += new System.EventHandler(this.smartPickerToolStripMenuItem_Click);
+            // 
+            // DonateToolStripMenuItem
+            // 
+            this.DonateToolStripMenuItem.Name = "DonateToolStripMenuItem";
+            this.DonateToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.DonateToolStripMenuItem.Text = "贊助";
+            this.DonateToolStripMenuItem.Click += new System.EventHandler(this.DonateToolStripMenuItem_Click);
+            // 
+            // BlogToolStripMenuItem
+            // 
+            this.BlogToolStripMenuItem.Name = "BlogToolStripMenuItem";
+            this.BlogToolStripMenuItem.Size = new System.Drawing.Size(91, 20);
+            this.BlogToolStripMenuItem.Text = "開發者部落格";
+            this.BlogToolStripMenuItem.Click += new System.EventHandler(this.BlogToolStripMenuItem_Click);
+            // 
+            // QueryToolStripMenuItem
+            // 
+            this.QueryToolStripMenuItem.Name = "QueryToolStripMenuItem";
+            this.QueryToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
+            this.QueryToolStripMenuItem.Text = "資料庫查詢";
+            this.QueryToolStripMenuItem.Click += new System.EventHandler(this.QueryToolStripMenuItem_Click);
             // 
             // dgv_result
             // 
@@ -663,7 +687,7 @@
             this.tabPage2.Controls.Add(this.uiRadioButtonGroup1);
             this.tabPage2.Controls.Add(this.uiSymbolLabel1);
             this.tabPage2.Controls.Add(this.uiCheckBoxGroup1);
-            this.tabPage2.Font = new System.Drawing.Font("Gill Sans Ultra Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabPage2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage2.Location = new System.Drawing.Point(201, 0);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Size = new System.Drawing.Size(209, 643);
@@ -1097,7 +1121,7 @@
             this.ud_s1TurnoverTop.Style = Sunny.UI.UIStyle.Custom;
             this.ud_s1TurnoverTop.TabIndex = 124;
             this.ud_s1TurnoverTop.Text = "_uiIntegerUpDown1";
-            this.ud_s1TurnoverTop.Value = 80;
+            this.ud_s1TurnoverTop.Value = 100;
             // 
             // ckcb_s1TurnoverTop
             // 
@@ -1128,6 +1152,7 @@
             // uiCheckBoxGroup2
             // 
             this.uiCheckBoxGroup2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.uiCheckBoxGroup2.Controls.Add(this.ckcb_dealvalueOrder);
             this.uiCheckBoxGroup2.Controls.Add(this.uiLabel11);
             this.uiCheckBoxGroup2.Controls.Add(this.uiRadioButtonGroup12);
             this.uiCheckBoxGroup2.Controls.Add(this.ckcb_notHighDis);
@@ -1171,7 +1196,7 @@
             this.uiRadioButtonGroup12.Controls.Add(this.rdb_notMax);
             this.uiRadioButtonGroup12.Controls.Add(this.rdb_max);
             this.uiRadioButtonGroup12.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiRadioButtonGroup12.Location = new System.Drawing.Point(4, 291);
+            this.uiRadioButtonGroup12.Location = new System.Drawing.Point(4, 332);
             this.uiRadioButtonGroup12.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiRadioButtonGroup12.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiRadioButtonGroup12.Name = "uiRadioButtonGroup12";
@@ -1251,7 +1276,7 @@
             this.ckcb_highVolume.MinimumSize = new System.Drawing.Size(1, 1);
             this.ckcb_highVolume.Name = "ckcb_highVolume";
             this.ckcb_highVolume.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.ckcb_highVolume.Size = new System.Drawing.Size(155, 29);
+            this.ckcb_highVolume.Size = new System.Drawing.Size(124, 29);
             this.ckcb_highVolume.Style = Sunny.UI.UIStyle.Custom;
             this.ckcb_highVolume.TabIndex = 153;
             this.ckcb_highVolume.Text = "前高數量 >=";
@@ -1312,7 +1337,7 @@
             this.uiRadioButtonGroup7.Controls.Add(this.rdb_vibSmall);
             this.uiRadioButtonGroup7.Controls.Add(this.rdb_vibBig);
             this.uiRadioButtonGroup7.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiRadioButtonGroup7.Location = new System.Drawing.Point(4, 408);
+            this.uiRadioButtonGroup7.Location = new System.Drawing.Point(4, 449);
             this.uiRadioButtonGroup7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiRadioButtonGroup7.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiRadioButtonGroup7.Name = "uiRadioButtonGroup7";
@@ -2131,7 +2156,7 @@
             // lb_status
             // 
             this.lb_status.BackColor = System.Drawing.Color.Transparent;
-            this.lb_status.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_status.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_status.Location = new System.Drawing.Point(3, 24);
             this.lb_status.Name = "lb_status";
             this.lb_status.Size = new System.Drawing.Size(163, 27);
@@ -2728,26 +2753,27 @@
             this.uiToolTip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.uiToolTip1.OwnerDraw = true;
             // 
-            // DonateToolStripMenuItem
+            // ckcb_dealvalueOrder
             // 
-            this.DonateToolStripMenuItem.Name = "DonateToolStripMenuItem";
-            this.DonateToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
-            this.DonateToolStripMenuItem.Text = "贊助";
-            this.DonateToolStripMenuItem.Click += new System.EventHandler(this.DonateToolStripMenuItem_Click);
+            this.ckcb_dealvalueOrder.BackColor = System.Drawing.Color.Transparent;
+            this.ckcb_dealvalueOrder.Checked = true;
+            this.ckcb_dealvalueOrder.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ckcb_dealvalueOrder.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.ckcb_dealvalueOrder.Location = new System.Drawing.Point(9, 287);
+            this.ckcb_dealvalueOrder.MinimumSize = new System.Drawing.Size(1, 1);
+            this.ckcb_dealvalueOrder.Name = "ckcb_dealvalueOrder";
+            this.ckcb_dealvalueOrder.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
+            this.ckcb_dealvalueOrder.Size = new System.Drawing.Size(192, 29);
+            this.ckcb_dealvalueOrder.Style = Sunny.UI.UIStyle.Custom;
+            this.ckcb_dealvalueOrder.TabIndex = 155;
+            this.ckcb_dealvalueOrder.Text = "成交值排行(前x成交值)";
             // 
-            // BlogToolStripMenuItem
+            // getDataToolStripMenuItem
             // 
-            this.BlogToolStripMenuItem.Name = "BlogToolStripMenuItem";
-            this.BlogToolStripMenuItem.Size = new System.Drawing.Size(91, 20);
-            this.BlogToolStripMenuItem.Text = "開發者部落格";
-            this.BlogToolStripMenuItem.Click += new System.EventHandler(this.BlogToolStripMenuItem_Click);
-            // 
-            // QueryToolStripMenuItem
-            // 
-            this.QueryToolStripMenuItem.Name = "QueryToolStripMenuItem";
-            this.QueryToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
-            this.QueryToolStripMenuItem.Text = "資料庫查詢";
-            this.QueryToolStripMenuItem.Click += new System.EventHandler(this.QueryToolStripMenuItem_Click);
+            this.getDataToolStripMenuItem.Name = "getDataToolStripMenuItem";
+            this.getDataToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.getDataToolStripMenuItem.Text = "資料爬取";
+            this.getDataToolStripMenuItem.Click += new System.EventHandler(this.getDataToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -2987,6 +3013,8 @@
         private System.Windows.Forms.ToolStripMenuItem DonateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem BlogToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem QueryToolStripMenuItem;
+        private Sunny.UI.UICheckBox ckcb_dealvalueOrder;
+        private System.Windows.Forms.ToolStripMenuItem getDataToolStripMenuItem;
     }
 }
 
