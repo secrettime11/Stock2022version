@@ -203,6 +203,7 @@
             this.rdb_InUnder = new Sunny.UI.UIRadioButton();
             this.rdb_InOpen = new Sunny.UI.UIRadioButton();
             this.uiToolTip1 = new Sunny.UI.UIToolTip(this.components);
+            this.analyzeTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_result)).BeginInit();
             this.tabC_Strategy.SuspendLayout();
@@ -249,7 +250,8 @@
             this.MarkToolStripMenuItem,
             this.DonateToolStripMenuItem,
             this.BlogToolStripMenuItem,
-            this.QueryToolStripMenuItem});
+            this.QueryToolStripMenuItem,
+            this.analyzeTableToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(1302, 24);
@@ -2767,6 +2769,13 @@
             this.uiToolTip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.uiToolTip1.OwnerDraw = true;
             // 
+            // analyzeTableToolStripMenuItem
+            // 
+            this.analyzeTableToolStripMenuItem.Name = "analyzeTableToolStripMenuItem";
+            this.analyzeTableToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
+            this.analyzeTableToolStripMenuItem.Text = "AnalyzeTable";
+            this.analyzeTableToolStripMenuItem.Click += new System.EventHandler(this.analyzeTableToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -3007,6 +3016,7 @@
         private System.Windows.Forms.ToolStripMenuItem QueryToolStripMenuItem;
         private Sunny.UI.UICheckBox ckcb_dealpriceOrder;
         private Sunny.UI.UICheckBox ckcb_displayDealpriceAvg;
+        private System.Windows.Forms.ToolStripMenuItem analyzeTableToolStripMenuItem;
     }
 }
 

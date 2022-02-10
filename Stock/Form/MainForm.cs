@@ -251,6 +251,11 @@ namespace Stock
         {
             MessageBox.Show("自104年 6月1日起，將漲跌幅度由7%放寬為10%。\n信用交易整戶擔保維持率自104年5月4日起調整為130%");
         }
+        private void analyzeTableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AnalyzeForm analyzeForm = new AnalyzeForm();
+            analyzeForm.Show();
+        }
         #endregion
 
         #endregion
@@ -1571,5 +1576,7 @@ namespace Stock
             base.OnResize(e);
         }
         #endregion
+
+        
     }
 }
