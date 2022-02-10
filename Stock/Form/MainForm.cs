@@ -60,13 +60,16 @@ namespace Stock
             // Set initial date
             dp_start.Value = myFunction.GetOpenDay(DateTime.Today.ToShortDateString(), -1);
             dp_end.Value = myFunction.GetOpenDay(DateTime.Today.ToShortDateString(), -1);
+            dp_start.Value = Convert.ToDateTime("2016-01-01");
+            dp_end.Value = Convert.ToDateTime("2022-02-08");
             dp_pickDate.Value = myFunction.GetOpenDay(DateTime.Today.ToShortDateString(), 0);
             TipMessage();
         }
         private void MainForm_Shown(object sender, EventArgs e)
         {
-            Thread getData = new Thread(ParseData);
-            getData.Start();
+            //Thread getData = new Thread(ParseData);
+            //getData.Start();
+            dataReady = true;
         }
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -473,6 +476,11 @@ namespace Stock
                             Max = db.Otcs.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => Convert.ToDouble(p.Close));
 
                         BuySell = db.OTCBuySells.Where(p => p.Id == item.Id && p.Date == myFunction.VidsDumpSlash(Day)).FirstOrDefault().MBuySell;
+                    }
+
+                    if (BuySell == string.Empty)
+                    {
+                        continue;
                     }
 
                     // 前高
