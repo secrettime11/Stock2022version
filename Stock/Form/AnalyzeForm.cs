@@ -90,7 +90,7 @@ namespace Stock
             {
                 path.ShowDialog();
                 txt_dir.Text = path.SelectedPath;
-                SettingConfig.modifyitem("dirPath", path.SelectedPath);
+                SettingConfig.modifyitem("AnalyzedirPath", path.SelectedPath);
             }
         }
     }

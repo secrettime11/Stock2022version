@@ -45,6 +45,8 @@
             this.DonateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BlogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.QueryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.analyzeTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setIniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dgv_result = new Sunny.UI.UIDataGridView();
             this.tabC_Strategy = new Sunny.UI.UITabControlMenu();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -203,7 +205,8 @@
             this.rdb_InUnder = new Sunny.UI.UIRadioButton();
             this.rdb_InOpen = new Sunny.UI.UIRadioButton();
             this.uiToolTip1 = new Sunny.UI.UIToolTip(this.components);
-            this.analyzeTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ckcb_parse = new System.Windows.Forms.CheckBox();
+            this.uiLine12 = new Sunny.UI.UILine();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_result)).BeginInit();
             this.tabC_Strategy.SuspendLayout();
@@ -251,7 +254,8 @@
             this.DonateToolStripMenuItem,
             this.BlogToolStripMenuItem,
             this.QueryToolStripMenuItem,
-            this.analyzeTableToolStripMenuItem});
+            this.analyzeTableToolStripMenuItem,
+            this.setIniToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(1302, 24);
@@ -319,6 +323,20 @@
             this.QueryToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
             this.QueryToolStripMenuItem.Text = "資料庫查詢";
             this.QueryToolStripMenuItem.Click += new System.EventHandler(this.QueryToolStripMenuItem_Click);
+            // 
+            // analyzeTableToolStripMenuItem
+            // 
+            this.analyzeTableToolStripMenuItem.Name = "analyzeTableToolStripMenuItem";
+            this.analyzeTableToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
+            this.analyzeTableToolStripMenuItem.Text = "AnalyzeTable";
+            this.analyzeTableToolStripMenuItem.Click += new System.EventHandler(this.analyzeTableToolStripMenuItem_Click);
+            // 
+            // setIniToolStripMenuItem
+            // 
+            this.setIniToolStripMenuItem.Name = "setIniToolStripMenuItem";
+            this.setIniToolStripMenuItem.Size = new System.Drawing.Size(91, 20);
+            this.setIniToolStripMenuItem.Text = "變更初始設置";
+            this.setIniToolStripMenuItem.Click += new System.EventHandler(this.setIniToolStripMenuItem_Click);
             // 
             // dgv_result
             // 
@@ -397,6 +415,8 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage1.Controls.Add(this.ckcb_parse);
+            this.tabPage1.Controls.Add(this.uiLine12);
             this.tabPage1.Controls.Add(this.txt_c2);
             this.tabPage1.Controls.Add(this.txt_c1);
             this.tabPage1.Controls.Add(this.rdb_between);
@@ -2769,12 +2789,32 @@
             this.uiToolTip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.uiToolTip1.OwnerDraw = true;
             // 
-            // analyzeTableToolStripMenuItem
+            // ckcb_parse
             // 
-            this.analyzeTableToolStripMenuItem.Name = "analyzeTableToolStripMenuItem";
-            this.analyzeTableToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
-            this.analyzeTableToolStripMenuItem.Text = "AnalyzeTable";
-            this.analyzeTableToolStripMenuItem.Click += new System.EventHandler(this.analyzeTableToolStripMenuItem_Click);
+            this.ckcb_parse.AutoSize = true;
+            this.ckcb_parse.Checked = true;
+            this.ckcb_parse.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckcb_parse.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.ckcb_parse.Location = new System.Drawing.Point(77, 559);
+            this.ckcb_parse.Name = "ckcb_parse";
+            this.ckcb_parse.Size = new System.Drawing.Size(56, 23);
+            this.ckcb_parse.TabIndex = 147;
+            this.ckcb_parse.Text = "Yes";
+            this.ckcb_parse.UseVisualStyleBackColor = true;
+            // 
+            // uiLine12
+            // 
+            this.uiLine12.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(244)))));
+            this.uiLine12.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine12.ForeColor = System.Drawing.Color.Red;
+            this.uiLine12.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.uiLine12.Location = new System.Drawing.Point(34, 519);
+            this.uiLine12.MinimumSize = new System.Drawing.Size(2, 2);
+            this.uiLine12.Name = "uiLine12";
+            this.uiLine12.Size = new System.Drawing.Size(140, 29);
+            this.uiLine12.Style = Sunny.UI.UIStyle.Custom;
+            this.uiLine12.TabIndex = 146;
+            this.uiLine12.Text = "啟動時爬資料";
             // 
             // MainForm
             // 
@@ -3017,6 +3057,9 @@
         private Sunny.UI.UICheckBox ckcb_dealpriceOrder;
         private Sunny.UI.UICheckBox ckcb_displayDealpriceAvg;
         private System.Windows.Forms.ToolStripMenuItem analyzeTableToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem setIniToolStripMenuItem;
+        private System.Windows.Forms.CheckBox ckcb_parse;
+        private Sunny.UI.UILine uiLine12;
     }
 }
 

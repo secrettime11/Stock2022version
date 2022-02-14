@@ -14,6 +14,7 @@ using Sunny.UI;
 using LinqToDB;
 using DataModels;
 using System.Globalization;
+using Stock.CS;
 
 namespace Stock
 {
@@ -51,7 +52,7 @@ namespace Stock
         }
 
         #region 控制項事件
-        
+
         #region Form
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -63,13 +64,18 @@ namespace Stock
             dp_start.Value = Convert.ToDateTime("2016-01-01");
             dp_end.Value = Convert.ToDateTime("2022-02-08");
             dp_pickDate.Value = myFunction.GetOpenDay(DateTime.Today.ToShortDateString(), 0);
+            IniController();
             TipMessage();
         }
         private void MainForm_Shown(object sender, EventArgs e)
         {
-            //Thread getData = new Thread(ParseData);
-            //getData.Start();
-            dataReady = true;
+            if (!ckcb_parse.Checked)
+                dataReady = true;
+            else
+            {
+                Thread getData = new Thread(ParseData);
+                getData.Start();
+            }
         }
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -255,6 +261,99 @@ namespace Stock
         {
             AnalyzeForm analyzeForm = new AnalyzeForm();
             analyzeForm.Show();
+        }
+        private void setIniToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("確定變更初始設置?", "提醒", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                #region 公用變數
+                SettingConfig.modifyitem("ckcb_daytrade", ckcb_daytrade.Checked.ToString());
+                SettingConfig.modifyitem("rdb_ultimate", rdb_ultimate.Checked.ToString());
+                SettingConfig.modifyitem("rdb_bigger", rdb_bigger.Checked.ToString());
+                SettingConfig.modifyitem("rdb_smaller", rdb_smaller.Checked.ToString());
+                SettingConfig.modifyitem("UpDown_closePrice", UpDown_closePrice.Value.ToString());
+                SettingConfig.modifyitem("rdb_between", rdb_between.Checked.ToString());
+                SettingConfig.modifyitem("txt_c1", txt_c1.Text);
+                SettingConfig.modifyitem("txt_c2", txt_c2.Text);
+                SettingConfig.modifyitem("ud_pickquantity", ud_pickquantity.Value.ToString());
+                SettingConfig.modifyitem("ud_avgDays", ud_avgDays.Value.ToString());
+                SettingConfig.modifyitem("ud_testDays", ud_testDays.Value.ToString());
+                SettingConfig.modifyitem("ckcb_parse", ckcb_parse.Checked.ToString());
+                #endregion
+
+                #region 獲利計算模組
+                SettingConfig.modifyitem("rdb_proDaytradeYes", rdb_proDaytradeYes.Checked.ToString());
+                SettingConfig.modifyitem("rdb_proDaytradeNo", rdb_proDaytradeNo.Checked.ToString());
+                SettingConfig.modifyitem("rdb_s1ProfitShort", rdb_s1ProfitShort.Checked.ToString());
+                SettingConfig.modifyitem("rdb_s1ProfitLong", rdb_s1ProfitLong.Checked.ToString());
+                SettingConfig.modifyitem("rdb_InOpen", rdb_InOpen.Checked.ToString());
+                SettingConfig.modifyitem("rdb_InUnder", rdb_InUnder.Checked.ToString());
+                SettingConfig.modifyitem("rdb_InUpper", rdb_InUpper.Checked.ToString());
+                SettingConfig.modifyitem("ud_InTick", ud_InTick.Value.ToString());
+                SettingConfig.modifyitem("ud_loss", ud_loss.Value.ToString());
+                SettingConfig.modifyitem("ud_earn", ud_earn.Value.ToString());
+                SettingConfig.modifyitem("txt_discount", txt_discount.Text);
+                #endregion
+
+                #region 策略一
+                SettingConfig.modifyitem("ckcb_s1TurnoverTop", ckcb_s1TurnoverTop.Checked.ToString());
+                SettingConfig.modifyitem("ckcb_s1TurnoverBigger", ckcb_s1TurnoverBigger.Checked.ToString());
+                SettingConfig.modifyitem("ckcb_s1TurnoverSmaller", ckcb_s1TurnoverSmaller.Checked.ToString());
+                SettingConfig.modifyitem("ud_s1TurnoverTop", ud_s1TurnoverTop.Value.ToString());
+                SettingConfig.modifyitem("ud_s1TurnoverBigger", ud_s1TurnoverBigger.Value.ToString());
+                SettingConfig.modifyitem("ud_s1TurnoverSmaller", ud_s1TurnoverSmaller.Value.ToString());
+                SettingConfig.modifyitem("ckcb_s1FlUp", ckcb_s1FlUp.Checked.ToString());
+                SettingConfig.modifyitem("ckcb_s1FlDown", ckcb_s1FlDown.Checked.ToString());
+                SettingConfig.modifyitem("ckcb_redK", ckcb_redK.Checked.ToString());
+                SettingConfig.modifyitem("rdb_s1MajorBuy", rdb_s1MajorBuy.Checked.ToString());
+                SettingConfig.modifyitem("rdb_s1MajorSell", rdb_s1MajorSell.Checked.ToString());
+                SettingConfig.modifyitem("rdb_s1MajorNone", rdb_s1MajorNone.Checked.ToString());
+                SettingConfig.modifyitem("rdb_THigh", rdb_THigh.Checked.ToString());
+                SettingConfig.modifyitem("rdb_TClose", rdb_TClose.Checked.ToString());
+                SettingConfig.modifyitem("rdb_s1HighYes", rdb_s1HighYes.Checked.ToString());
+                SettingConfig.modifyitem("rdb_s1HighNo", rdb_s1HighNo.Checked.ToString());
+                SettingConfig.modifyitem("rdb_s1HighNone", rdb_s1HighNone.Checked.ToString());
+                SettingConfig.modifyitem("rdb_highVirtual", rdb_highVirtual.Checked.ToString());
+                SettingConfig.modifyitem("rdb_highReal", rdb_highReal.Checked.ToString());
+                #endregion
+
+                #region 策略一擴充條件
+                SettingConfig.modifyitem("ckcb_highStopLoss", ckcb_highStopLoss.Checked.ToString());
+                SettingConfig.modifyitem("ckcb_tPrice", ckcb_tPrice.Checked.ToString());
+                SettingConfig.modifyitem("ud_tPrice", ud_tPrice.Value.ToString());
+                SettingConfig.modifyitem("ckcb_highVolume", ckcb_highVolume.Checked.ToString());
+                SettingConfig.modifyitem("ud_highVolume", ud_highVolume.Value.ToString());
+                SettingConfig.modifyitem("ckcb_notHighDis", ckcb_notHighDis.Checked.ToString());
+                SettingConfig.modifyitem("txt_notHighDisValue", txt_notHighDisValue.Text);
+                SettingConfig.modifyitem("ckcb_dealpriceOrder", ckcb_dealpriceOrder.Checked.ToString());
+                SettingConfig.modifyitem("ckcb_displayDealpriceAvg", ckcb_displayDealpriceAvg.Checked.ToString());
+                SettingConfig.modifyitem("rdb_max", rdb_max.Checked.ToString());
+                SettingConfig.modifyitem("rdb_notMax", rdb_notMax.Checked.ToString());
+                SettingConfig.modifyitem("rdb_noneMax", rdb_noneMax.Checked.ToString());
+                SettingConfig.modifyitem("rdb_vibBig", rdb_vibBig.Checked.ToString());
+                SettingConfig.modifyitem("rdb_vibSmall", rdb_vibSmall.Checked.ToString());
+                SettingConfig.modifyitem("rdb_vidNone", rdb_vidNone.Checked.ToString());
+                SettingConfig.modifyitem("txt_vibValue", txt_vibValue.Text);
+                #endregion
+
+                #region 策略二
+                SettingConfig.modifyitem("rdb_S2Turnoverrate", rdb_S2Turnoverrate.Checked.ToString());
+                SettingConfig.modifyitem("ud_S2Turnoverrate", ud_S2Turnoverrate.Value.ToString());
+                SettingConfig.modifyitem("rdb_S2topLineTrue", rdb_S2topLineTrue.Checked.ToString());
+                SettingConfig.modifyitem("rdb_S2topLineFalse", rdb_S2topLineFalse.Checked.ToString());
+                #endregion
+
+                #region 策略三
+                SettingConfig.modifyitem("rdb_S3Turnoverrate", rdb_S3Turnoverrate.Checked.ToString());
+                SettingConfig.modifyitem("ud_S3Turnoverrate", ud_S3Turnoverrate.Value.ToString());
+                #endregion
+
+                MessageBox.Show("變更設置成功。");
+            }
+            else
+            {
+                return;
+            }
         }
         #endregion
 
@@ -1510,6 +1609,98 @@ namespace Stock
             }
             return true;
         }
+        /// <summary>
+        /// 初始化控制項
+        /// </summary>
+        private void IniController()
+        {
+            try
+            {
+                #region 公用變數
+                ckcb_daytrade.Checked = bool.Parse(SettingConfig.getitemvalue("ckcb_daytrade"));
+                rdb_ultimate.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_ultimate"));
+                rdb_bigger.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_bigger"));
+                rdb_smaller.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_smaller"));
+                UpDown_closePrice.Value = int.Parse(SettingConfig.getitemvalue("UpDown_closePrice"));
+                rdb_between.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_between"));
+                txt_c1.Text = SettingConfig.getitemvalue("txt_c1");
+                txt_c2.Text = SettingConfig.getitemvalue("txt_c2");
+                ud_pickquantity.Value = int.Parse(SettingConfig.getitemvalue("ud_pickquantity"));
+                ud_avgDays.Value = int.Parse(SettingConfig.getitemvalue("ud_avgDays"));
+                ud_testDays.Value = int.Parse(SettingConfig.getitemvalue("ud_testDays"));
+                ckcb_parse.Checked = bool.Parse(SettingConfig.getitemvalue("ckcb_parse"));
+
+                #endregion
+
+                #region 獲利計算模組
+                rdb_proDaytradeYes.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_proDaytradeYes"));
+                rdb_proDaytradeNo.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_proDaytradeNo"));
+                rdb_s1ProfitShort.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_s1ProfitShort"));
+                rdb_s1ProfitLong.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_s1ProfitLong"));
+                rdb_InOpen.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_InOpen"));
+                rdb_InUnder.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_InUnder"));
+                rdb_InUpper.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_InUpper"));
+                ud_InTick.Value = int.Parse(SettingConfig.getitemvalue("ud_InTick"));
+                ud_loss.Value = int.Parse(SettingConfig.getitemvalue("ud_loss"));
+                ud_earn.Value = int.Parse(SettingConfig.getitemvalue("ud_earn"));
+                txt_discount.Text = SettingConfig.getitemvalue("txt_discount");
+                #endregion
+
+                #region 策略一
+                ckcb_s1TurnoverTop.Checked = bool.Parse(SettingConfig.getitemvalue("ckcb_s1TurnoverTop"));
+                ckcb_s1TurnoverBigger.Checked = bool.Parse(SettingConfig.getitemvalue("ckcb_s1TurnoverBigger"));
+                ckcb_s1TurnoverSmaller.Checked = bool.Parse(SettingConfig.getitemvalue("ckcb_s1TurnoverSmaller"));
+                ud_s1TurnoverTop.Value = int.Parse(SettingConfig.getitemvalue("ud_s1TurnoverTop"));
+                ud_s1TurnoverBigger.Value = int.Parse(SettingConfig.getitemvalue("ud_s1TurnoverBigger"));
+                ud_s1TurnoverSmaller.Value = int.Parse(SettingConfig.getitemvalue("ud_s1TurnoverSmaller"));
+                ckcb_s1FlUp.Checked = bool.Parse(SettingConfig.getitemvalue("ckcb_s1FlUp"));
+                ckcb_s1FlDown.Checked = bool.Parse(SettingConfig.getitemvalue("ckcb_s1FlDown"));
+                ckcb_redK.Checked = bool.Parse(SettingConfig.getitemvalue("ckcb_redK"));
+                rdb_s1MajorBuy.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_s1MajorBuy"));
+                rdb_s1MajorSell.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_s1MajorSell"));
+                rdb_s1MajorNone.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_s1MajorNone"));
+                rdb_THigh.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_THigh"));
+                rdb_TClose.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_TClose"));
+                rdb_s1HighYes.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_s1HighYes"));
+                rdb_s1HighNo.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_s1HighNo"));
+                rdb_s1HighNone.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_s1HighNone"));
+                rdb_highVirtual.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_highVirtual"));
+                rdb_highReal.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_highReal"));
+                #endregion
+
+                #region 策略一擴充條件
+                ckcb_highStopLoss.Checked = bool.Parse(SettingConfig.getitemvalue("ckcb_highStopLoss"));
+                ckcb_tPrice.Checked = bool.Parse(SettingConfig.getitemvalue("ckcb_tPrice"));
+                ud_tPrice.Value = int.Parse(SettingConfig.getitemvalue("ud_tPrice"));
+                ckcb_highVolume.Checked = bool.Parse(SettingConfig.getitemvalue("ckcb_highVolume"));
+                ud_highVolume.Value = int.Parse(SettingConfig.getitemvalue("ud_highVolume"));
+                ckcb_notHighDis.Checked = bool.Parse(SettingConfig.getitemvalue("ckcb_notHighDis"));
+                txt_notHighDisValue.Text = SettingConfig.getitemvalue("txt_notHighDisValue");
+                ckcb_dealpriceOrder.Checked = bool.Parse(SettingConfig.getitemvalue("ckcb_dealpriceOrder"));
+                ckcb_displayDealpriceAvg.Checked = bool.Parse(SettingConfig.getitemvalue("ckcb_displayDealpriceAvg"));
+                rdb_max.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_max"));
+                rdb_notMax.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_notMax"));
+                rdb_noneMax.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_noneMax"));
+                rdb_vibBig.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_vibBig"));
+                rdb_vibSmall.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_vibSmall"));
+                rdb_vidNone.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_vidNone"));
+                txt_vibValue.Text = SettingConfig.getitemvalue("txt_vibValue");
+                #endregion
+
+                #region 策略二
+                rdb_S2Turnoverrate.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_S2Turnoverrate"));
+                ud_S2Turnoverrate.Value = int.Parse(SettingConfig.getitemvalue("ud_S2Turnoverrate"));
+                rdb_S2topLineTrue.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_S2topLineTrue"));
+                rdb_S2topLineFalse.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_S2topLineFalse"));
+                #endregion
+
+                #region 策略三
+                rdb_S3Turnoverrate.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_S3Turnoverrate"));
+                ud_S3Turnoverrate.Value = int.Parse(SettingConfig.getitemvalue("ud_S3Turnoverrate"));
+                #endregion
+            }
+            catch (Exception) { }
+        }
         #endregion
 
         #region 暫時用不著
@@ -1576,7 +1767,5 @@ namespace Stock
             base.OnResize(e);
         }
         #endregion
-
-        
     }
 }
