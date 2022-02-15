@@ -70,7 +70,11 @@ namespace Stock
         private void MainForm_Shown(object sender, EventArgs e)
         {
             if (!ckcb_parse.Checked)
+            { 
                 dataReady = true;
+                lb_status.Text = "Ready to go"; 
+                lb_status.ForeColor = Color.Green;
+            }
             else
             {
                 Thread getData = new Thread(ParseData);
