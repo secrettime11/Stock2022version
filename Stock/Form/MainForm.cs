@@ -70,9 +70,9 @@ namespace Stock
         private void MainForm_Shown(object sender, EventArgs e)
         {
             if (!ckcb_parse.Checked)
-            { 
+            {
                 dataReady = true;
-                lb_status.Text = "Ready to go"; 
+                lb_status.Text = "Ready to go";
                 lb_status.ForeColor = Color.Green;
             }
             else
@@ -209,7 +209,10 @@ namespace Stock
                 ckcb_s1FlUp.Checked = false;
             }
         }
-
+        private void capitalDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //ListedFunction.WriteCapitalToSQL();
+        }
         private void databaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process DbOpener = new Process();

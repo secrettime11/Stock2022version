@@ -50,6 +50,8 @@
             this.dgv_result = new Sunny.UI.UIDataGridView();
             this.tabC_Strategy = new Sunny.UI.UITabControlMenu();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.ckcb_parse = new System.Windows.Forms.CheckBox();
+            this.uiLine12 = new Sunny.UI.UILine();
             this.txt_c2 = new Sunny.UI.UITextBox();
             this.txt_c1 = new Sunny.UI.UITextBox();
             this.rdb_between = new Sunny.UI.UIRadioButton();
@@ -205,8 +207,6 @@
             this.rdb_InUnder = new Sunny.UI.UIRadioButton();
             this.rdb_InOpen = new Sunny.UI.UIRadioButton();
             this.uiToolTip1 = new Sunny.UI.UIToolTip(this.components);
-            this.ckcb_parse = new System.Windows.Forms.CheckBox();
-            this.uiLine12 = new Sunny.UI.UILine();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_result)).BeginInit();
             this.tabC_Strategy.SuspendLayout();
@@ -267,6 +267,7 @@
             this.capitalDataToolStripMenuItem.Name = "capitalDataToolStripMenuItem";
             this.capitalDataToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.capitalDataToolStripMenuItem.Text = "資本額";
+            this.capitalDataToolStripMenuItem.Click += new System.EventHandler(this.capitalDataToolStripMenuItem_Click);
             // 
             // databaseToolStripMenuItem
             // 
@@ -440,6 +441,33 @@
             this.tabPage1.Size = new System.Drawing.Size(209, 643);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "公用變數";
+            // 
+            // ckcb_parse
+            // 
+            this.ckcb_parse.AutoSize = true;
+            this.ckcb_parse.Checked = true;
+            this.ckcb_parse.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckcb_parse.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.ckcb_parse.Location = new System.Drawing.Point(77, 559);
+            this.ckcb_parse.Name = "ckcb_parse";
+            this.ckcb_parse.Size = new System.Drawing.Size(56, 23);
+            this.ckcb_parse.TabIndex = 147;
+            this.ckcb_parse.Text = "Yes";
+            this.ckcb_parse.UseVisualStyleBackColor = true;
+            // 
+            // uiLine12
+            // 
+            this.uiLine12.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(244)))));
+            this.uiLine12.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine12.ForeColor = System.Drawing.Color.Red;
+            this.uiLine12.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.uiLine12.Location = new System.Drawing.Point(34, 519);
+            this.uiLine12.MinimumSize = new System.Drawing.Size(2, 2);
+            this.uiLine12.Name = "uiLine12";
+            this.uiLine12.Size = new System.Drawing.Size(140, 29);
+            this.uiLine12.Style = Sunny.UI.UIStyle.Custom;
+            this.uiLine12.TabIndex = 146;
+            this.uiLine12.Text = "啟動時爬資料";
             // 
             // txt_c2
             // 
@@ -2788,33 +2816,6 @@
             this.uiToolTip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.uiToolTip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.uiToolTip1.OwnerDraw = true;
-            // 
-            // ckcb_parse
-            // 
-            this.ckcb_parse.AutoSize = true;
-            this.ckcb_parse.Checked = true;
-            this.ckcb_parse.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ckcb_parse.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.ckcb_parse.Location = new System.Drawing.Point(77, 559);
-            this.ckcb_parse.Name = "ckcb_parse";
-            this.ckcb_parse.Size = new System.Drawing.Size(56, 23);
-            this.ckcb_parse.TabIndex = 147;
-            this.ckcb_parse.Text = "Yes";
-            this.ckcb_parse.UseVisualStyleBackColor = true;
-            // 
-            // uiLine12
-            // 
-            this.uiLine12.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(244)))));
-            this.uiLine12.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine12.ForeColor = System.Drawing.Color.Red;
-            this.uiLine12.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.uiLine12.Location = new System.Drawing.Point(34, 519);
-            this.uiLine12.MinimumSize = new System.Drawing.Size(2, 2);
-            this.uiLine12.Name = "uiLine12";
-            this.uiLine12.Size = new System.Drawing.Size(140, 29);
-            this.uiLine12.Style = Sunny.UI.UIStyle.Custom;
-            this.uiLine12.TabIndex = 146;
-            this.uiLine12.Text = "啟動時爬資料";
             // 
             // MainForm
             // 
