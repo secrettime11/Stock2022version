@@ -227,6 +227,5 @@ namespace Stock
 
         public static readonly List<string> S3Output_header = new List<string>() { "日期", "市櫃", "代號", "名稱", "收盤價", "周轉率", "隔開盤價", "隔最高價", "隔最低價", "隔收盤價", "成交金額", "狀態", "獲利%", "平均", "排行", "前開", "前最高", "前最低", "前收", "前成交金額", "漲停", "前高數量", "前高距離(%)","三大法人" };
         public static readonly List<string> S3OutputPick_header = new List<string>() { "日期", "市櫃", "代號", "名稱", "開盤價", "最高價", "最低價", "收盤價", "周轉率", "成交金額", "昨收", "排行", "前高數量", "前高距離(%)", "三大法人" };
-
     }
 }

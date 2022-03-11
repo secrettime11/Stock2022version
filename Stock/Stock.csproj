@@ -37,7 +37,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>icons8_get_a_discount_1.ico</ApplicationIcon>
+    <ApplicationIcon>icons8_crocodile.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
@@ -135,6 +135,7 @@
     <Compile Include="CS\Args.cs" />
     <Compile Include="CS\ExcelWriter.cs" />
     <Compile Include="CS\SettingConfig.cs" />
+    <Compile Include="CS\XlsReader.cs" />
     <Compile Include="CS\xmlOperation.cs" />
     <Compile Include="Form\AnalyzeForm.cs">
       <SubType>Form</SubType>
@@ -230,11 +231,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="chrome.ico" />
+    <Content Include="icons8_crocodile.ico" />
     <Content Include="icons8_get_a_discount_1.ico" />
+    <Content Include="icons8_national_park.ico" />
     <Content Include="LinqToDB.Templates\CopyMe.SQLite.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CopyMe.SQLite1.generated.cs</LastGenOutput>
     </Content>
+    <Content Include="moneys.ico" />
+    <Content Include="money_with_wings.ico" />
+    <Content Include="wu.ico" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

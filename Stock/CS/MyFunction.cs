@@ -1,12 +1,15 @@
 ﻿using DataModels;
 using HtmlAgilityPack;
+using Stock.CS;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Stock
 {
@@ -1616,6 +1619,48 @@ namespace Stock
 
             //Stock_Form.Log.Debug($"{date}:上市三大法人買賣超取得失敗!");
             return false;
+        }
+
+        /// <summary>
+        /// 讀取資本額xls寫入SQLite
+        /// </summary>
+        public static void WriteCapitalToSQL()
+        {
+            // Before category
+            List<string> RawData = new List<string>();
+            List<string> Data = new List<string>();
+            string FileName = "";
+
+            using (OpenFileDialog openFile = new OpenFileDialog())
+            {
+                openFile.InitialDirectory = Application.StartupPath + @"\CapitalData";
+                if (openFile.ShowDialog() == DialogResult.OK)
+                {
+                    XlsReader xlsReader = new XlsReader();
+                    string Filepath = openFile.FileName;
+                    FileName = Path.GetFileNameWithoutExtension(Filepath);
+                    // Get xls raw data List<string>
+                    RawData = xlsReader.ReadExcel(Filepath);
+                    // Get sending data
+                    foreach (var item in RawData)
+                    {
+                        string[] dataSplit = item.Split('_');
+
+                        if (!string.IsNullOrEmpty(dataSplit[6]) && !string.IsNullOrEmpty(dataSplit[9]) && !string.IsNullOrEmpty(dataSplit[10]))
+                        {
+                            // 名稱 上市股本 現有股本 公司代號
+                            Data.Add(FileName + "_" + dataSplit[6] + "_" + dataSplit[9] + "_" + dataSplit[10] + "_" + dataSplit[11]);
+                        }
+                    }
+                    // Write into SQL
+                    SQliteDb sQlite = new SQliteDb();
+                    string insertString = "";
+                    if (sQlite.DataAdd(FilePath.DB_saveDir, $"Capital", Header.Capital_header, Data, insertString))
+                        MessageBox.Show("匯入資料庫成功!");
+                    else
+                        MessageBox.Show("匯入失敗(資料已存在)!");
+                }
+            }
         }
 
     }
