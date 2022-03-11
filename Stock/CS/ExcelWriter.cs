@@ -64,7 +64,7 @@ namespace Stock
             //    HSSFCell TitelCell = (HSSFCell)n_objTitleRow.CreateCell(i, CellType.String);
             //    TitelCell.SetCellValue(Title[i]);
             //}
-
+                
 
             //表頭
             for (int i = 0; i < dgv.Columns.Count; ++i)

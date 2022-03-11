@@ -478,15 +478,15 @@ namespace Stock
             args.DaysOneRun = myFunction.GetEachTestDates(Day, args.totalTestDays);
             string[] OneRunDates = args.DaysOneRun.ToArray();
 
-            // 待測日周轉前80
+            /* 待測日周轉前x */
             var data = (
                     from c in db.Listeds
-                    where c.Date == myFunction.VidsDumpSlash(Day) && c.TurnoverRate != "N" && c.TurnoverRate != null
+                    where c.Date == myFunction.VidsDumpSlash(Day) && c.TurnoverRate != "N"
                     select new { c.Id, c.Type, c.TurnoverRate, c.Close, c.High, c.Open, c.Low, c.UpDown, c.DealPrice }
                 ).Union
                 (
                     from o in db.Otcs
-                    where o.Date == myFunction.VidsDumpSlash(Day) && o.TurnoverRate != "N" && o.TurnoverRate != null
+                    where o.Date == myFunction.VidsDumpSlash(Day)
                     select new { o.Id, o.Type, o.TurnoverRate, o.Close, o.High, o.Open, o.Low, o.UpDown, o.DealPrice }
                 ).OrderByDescending(m => Convert.ToDouble(m.TurnoverRate)).Take(Convert.ToInt32(args.TurnoverDic["Top"])).ToList();
 
