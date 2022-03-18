@@ -231,17 +231,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="chrome.ico" />
     <Content Include="icons8_crocodile.ico" />
     <Content Include="icons8_get_a_discount_1.ico" />
-    <Content Include="icons8_national_park.ico" />
     <Content Include="LinqToDB.Templates\CopyMe.SQLite.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CopyMe.SQLite1.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="moneys.ico" />
-    <Content Include="money_with_wings.ico" />
-    <Content Include="wu.ico" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
