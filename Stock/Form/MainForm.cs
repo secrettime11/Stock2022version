@@ -50,7 +50,7 @@ namespace Stock
             // 策略預設
             cb_Strategy.SelectedIndex = 0;
         }
-
+        
         #region 控制項事件
 
         #region Form
@@ -66,6 +66,7 @@ namespace Stock
             dp_pickDate.Value = myFunction.GetOpenDay(DateTime.Today.ToShortDateString(), 0);
             IniController();
             TipMessage();
+            Console.WriteLine(HeaderType.名稱);
         }
         private void MainForm_Shown(object sender, EventArgs e)
         {
