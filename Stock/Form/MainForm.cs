@@ -1503,12 +1503,16 @@ namespace Stock
             {
                 if (cb_Strategy.SelectedIndex == 0)
                 {
-                    if (!ckcb_redK.Checked)
+                    if (!ckcb_redK.Checked || !ckcb_S1UpredK.Checked)
                     {
-                        if (!ckcb_s1FlUp.Checked && !ckcb_s1FlDown.Checked)
+                        
+                        if (!ckcb_s1FlUp.Checked)
                         {
-                            MessageBox.Show("漲跌條件若不選擇紅K，請至少選擇 漲 或 跌 !", "提醒");
-                            return false;
+                            if (!ckcb_S1UpredK.Checked)
+                            {
+                                MessageBox.Show("漲跌條件若不選擇紅K，請至少選擇 漲 或 跌 !", "提醒");
+                                return false;
+                            }
                         }
                     }
                 }
