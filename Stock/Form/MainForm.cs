@@ -200,6 +200,7 @@ namespace Stock
             if (ckcb_s1FlUp.Checked)
             {
                 ckcb_s1FlDown.Checked = false;
+                ckcb_S1UpredK.Checked = false;
             }
         }
         private void ckcb_s1FlDown_ValueChanged(object sender, bool value)
@@ -207,8 +208,26 @@ namespace Stock
             if (ckcb_s1FlDown.Checked)
             {
                 ckcb_s1FlUp.Checked = false;
+                ckcb_S1UpredK.Checked = false;
             }
         }
+        private void ckcb_redK_ValueChanged(object sender, bool value)
+        {
+            if (ckcb_redK.Checked)
+            {
+                ckcb_S1UpredK.Checked = false;
+            }
+        }
+        private void ckcb_S1UpredK_ValueChanged(object sender, bool value)
+        {
+            if (ckcb_S1UpredK.Checked)
+            {
+                ckcb_s1FlUp.Checked = false;
+                ckcb_s1FlDown.Checked = false;
+                ckcb_redK.Checked = false;
+            }
+        }
+
         private void capitalDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //ListedFunction.WriteCapitalToSQL();
@@ -312,6 +331,7 @@ namespace Stock
                 SettingConfig.modifyitem("ckcb_s1FlUp", ckcb_s1FlUp.Checked.ToString());
                 SettingConfig.modifyitem("ckcb_s1FlDown", ckcb_s1FlDown.Checked.ToString());
                 SettingConfig.modifyitem("ckcb_redK", ckcb_redK.Checked.ToString());
+                SettingConfig.modifyitem("ckcb_S1UpredK", ckcb_S1UpredK.Checked.ToString());
                 SettingConfig.modifyitem("rdb_s1MajorBuy", rdb_s1MajorBuy.Checked.ToString());
                 SettingConfig.modifyitem("rdb_s1MajorSell", rdb_s1MajorSell.Checked.ToString());
                 SettingConfig.modifyitem("rdb_s1MajorNone", rdb_s1MajorNone.Checked.ToString());
@@ -525,6 +545,15 @@ namespace Stock
                         else
                         {
                             if (Convert.ToDecimal(item.Open) < MarketClose)
+                                Pass = true;
+                        }
+                    }
+                    // 上漲 && 紅K
+                    else if (ckcb_S1UpredK.Checked)
+                    {
+                        if (args.s1UpDown != "None")
+                        {
+                            if (item.UpDown.Contains(args.s1UpDown) && Convert.ToDecimal(item.Open) < MarketClose)
                                 Pass = true;
                         }
                     }
@@ -1410,7 +1439,7 @@ namespace Stock
             else if (rdb_highVirtual.Checked)
                 args.s1HighType = false;
 
-            if (ckcb_s1FlUp.Checked)
+            if (ckcb_s1FlUp.Checked || ckcb_S1UpredK.Checked)
                 args.s1UpDown = "+";
             else if (ckcb_s1FlDown.Checked)
                 args.s1UpDown = "-";
@@ -1663,6 +1692,7 @@ namespace Stock
                 ckcb_s1FlUp.Checked = bool.Parse(SettingConfig.getitemvalue("ckcb_s1FlUp"));
                 ckcb_s1FlDown.Checked = bool.Parse(SettingConfig.getitemvalue("ckcb_s1FlDown"));
                 ckcb_redK.Checked = bool.Parse(SettingConfig.getitemvalue("ckcb_redK"));
+                ckcb_S1UpredK.Checked = bool.Parse(SettingConfig.getitemvalue("ckcb_S1UpredK"));
                 rdb_s1MajorBuy.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_s1MajorBuy"));
                 rdb_s1MajorSell.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_s1MajorSell"));
                 rdb_s1MajorNone.Checked = bool.Parse(SettingConfig.getitemvalue("rdb_s1MajorNone"));
@@ -1773,6 +1803,9 @@ namespace Stock
             }
             base.OnResize(e);
         }
+
         #endregion
+
+        
     }
 }
