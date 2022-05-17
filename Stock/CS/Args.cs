@@ -43,22 +43,6 @@ namespace Stock
         /// </summary>
         public List<string> DaysOneRun { get; set; }
         /// <summary>
-        /// OTCAlert list
-        /// </summary>
-        public List<string> OTCAlert { get; set; }
-        /// <summary>
-        /// Listed list
-        /// </summary>
-        public List<string> ListedAlert { get; set; }
-        /// <summary>
-        /// Listed ["Company id" : "BuySell"]
-        /// </summary>
-        public Dictionary<string, string> ListedBuySellDic { get; set; }
-        /// <summary>
-        /// OTC ["Company id" : "BuySell"]
-        /// </summary>
-        public Dictionary<string, string> OTCBuySellDic { get; set; }
-        /// <summary>
         /// OTC [Type : Value]
         /// </summary>
         public Dictionary<string, string> TurnoverDic { get; set; }

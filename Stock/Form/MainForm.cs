@@ -408,7 +408,7 @@ namespace Stock
                         {
                             lb_status.Text = args.PickDate;
                         });
-                        InitialEachTime(args);
+                        args.DaysOneRun = new List<string>();
                         S1(args, args.PickDate, IsPick);
                     }
                     else
@@ -421,7 +421,7 @@ namespace Stock
                                 {
                                     lb_status.Text = Day;
                                 });
-                                InitialEachTime(args);
+                                args.DaysOneRun = new List<string>();
                                 S1(args, Day, IsPick);
                             }
                         }
@@ -444,7 +444,7 @@ namespace Stock
                             {
                                 lb_status.Text = Day;
                             });
-                            InitialEachTime(args);
+                            args.DaysOneRun = new List<string>();
                             S2(args, Day);
                         }
                     }
@@ -466,7 +466,7 @@ namespace Stock
                             {
                                 lb_status.Text = Day;
                             });
-                            InitialEachTime(args);
+                            args.DaysOneRun = new List<string>();
                             S3(args, Day);
                         }
                     }
@@ -476,8 +476,6 @@ namespace Stock
                         dgv_result.DataSource = OutputTable;
                     });
                 }
-
-
 
                 this.Invoke((MethodInvoker)delegate ()
                 {
@@ -591,6 +589,7 @@ namespace Stock
                 }
                 catch (Exception) { }
             }
+            Console.WriteLine($"C:{DateTime.Now}");
             List<Model.MS1.Second> Second = new List<Model.MS1.Second>();
             int counter = 0;
             // 最高價
@@ -721,6 +720,7 @@ namespace Stock
                     break;
                 }
             }
+            Console.WriteLine($"D:{DateTime.Now}");
             // 結果
             int OrderC = 1;
             double total = 0;
@@ -923,6 +923,7 @@ namespace Stock
                 catch (Exception)
                 { }
             }
+            Console.WriteLine($"E:{DateTime.Now}");
             // Add empty row on datagridview
             S1FinalResult.Add(new Model.MS1.Result());
         }
@@ -1406,19 +1407,7 @@ namespace Stock
             else if (rdb_between.Checked)
                 args.closeCondition = 3;
         }
-        /// <summary>
-        /// 初始化單次所需List Dictionary
-        /// </summary>
-        private void InitialEachTime(Args args)
-        {
-            args.OTCAlert = new List<string>();
-            args.ListedAlert = new List<string>();
-
-            args.DaysOneRun = new List<string>();
-
-            args.ListedBuySellDic = new Dictionary<string, string>();
-            args.OTCBuySellDic = new Dictionary<string, string>();
-        }
+       
         /// <summary>
         /// Sl參數初始化
         /// </summary>
