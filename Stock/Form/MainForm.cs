@@ -636,8 +636,6 @@ namespace Stock
 
                     if (HighT <= (double)Max)
                     {
-
-
                         highPercent = (((double)Max - HighT) / HighT) * 100;
                         // 前高距離
                         if (ckcb_notHighDis.Checked)
@@ -710,6 +708,7 @@ namespace Stock
                             counter++;
                         }
                     }
+                    Console.WriteLine($"D:{DateTime.Now}");
                 }
                 catch (Exception ex)
                 {
@@ -720,7 +719,7 @@ namespace Stock
                     break;
                 }
             }
-            Console.WriteLine($"D:{DateTime.Now}");
+            
             // 結果
             int OrderC = 1;
             double total = 0;

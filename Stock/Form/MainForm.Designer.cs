@@ -176,6 +176,7 @@
             this.btn_run = new Sunny.UI.UISymbolButton();
             this.btn_pause = new Sunny.UI.UISymbolButton();
             this.uiGroupBox5 = new Sunny.UI.UIGroupBox();
+            this.uiCheckBox1 = new Sunny.UI.UICheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.ud_smLoss = new Sunny.UI.UIIntegerUpDown();
@@ -208,7 +209,6 @@
             this.rdb_InUnder = new Sunny.UI.UIRadioButton();
             this.rdb_InOpen = new Sunny.UI.UIRadioButton();
             this.uiToolTip1 = new Sunny.UI.UIToolTip(this.components);
-            this.uiCheckBox1 = new Sunny.UI.UICheckBox();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_result)).BeginInit();
             this.tabC_Strategy.SuspendLayout();
@@ -2365,6 +2365,20 @@
             this.uiGroupBox5.TabIndex = 145;
             this.uiGroupBox5.Text = "選股";
             // 
+            // uiCheckBox1
+            // 
+            this.uiCheckBox1.Checked = true;
+            this.uiCheckBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiCheckBox1.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.uiCheckBox1.Location = new System.Drawing.Point(137, 40);
+            this.uiCheckBox1.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiCheckBox1.Name = "uiCheckBox1";
+            this.uiCheckBox1.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
+            this.uiCheckBox1.Size = new System.Drawing.Size(53, 29);
+            this.uiCheckBox1.Style = Sunny.UI.UIStyle.Custom;
+            this.uiCheckBox1.TabIndex = 160;
+            this.uiCheckBox1.Text = "賺錢";
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -2836,20 +2850,6 @@
             this.uiToolTip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.uiToolTip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.uiToolTip1.OwnerDraw = true;
-            // 
-            // uiCheckBox1
-            // 
-            this.uiCheckBox1.Checked = true;
-            this.uiCheckBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiCheckBox1.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.uiCheckBox1.Location = new System.Drawing.Point(137, 40);
-            this.uiCheckBox1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiCheckBox1.Name = "uiCheckBox1";
-            this.uiCheckBox1.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.uiCheckBox1.Size = new System.Drawing.Size(53, 29);
-            this.uiCheckBox1.Style = Sunny.UI.UIStyle.Custom;
-            this.uiCheckBox1.TabIndex = 160;
-            this.uiCheckBox1.Text = "賺錢";
             // 
             // MainForm
             // 
