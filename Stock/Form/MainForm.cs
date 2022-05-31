@@ -15,6 +15,8 @@ using LinqToDB;
 using DataModels;
 using System.Globalization;
 using Stock.CS;
+using System.Net.Sockets;
+using System.Net;
 
 namespace Stock
 {
@@ -50,7 +52,7 @@ namespace Stock
             // 策略預設
             cb_Strategy.SelectedIndex = 0;
         }
-        
+
         #region 控制項事件
 
         #region Form
@@ -1406,7 +1408,7 @@ namespace Stock
             else if (rdb_between.Checked)
                 args.closeCondition = 3;
         }
-       
+
         /// <summary>
         /// Sl參數初始化
         /// </summary>
@@ -1493,7 +1495,7 @@ namespace Stock
                 {
                     if (!ckcb_redK.Checked || !ckcb_S1UpredK.Checked)
                     {
-                        
+
                         if (!ckcb_s1FlUp.Checked)
                         {
                             if (!ckcb_S1UpredK.Checked)
@@ -1797,8 +1799,10 @@ namespace Stock
             base.OnResize(e);
         }
 
+
         #endregion
 
         
+       
     }
 }
