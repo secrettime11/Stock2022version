@@ -27,6 +27,7 @@ namespace Stock
         SQliteDb SQlite = new SQliteDb();
         StockDB db = new StockDB();
         ParseData parseData = new ParseData();
+        
 
         public List<Model.MS1.Result> S1FinalResult = new List<Model.MS1.Result>();
         public List<Model.MS1.S2Result> S2FinalResult = new List<Model.MS1.S2Result>();
@@ -51,6 +52,8 @@ namespace Stock
             InitializeComponent();
             // 策略預設
             cb_Strategy.SelectedIndex = 0;
+            SocketServer Socket = new SocketServer();
+            Socket.SConnect();
         }
 
         #region 控制項事件
@@ -1800,9 +1803,15 @@ namespace Stock
         }
 
 
+
+
         #endregion
 
-        
-       
+        private void btn_order_Click(object sender, EventArgs e)
+        {
+            
+            OrderForm frm = new OrderForm();
+            frm.Show();
+        }
     }
 }

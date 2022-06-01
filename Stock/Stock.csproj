@@ -135,6 +135,7 @@
     <Compile Include="CS\Args.cs" />
     <Compile Include="CS\ExcelWriter.cs" />
     <Compile Include="CS\SettingConfig.cs" />
+    <Compile Include="CS\SocketServer.cs" />
     <Compile Include="CS\XlsReader.cs" />
     <Compile Include="CS\xmlOperation.cs" />
     <Compile Include="Form\AnalyzeForm.cs">
@@ -164,6 +165,12 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CS\ParseData.cs" />
+    <Compile Include="Form\OrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\OrderForm.Designer.cs">
+      <DependentUpon>OrderForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Form\QueryForm.cs">
@@ -184,6 +191,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\OrderForm.resx">
+      <DependentUpon>OrderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
