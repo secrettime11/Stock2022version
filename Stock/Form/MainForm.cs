@@ -71,7 +71,6 @@ namespace Stock
             dp_pickDate.Value = myFunction.GetOpenDay(DateTime.Today.ToShortDateString(), 0);
             IniController();
             TipMessage();
-            Console.WriteLine(HeaderType.名稱);
         }
         private void MainForm_Shown(object sender, EventArgs e)
         {
