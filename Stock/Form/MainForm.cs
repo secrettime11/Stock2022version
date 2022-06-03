@@ -155,9 +155,6 @@ namespace Stock
         private void btn_pause_Click(object sender, EventArgs e)
         {
             Pause = true;
-            //ListedFunction xx = new ListedFunction();
-            //xx.WriteListedBuySellToSQL("20211119");
-            //Console.WriteLine("adasdsa");
         }
         private void btn_smartExcel_Click(object sender, EventArgs e)
         {
@@ -196,6 +193,11 @@ namespace Stock
             }
             else
                 writer.SmartPickToExcel(dp_pickDate.Value.ToString("yyyyMMdd"), SmartData);
+        }
+        private void btn_order_Click(object sender, EventArgs e)
+        {
+            OrderForm orderForm = new OrderForm();
+            orderForm.Show();
         }
         #endregion
 
@@ -1806,11 +1808,6 @@ namespace Stock
 
         #endregion
 
-        private void btn_order_Click(object sender, EventArgs e)
-        {
-            
-            OrderForm frm = new OrderForm();
-            frm.Show();
-        }
+        
     }
 }
