@@ -141,28 +141,35 @@ namespace Stock.Model
             public string highPercent { get; set; }
             public string BuySell { get; set; }
         }
-
+        public class OrderInit 
+        {
+            public string Id { get; set; }
+            public string Name { get; set; }
+            public string Price { get; set; }
+            public string Qty { get; set; }
+            public string totalPrice { get; set; }
+        }
         public class S1SmartOrder 
         {
             /*進場*/
             public string in_Id { get; set; }
             /// <summary>
-            /// True = Buy
+            /// 0 = Buy
             /// </summary>
-            public bool in_BuySell { get; set; }
+            public string in_BuySell { get; set; }
             public string in_Price { get; set; }
             public string in_Qty { get; set; }
             public string in_Condition { get; set; }
             /// <summary>
-            /// True = 市價
+            /// 0 = 市價
             /// </summary>
-            public bool in_Type { get; set; }
+            public string in_Type { get; set; }
 
             /*MIT*/
             /// <summary>
             /// True = Buy
             /// </summary>
-            public bool mit_BuySell { get; set; }
+            public string mit_BuySell { get; set; }
             public string mit_TriggerPrice { get; set; }
             public string mit_MarketPrice { get; set; }
 
@@ -170,24 +177,18 @@ namespace Stock.Model
             public string loss_Condition { get; set; }
             public string loss_Percent { get; set; }
             public string loss_TriggerPrice { get; set; }
-            /// <summary>
-            /// True = 市價
-            /// </summary>
-            public bool loss_Type { get; set; }
+            public string loss_Type { get; set; }
             public string loss_c_Price { get; set; }
 
             public string earn_Condition { get; set; }
             public string earn_Percent { get; set; }
             public string earn_TriggerPrice { get; set; }
-            /// <summary>
-            /// True = 市價
-            /// </summary>
-            public bool earn_Type { get; set; }
+            public string earn_Type { get; set; }
             public string earn_c_Price { get; set; }
 
             public string c_Time { get; set; }
             public string c_Condition { get; set; }
-            public bool c_Type { get; set; }
+            public string c_Type { get; set; }
             public string c_c_Price { get; set; }
         }
         /*

@@ -157,7 +157,6 @@ namespace Stock
 
         public void SmartPickToExcel(string fileName, List<Model.MS1.SmartExcelResult> SmartData)
         {
-
             string[] Header = new string[] { "代號", "名稱", "價位", "  ", "停利", "停損", "張數", "總價", "  ", "周轉", "成交金額", "漲停" };
 
             // 新建一個工作簿，獲取第一個工作表
@@ -214,6 +213,47 @@ namespace Stock
             try
             {
                 workbook.SaveToFile(Application.StartupPath + @"\Excel\SmartPicker\" + fileName + ".xlsx", FileFormat.Version2013);
+                MessageBox.Show("匯出成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("文件“" + fileName + "”正在被另一程序佔用", "錯誤提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void OrderToExcel(string fileName, List<Model.MS1.OrderInit> OrderData) 
+        {
+            string[] Header = new string[] { "名稱", "價位", "代號", "(入)買賣別", "委託價", "委託量","委託條件","委託類型","MIT","MIT買賣別","MIT觸發價","MIT當前市價","停損","(損)委託條件","(損)%","(損)%值","(損)觸發價", "(損)觸發價值", "(損)限價", "(損)限價值","(損)市價", "停利", "(利)委託條件", "(利)%", "(利)%值", "(利)觸發價", "(利)觸發價值", "(利)限價", "(利)限價值", "(利)市價","出清","時間","(清)委託條件","(清)限價","(清)限價值","(清)市價","盤後定盤" };
+
+            // 新建一個工作簿，獲取第一個工作表
+            Workbook workbook = new Workbook();
+            Worksheet sheet = workbook.Worksheets[0];
+            workbook.ActiveSheetIndex = 0;
+
+            // 初始化currentRow、currentFormula
+            int HeaderRow = 1;
+            string currentFormula = string.Empty;
+            // 表頭
+            for (int i = 0; i < Header.Length; ++i)
+                sheet.Range[HeaderRow, i + 1].Value = Header[i];
+
+            // 數據寫入
+            foreach (var item in OrderData)
+            {
+                int row = 0;
+                int currentRow = row + 2;
+                for (int i = 0; i < Header.Count(); i++)
+                {
+                    sheet.Range[currentRow, 1].Text = item.Name;
+                    sheet.Range[currentRow, 2].Text = item.Price;
+                    sheet.Range[currentRow, 3].Text = item.Id;
+                }
+                row++;
+            }
+            
+            try
+            {
+                workbook.SaveToFile(Application.StartupPath + @"\Excel\Order\" + fileName + ".xlsx", FileFormat.Version2013);
                 MessageBox.Show("匯出成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception)

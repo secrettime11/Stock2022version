@@ -1382,6 +1382,30 @@ namespace Stock
             }
             return dataTable;
         }
+
+        public DataTable OrderInitToDGV(List<Model.MS1.OrderInit> result)
+        {
+            DataTable dataTable = new DataTable();
+            if (result.Count > 0)
+            {
+                foreach (var item in Header.Order_header)
+                    dataTable.Columns.Add(item);
+
+                int rowC = 0;
+                foreach (var item in result)
+                {
+                    dataTable.Rows.Add();
+
+                    dataTable.Rows[rowC][0] = item.Id;
+                    dataTable.Rows[rowC][1] = item.Name;
+                    dataTable.Rows[rowC][2] = item.Price;
+                    dataTable.Rows[rowC][3] = "";
+                    dataTable.Rows[rowC][4] = "";
+                    rowC++;
+                }
+            }
+            return dataTable;
+        }
     }
     public class ListedFunction
     {

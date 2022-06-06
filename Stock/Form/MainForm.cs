@@ -53,7 +53,7 @@ namespace Stock
             // 策略預設
             cb_Strategy.SelectedIndex = 0;
 
-            socket.SConnect();
+            //socket.SConnect();
         }
 
         #region 控制項事件
@@ -196,25 +196,26 @@ namespace Stock
         }
         private void btn_order_Click(object sender, EventArgs e)
         {
-            //List<Model.MS1.SmartExcelResult> SmartData = new List<Model.MS1.SmartExcelResult>();
-            //// -1 => 最後一行為空
-            //for (int rows = 0; rows < dgv_result.Rows.Count - 1; rows++)
-            //{
-            //    Model.MS1.SmartExcelResult data = new Model.MS1.SmartExcelResult();
-            //    data.Id = dgv_result.Rows[rows].Cells[2].Value.ToString();
-            //    data.Name = dgv_result.Rows[rows].Cells[3].Value.ToString();
-            //    data.Close = dgv_result.Rows[rows].Cells[7].Value.ToString();
-            //    data.TurnoverRate = dgv_result.Rows[rows].Cells[8].Value.ToString();
-            //    data.DealPrice = dgv_result.Rows[rows].Cells[9].Value.ToString();
-            //    data.MaxPrice = myFunction.LookUpDown(Convert.ToDecimal(dgv_result.Rows[rows].Cells[10].Value))[0].ToString();
-            //    SmartData.Add(data);
-            //}
-            string path = @"D:\478646資料檔\Desktop\Dev\OrderSystem\OrderSystem\bin\Debug\OrderSystem.exe";
-            Process.Start(path);
-            Thread.Sleep(2000);
-            //socket.SSend(socket, "hi");
-            //OrderForm orderForm = new OrderForm();
-            //orderForm.Show();
+            List<Model.MS1.OrderInit> temp = new List<Model.MS1.OrderInit>();
+            if (dgv_result.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow row in dgv_result.Rows)
+                {
+                    if (!string.IsNullOrEmpty(row.Cells[2].Value.ToString()))
+                    {
+                        Model.MS1.OrderInit init = new Model.MS1.OrderInit();
+                        init.Id = row.Cells[2].Value.ToString();
+                        init.Name = row.Cells[3].Value.ToString();
+                        init.Price = row.Cells[7].Value.ToString();
+                        temp.Add(init);
+                    }
+                }
+            }
+            OrderForm orderForm = new OrderForm(temp);
+            orderForm.Show();
+
+            
+
 
         }
         #endregion
@@ -743,7 +744,7 @@ namespace Stock
                     break;
                 }
             }
-            
+
             // 結果
             int OrderC = 1;
             double total = 0;
@@ -1825,7 +1826,5 @@ namespace Stock
 
 
         #endregion
-
-        
     }
 }

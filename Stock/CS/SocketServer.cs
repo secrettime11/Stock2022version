@@ -27,8 +27,8 @@ namespace Stock.CS
             {
                 SClient = socket.EndAccept(SResult);
                 SEndPoint = SClient.RemoteEndPoint.ToString(); // get client ip
-                //comboBox1.Items.Add(SEndPoint); //  add ip to comboBox
-                //dic.Add(SEndPoint, SClient);
+                                                               //comboBox1.Items.Add(SEndPoint); //  add ip to comboBox
+                                                               //dic.Add(SEndPoint, SClient);
                 SSend(SClient, string.Format("Welcome {0}", SEndPoint));
                 SReceive(SClient);
                 SAccept(socket); // add another client
@@ -80,10 +80,11 @@ namespace Stock.CS
             {
             }
         }
+        public static List<string> aa = new List<string>();
 
         public void SetText(string str)
         {
-            Console.WriteLine(str);
+            aa.Add(str);
         }
     }
 }
