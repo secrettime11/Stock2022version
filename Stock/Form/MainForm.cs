@@ -27,7 +27,7 @@ namespace Stock
         SQliteDb SQlite = new SQliteDb();
         StockDB db = new StockDB();
         ParseData parseData = new ParseData();
-        
+        SocketServer socket = new SocketServer();
 
         public List<Model.MS1.Result> S1FinalResult = new List<Model.MS1.Result>();
         public List<Model.MS1.S2Result> S2FinalResult = new List<Model.MS1.S2Result>();
@@ -52,8 +52,8 @@ namespace Stock
             InitializeComponent();
             // 策略預設
             cb_Strategy.SelectedIndex = 0;
-            SocketServer Socket = new SocketServer();
-            Socket.SConnect();
+
+            socket.SConnect();
         }
 
         #region 控制項事件
@@ -196,8 +196,26 @@ namespace Stock
         }
         private void btn_order_Click(object sender, EventArgs e)
         {
-            OrderForm orderForm = new OrderForm();
-            orderForm.Show();
+            //List<Model.MS1.SmartExcelResult> SmartData = new List<Model.MS1.SmartExcelResult>();
+            //// -1 => 最後一行為空
+            //for (int rows = 0; rows < dgv_result.Rows.Count - 1; rows++)
+            //{
+            //    Model.MS1.SmartExcelResult data = new Model.MS1.SmartExcelResult();
+            //    data.Id = dgv_result.Rows[rows].Cells[2].Value.ToString();
+            //    data.Name = dgv_result.Rows[rows].Cells[3].Value.ToString();
+            //    data.Close = dgv_result.Rows[rows].Cells[7].Value.ToString();
+            //    data.TurnoverRate = dgv_result.Rows[rows].Cells[8].Value.ToString();
+            //    data.DealPrice = dgv_result.Rows[rows].Cells[9].Value.ToString();
+            //    data.MaxPrice = myFunction.LookUpDown(Convert.ToDecimal(dgv_result.Rows[rows].Cells[10].Value))[0].ToString();
+            //    SmartData.Add(data);
+            //}
+            string path = @"D:\478646資料檔\Desktop\Dev\OrderSystem\OrderSystem\bin\Debug\OrderSystem.exe";
+            Process.Start(path);
+            Thread.Sleep(2000);
+            //socket.SSend(socket, "hi");
+            //OrderForm orderForm = new OrderForm();
+            //orderForm.Show();
+
         }
         #endregion
 

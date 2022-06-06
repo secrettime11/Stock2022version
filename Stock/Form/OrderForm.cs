@@ -15,6 +15,15 @@ namespace Stock
         public OrderForm()
         {
             InitializeComponent();
+            cmb_inCondition.SelectedIndex = 0;
+            cmb_lossCondition.SelectedIndex = 0;
+            cmb_earnCondition.SelectedIndex = 0;
+            cmb_cleanCondition.SelectedIndex = 0;
+
+            cmb_inType.SelectedIndex = 1;
+            cmb_lossType.SelectedIndex = 0;
+            cmb_earnType.SelectedIndex = 0;
+            cmb_cleanType.SelectedIndex = 0;
         }
 
         private void OrderForm_Load(object sender, EventArgs e)
