@@ -235,21 +235,21 @@ namespace Stock.Model
             /// <summary>
             /// (損)市價
             /// </summary>
-            public bool loss_MarketPrice { get; set; }
+            public int loss_MarketPrice { get; set; }
 
             /*出清(停利)*/
             /// <summary>
             /// 停利
             /// </summary>
-            public bool Earn { get; set; }
+            public int Earn { get; set; }
             /// <summary>
             /// (利)委託條件
             /// </summary>
-            public string earn_Condition { get; set; }
+            public int earn_Condition { get; set; }
             /// <summary>
             /// (利)%
             /// </summary>
-            public bool Earn_Percent { get; set; }
+            public int Earn_Percent { get; set; }
             /// <summary>
             /// (利)%值
             /// </summary>
@@ -257,7 +257,7 @@ namespace Stock.Model
             /// <summary>
             /// (利)觸發價
             /// </summary>
-            public bool earn_TriggerPrice { get; set; }
+            public int earn_TriggerPrice { get; set; }
             /// <summary>
             /// (利)觸發價值
             /// </summary>
@@ -265,7 +265,7 @@ namespace Stock.Model
             /// <summary>
             /// (利)限價
             /// </summary>
-            public bool earn_DefinePrice { get; set; }
+            public int earn_DefinePrice { get; set; }
             /// <summary>
             /// (利)限價值
             /// </summary>
@@ -273,12 +273,12 @@ namespace Stock.Model
             /// <summary>
             /// (利)市價
             /// </summary>
-            public bool earn_MarketPrice { get; set; }
+            public int earn_MarketPrice { get; set; }
 
             /// <summary>
             /// 出清
             /// </summary>
-            public bool Clear { get; set; }
+            public int Clear { get; set; }
             /// <summary>
             /// 出清時間
             /// </summary>
@@ -286,11 +286,11 @@ namespace Stock.Model
             /// <summary>
             /// (清)委託條件
             /// </summary>
-            public string c_Condition { get; set; }
+            public int c_Condition { get; set; }
             /// <summary>
             /// (清)限價
             /// </summary>
-            public bool c_DefinePrice { get; set; }
+            public int c_DefinePrice { get; set; }
             /// <summary>
             /// (清)限價值
             /// </summary>
@@ -298,11 +298,11 @@ namespace Stock.Model
             /// <summary>
             /// (清)市價
             /// </summary>
-            public string c_MarketPrice { get; set; }
+            public int c_MarketPrice { get; set; }
             /// <summary>
             /// 盤後定盤
             /// </summary>
-            public bool FinalSet { get; set; }
+            public int FinalSet { get; set; }
         }
         /*
             **進場**

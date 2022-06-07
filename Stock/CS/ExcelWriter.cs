@@ -64,7 +64,7 @@ namespace Stock
             //    HSSFCell TitelCell = (HSSFCell)n_objTitleRow.CreateCell(i, CellType.String);
             //    TitelCell.SetCellValue(Title[i]);
             //}
-                
+
 
             //表頭
             for (int i = 0; i < dgv.Columns.Count; ++i)
@@ -221,9 +221,9 @@ namespace Stock
             }
         }
 
-        public void OrderToExcel(string fileName, List<Model.MS1.S1SmartOrder> OrderData) 
+        public void OrderToExcel(string fileName, List<Model.MS1.S1SmartOrder> OrderData)
         {
-            string[] Header = new string[] { "名稱", "價位", "代號", "(入)買賣別", "委託價", "委託量","委託條件","委託類型","MIT","MIT買賣別","MIT觸發價","MIT當前市價","停損","(損)委託條件","(損)%","(損)%值","(損)觸發價", "(損)觸發價值", "(損)限價", "(損)限價值","(損)市價", "停利", "(利)委託條件", "(利)%", "(利)%值", "(利)觸發價", "(利)觸發價值", "(利)限價", "(利)限價值", "(利)市價","出清","時間","(清)委託條件","(清)限價","(清)限價值","(清)市價","盤後定盤" };
+            string[] Header = new string[] { "代號", "名稱", "(入)買賣別", "委託價", "委託量", "委託條件", "委託類型", "MIT", "MIT買賣別", "MIT觸發價", "MIT當前市價", "停損", "(損)委託條件", "(損)%", "(損)%值", "(損)觸發價", "(損)觸發價值", "(損)限價", "(損)限價值", "(損)市價", "停利", "(利)委託條件", "(利)%", "(利)%值", "(利)觸發價", "(利)觸發價值", "(利)限價", "(利)限價值", "(利)市價", "出清", "出清時間", "(清)委託條件", "(清)限價", "(清)限價值", "(清)市價", "盤後定盤" };
 
             // 新建一個工作簿，獲取第一個工作表
             Workbook workbook = new Workbook();
@@ -236,21 +236,50 @@ namespace Stock
             // 表頭
             for (int i = 0; i < Header.Length; ++i)
                 sheet.Range[HeaderRow, i + 1].Value = Header[i];
-
+            int row = 0;
             // 數據寫入
             foreach (var item in OrderData)
             {
-                int row = 0;
                 int currentRow = row + 2;
-                for (int i = 0; i < Header.Count(); i++)
-                {
-                    //sheet.Range[currentRow, 1].Text = item.Name;
-                    //sheet.Range[currentRow, 2].Text = item.Price;
-                    //sheet.Range[currentRow, 3].Text = item.Id;
-                }
+                sheet.Range[currentRow, 1].Text = item.in_Id;
+                sheet.Range[currentRow, 2].Text = item.in_Name;
+                sheet.Range[currentRow, 3].Text = item.in_BuySell.ToString();
+                sheet.Range[currentRow, 4].Text = item.in_Price;
+                sheet.Range[currentRow, 5].Text = item.in_Qty;
+                sheet.Range[currentRow, 6].Text = item.in_Condition.ToString();
+                sheet.Range[currentRow, 7].Text = item.in_Type.ToString();
+                sheet.Range[currentRow, 8].Text = item.MIT.ToString();
+                sheet.Range[currentRow, 9].Text = item.mit_BuySell;
+                sheet.Range[currentRow, 10].Text = item.mit_TriggerPrice;
+                sheet.Range[currentRow, 11].Text = item.mit_MarketPrice;
+                sheet.Range[currentRow, 12].Text = item.Loss.ToString();
+                sheet.Range[currentRow, 13].Text = item.loss_Condition.ToString();
+                sheet.Range[currentRow, 14].Text = item.loss_Percent.ToString();
+                sheet.Range[currentRow, 15].Text = item.loss_Percent_value;
+                sheet.Range[currentRow, 16].Text = item.loss_TriggerPrice.ToString();
+                sheet.Range[currentRow, 17].Text = item.loss_TriggerPrice_value;
+                sheet.Range[currentRow, 18].Text = item.loss_DefinePrice.ToString();
+                sheet.Range[currentRow, 19].Text = item.loss_DefinePrice_value;
+                sheet.Range[currentRow, 20].Text = item.loss_MarketPrice.ToString();
+                sheet.Range[currentRow, 21].Text = item.Earn.ToString();
+                sheet.Range[currentRow, 22].Text = item.earn_Condition.ToString();
+                sheet.Range[currentRow, 23].Text = item.Earn_Percent.ToString();
+                sheet.Range[currentRow, 24].Text = item.Earn_Percent_value;
+                sheet.Range[currentRow, 25].Text = item.earn_TriggerPrice.ToString();
+                sheet.Range[currentRow, 26].Text = item.earn_TriggerPrice_value;
+                sheet.Range[currentRow, 27].Text = item.earn_DefinePrice.ToString();
+                sheet.Range[currentRow, 28].Text = item.earn_DefinePrice_value;
+                sheet.Range[currentRow, 29].Text = item.earn_MarketPrice.ToString();
+                sheet.Range[currentRow, 30].Text = item.Clear.ToString();
+                sheet.Range[currentRow, 31].Text = item.c_Time;
+                sheet.Range[currentRow, 32].Text = item.c_Condition.ToString();
+                sheet.Range[currentRow, 33].Text = item.c_DefinePrice.ToString();
+                sheet.Range[currentRow, 34].Text = item.c_DefinePrice_value;
+                sheet.Range[currentRow, 35].Text = item.c_MarketPrice.ToString();
+                sheet.Range[currentRow, 36].Text = item.FinalSet.ToString();
                 row++;
             }
-            
+
             try
             {
                 workbook.SaveToFile(Application.StartupPath + @"\Excel\Order\" + fileName + ".xlsx", FileFormat.Version2013);

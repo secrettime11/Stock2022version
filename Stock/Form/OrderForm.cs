@@ -25,8 +25,8 @@ namespace Stock
             cmb_cleanCondition.SelectedIndex = 0;
 
             cmb_inType.SelectedIndex = 1;
-            cmb_lossType.SelectedIndex = 0;
-            cmb_earnType.SelectedIndex = 0;
+            cmb_lossType.SelectedIndex = 1;
+            cmb_earnType.SelectedIndex = 1;
             cmb_cleanType.SelectedIndex = 0;
             dgv_data.DataSource = myFunction.OrderInitToDGV(inits);
         }
@@ -66,11 +66,14 @@ namespace Stock
                 Directory.CreateDirectory(Path);
 
             List<Model.MS1.S1SmartOrder> OrderData = new List<Model.MS1.S1SmartOrder>();
-
+            Console.WriteLine(dgv_data.Rows.Count.ToString());
             // -1 => 最後一行為空
             for (int rows = 0; rows < dgv_data.Rows.Count; rows++)
             {
                 Model.MS1.S1SmartOrder data = new Model.MS1.S1SmartOrder();
+                decimal price = Convert.ToDecimal(dgv_data.Rows[rows].Cells[2].Value.ToString());
+                var lossEarn = myFunction.LookUpDown(price);
+
                 /*進場*/
                 data.in_Id = dgv_data.Rows[rows].Cells[0].Value.ToString();
                 data.in_Name = dgv_data.Rows[rows].Cells[1].Value.ToString();
@@ -80,7 +83,6 @@ namespace Stock
                     data.in_Price = dgv_data.Rows[rows].Cells[2].Value.ToString();
                 else
                 {
-                    decimal price = Convert.ToDecimal(dgv_data.Rows[rows].Cells[2].Value.ToString());
                     if (rdb_inMax.Checked)
                     {
                         data.in_Price = myFunction.LookUpDown(price)[0].ToString();
@@ -112,7 +114,7 @@ namespace Stock
                 data.mit_MarketPrice = "0";
                 /*出清(停損)*/
                 if (ckb_loss.Checked)
-                { 
+                {
                     data.Loss = 1;
                     data.loss_Condition = cmb_lossCondition.SelectedIndex;
                     // %停損
@@ -127,12 +129,10 @@ namespace Stock
                     // tick停損
                     else if (rdb_lossTick.Checked)
                     {
-                        decimal price = Convert.ToDecimal(dgv_data.Rows[rows].Cells[2].Value.ToString());
-                        var lossEarn = myFunction.LookUpDown(price);
                         data.loss_TriggerPrice = 1;
                         if (rdb_lossMax.Checked)
                         {
-                            data.loss_TriggerPrice_value = myFunction.GetTick(lossEarn[0],int.Parse(txt_lossTickVal.Text.Trim()),false).ToString();
+                            data.loss_TriggerPrice_value = myFunction.GetTick(lossEarn[0], int.Parse(txt_lossTickVal.Text.Trim()), false).ToString();
                         }
                         else
                         {
@@ -142,9 +142,113 @@ namespace Stock
                         data.loss_Percent = 0;
                         data.loss_Percent_value = "";
                     }
-                }
-                
 
+                    // 出清
+                    if (cmb_lossType.SelectedIndex == 0)
+                    {
+                        data.loss_MarketPrice = 1;
+                        data.loss_DefinePrice = 0;
+                        data.loss_DefinePrice_value = "";
+                    }
+                    else
+                    {
+                        data.loss_MarketPrice = 0;
+                        data.loss_DefinePrice = 1;
+                        if (rdb_lossMax.Checked)
+                        {
+                            data.loss_DefinePrice_value = myFunction.GetTick(lossEarn[0], int.Parse(txt_loss_c_t.Text.Trim()), false).ToString();
+                        }
+                        else
+                        {
+                            data.loss_DefinePrice_value = myFunction.GetTick(lossEarn[1], int.Parse(txt_loss_c_t.Text.Trim()), true).ToString();
+                        }
+                    }
+                }
+                /*出清(停利)*/
+                if (ckb_loss.Checked)
+                {
+                    data.Earn = 1;
+                    data.earn_Condition = cmb_earnCondition.SelectedIndex;
+                    
+                    
+                    // %停利
+                    if (rdb_earnPercent.Checked)
+                    {
+                        data.Earn_Percent = 1;
+                        data.Earn_Percent_value = txt_earnPerVal.Text.Trim();
+
+                        data.earn_TriggerPrice = 0;
+                        data.earn_TriggerPrice_value = "";
+                    }
+                    // tick停利
+                    else if (rdb_earnTick.Checked)
+                    {
+                        data.earn_TriggerPrice = 1;
+                        if (rdb_earnMin.Checked)
+                        {
+                            data.earn_TriggerPrice_value = myFunction.GetTick(lossEarn[1], int.Parse(txt_earnTickVal.Text.Trim()), true).ToString();
+                        }
+                        else
+                        {
+                            data.loss_TriggerPrice_value = myFunction.GetTick(lossEarn[0], int.Parse(txt_earnTickVal.Text.Trim()), false).ToString();
+                        }
+
+                        data.Earn_Percent = 0;
+                        data.Earn_Percent_value = "";
+                    }
+
+                    // 出清
+                    if (cmb_earnType.SelectedIndex == 0)
+                    {
+                        data.earn_MarketPrice = 1;
+                        data.earn_DefinePrice = 0;
+                        data.earn_DefinePrice_value = "";
+                    }
+                    else
+                    {
+                        data.earn_MarketPrice = 0;
+                        data.earn_DefinePrice = 1;
+                        if (rdb_earnMin.Checked)
+                        {
+                            data.earn_DefinePrice_value = myFunction.GetTick(lossEarn[1], int.Parse(txt_loss_c_t.Text.Trim()), true).ToString();
+                        }
+                        else
+                        {
+                            data.earn_DefinePrice_value = myFunction.GetTick(lossEarn[0], int.Parse(txt_loss_c_t.Text.Trim()), false).ToString();
+                        }
+                    }
+                }
+                /*時間出清*/
+                if (ckb_timeClear.Checked)
+                {
+                    data.Clear = 1;
+                    data.c_Time = cmb_Hr.Text.Trim() + cmb_Min.Text.Trim();
+                    data.c_Condition = cmb_cleanCondition.SelectedIndex;
+                    if (cmb_cleanType.SelectedIndex == 0)
+                    {
+                        data.c_DefinePrice = 0;
+                        data.c_MarketPrice = 1;
+                        data.c_DefinePrice_value = "";
+                    }
+                    else
+                    {
+                        data.c_DefinePrice = 1;
+                        data.c_MarketPrice = 0;
+                        if (ckb_c_loss.Checked)
+                        {
+                            data.c_DefinePrice_value = myFunction.GetTick(lossEarn[0], int.Parse(txt_loss_c_t.Text.Trim()), false).ToString();
+                        }
+                        else
+                        {
+                            data.c_DefinePrice_value = myFunction.GetTick(lossEarn[1], int.Parse(txt_loss_c_t.Text.Trim()), true).ToString();
+                        }
+                    }
+                }
+                else
+                {
+                    data.Clear = 0;
+                }
+                data.FinalSet = 0;
                 OrderData.Add(data);
             }
 
