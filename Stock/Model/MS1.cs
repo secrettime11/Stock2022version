@@ -152,44 +152,157 @@ namespace Stock.Model
         public class S1SmartOrder 
         {
             /*進場*/
+            /// <summary>
+            /// 代號
+            /// </summary>
             public string in_Id { get; set; }
             /// <summary>
-            /// 0 = Buy
+            /// 名稱
             /// </summary>
-            public string in_BuySell { get; set; }
-            public string in_Price { get; set; }
-            public string in_Qty { get; set; }
-            public string in_Condition { get; set; }
+            public string in_Name { get; set; }
             /// <summary>
-            /// 0 = 市價
+            /// (入)買賣別
             /// </summary>
-            public string in_Type { get; set; }
-
+            public int in_BuySell { get; set; }
+            /// <summary>
+            /// 委託價
+            /// </summary>
+            public string in_Price { get; set; }
+            /// <summary>
+            /// 委託量
+            /// </summary>
+            public string in_Qty { get; set; }
+            /// <summary>
+            /// 委託條件
+            /// </summary>
+            public int in_Condition { get; set; }
+            /// <summary>
+            /// 委託類型
+            /// </summary>
+            public int in_Type { get; set; }
+            
             /*MIT*/
             /// <summary>
-            /// True = Buy
+            /// MIT
+            /// </summary>
+            public int MIT { get; set; }
+            /// <summary>
+            /// MIT買賣別
             /// </summary>
             public string mit_BuySell { get; set; }
+            /// <summary>
+            /// MIT觸發價
+            /// </summary>
             public string mit_TriggerPrice { get; set; }
+            /// <summary>
+            /// MIT當前市價
+            /// </summary>
             public string mit_MarketPrice { get; set; }
 
-            /*出清*/
-            public string loss_Condition { get; set; }
-            public string loss_Percent { get; set; }
-            public string loss_TriggerPrice { get; set; }
-            public string loss_Type { get; set; }
-            public string loss_c_Price { get; set; }
+            /*出清(停損)*/
+            /// <summary>
+            /// 停損
+            /// </summary>
+            public int Loss { get; set; }
+            /// <summary>
+            /// (損)委託條件
+            /// </summary>
+            public int loss_Condition { get; set; }
+            /// <summary>
+            /// (損)%
+            /// </summary>
+            public int loss_Percent { get; set; }
+            /// <summary>
+            /// (損)%值
+            /// </summary>
+            public string loss_Percent_value { get; set; }
+            /// <summary>
+            /// (損)觸發價
+            /// </summary>
+            public int loss_TriggerPrice { get; set; }
+            /// <summary>
+            /// (損)觸發價值
+            /// </summary>
+            public string loss_TriggerPrice_value { get; set; }
+            /// <summary>
+            /// (損)限價
+            /// </summary>
+            public int loss_DefinePrice { get; set; }
+            /// <summary>
+            /// (損)限價值
+            /// </summary>
+            public string loss_DefinePrice_value { get; set; }
+            /// <summary>
+            /// (損)市價
+            /// </summary>
+            public bool loss_MarketPrice { get; set; }
 
+            /*出清(停利)*/
+            /// <summary>
+            /// 停利
+            /// </summary>
+            public bool Earn { get; set; }
+            /// <summary>
+            /// (利)委託條件
+            /// </summary>
             public string earn_Condition { get; set; }
-            public string earn_Percent { get; set; }
-            public string earn_TriggerPrice { get; set; }
-            public string earn_Type { get; set; }
-            public string earn_c_Price { get; set; }
+            /// <summary>
+            /// (利)%
+            /// </summary>
+            public bool Earn_Percent { get; set; }
+            /// <summary>
+            /// (利)%值
+            /// </summary>
+            public string Earn_Percent_value { get; set; }
+            /// <summary>
+            /// (利)觸發價
+            /// </summary>
+            public bool earn_TriggerPrice { get; set; }
+            /// <summary>
+            /// (利)觸發價值
+            /// </summary>
+            public string earn_TriggerPrice_value { get; set; }
+            /// <summary>
+            /// (利)限價
+            /// </summary>
+            public bool earn_DefinePrice { get; set; }
+            /// <summary>
+            /// (利)限價值
+            /// </summary>
+            public string earn_DefinePrice_value { get; set; }
+            /// <summary>
+            /// (利)市價
+            /// </summary>
+            public bool earn_MarketPrice { get; set; }
 
+            /// <summary>
+            /// 出清
+            /// </summary>
+            public bool Clear { get; set; }
+            /// <summary>
+            /// 出清時間
+            /// </summary>
             public string c_Time { get; set; }
+            /// <summary>
+            /// (清)委託條件
+            /// </summary>
             public string c_Condition { get; set; }
-            public string c_Type { get; set; }
-            public string c_c_Price { get; set; }
+            /// <summary>
+            /// (清)限價
+            /// </summary>
+            public bool c_DefinePrice { get; set; }
+            /// <summary>
+            /// (清)限價值
+            /// </summary>
+            public string c_DefinePrice_value { get; set; }
+            /// <summary>
+            /// (清)市價
+            /// </summary>
+            public string c_MarketPrice { get; set; }
+            /// <summary>
+            /// 盤後定盤
+            /// </summary>
+            public bool FinalSet { get; set; }
         }
         /*
             **進場**

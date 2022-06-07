@@ -213,10 +213,6 @@ namespace Stock
             }
             OrderForm orderForm = new OrderForm(temp);
             orderForm.Show();
-
-            
-
-
         }
         #endregion
 

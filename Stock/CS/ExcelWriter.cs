@@ -221,7 +221,7 @@ namespace Stock
             }
         }
 
-        public void OrderToExcel(string fileName, List<Model.MS1.OrderInit> OrderData) 
+        public void OrderToExcel(string fileName, List<Model.MS1.S1SmartOrder> OrderData) 
         {
             string[] Header = new string[] { "名稱", "價位", "代號", "(入)買賣別", "委託價", "委託量","委託條件","委託類型","MIT","MIT買賣別","MIT觸發價","MIT當前市價","停損","(損)委託條件","(損)%","(損)%值","(損)觸發價", "(損)觸發價值", "(損)限價", "(損)限價值","(損)市價", "停利", "(利)委託條件", "(利)%", "(利)%值", "(利)觸發價", "(利)觸發價值", "(利)限價", "(利)限價值", "(利)市價","出清","時間","(清)委託條件","(清)限價","(清)限價值","(清)市價","盤後定盤" };
 
@@ -244,9 +244,9 @@ namespace Stock
                 int currentRow = row + 2;
                 for (int i = 0; i < Header.Count(); i++)
                 {
-                    sheet.Range[currentRow, 1].Text = item.Name;
-                    sheet.Range[currentRow, 2].Text = item.Price;
-                    sheet.Range[currentRow, 3].Text = item.Id;
+                    //sheet.Range[currentRow, 1].Text = item.Name;
+                    //sheet.Range[currentRow, 2].Text = item.Price;
+                    //sheet.Range[currentRow, 3].Text = item.Id;
                 }
                 row++;
             }
