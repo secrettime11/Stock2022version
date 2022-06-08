@@ -282,7 +282,7 @@ namespace Stock
 
             try
             {
-                workbook.SaveToFile(Application.StartupPath + @"\Excel\Order\" + fileName + ".xlsx", FileFormat.Version2013);
+                workbook.SaveToFile(Application.StartupPath + @"\Excel\Order\Order" + fileName + ".xlsx", FileFormat.Version2013);
                 MessageBox.Show("匯出成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception)

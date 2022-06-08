@@ -189,7 +189,7 @@ namespace Stock
                         }
                         else
                         {
-                            data.loss_TriggerPrice_value = myFunction.GetTick(lossEarn[0], int.Parse(txt_earnTickVal.Text.Trim()), false).ToString();
+                            data.earn_TriggerPrice_value = myFunction.GetTick(lossEarn[0], int.Parse(txt_earnTickVal.Text.Trim()), false).ToString();
                         }
 
                         data.Earn_Percent = 0;
@@ -258,6 +258,7 @@ namespace Stock
             }
             if (File.Exists(Application.StartupPath + @"\Excel\Order\Order" + DateTime.Now.ToString("yyyyMMdd") + ".xlsx"))
             {
+                Console.WriteLine(Application.StartupPath + @"\Excel\Order\Order" + DateTime.Now.ToString("yyyyMMdd") + ".xlsx");
                 if (MessageBox.Show("檔名已存在，是否覆蓋", "文件已存在", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     writer.OrderToExcel(DateTime.Now.ToString("yyyyMMdd"), OrderData);
                 else
