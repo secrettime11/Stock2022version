@@ -27,7 +27,7 @@ namespace Stock
             cmb_inType.SelectedIndex = 1;
             cmb_lossType.SelectedIndex = 1;
             cmb_earnType.SelectedIndex = 1;
-            cmb_cleanType.SelectedIndex = 0;
+            cmb_cleanType.SelectedIndex = 1;
             dgv_data.DataSource = myFunction.OrderInitToDGV(inits);
         }
 
@@ -97,8 +97,7 @@ namespace Stock
                         bool positive = true;
                         if (tick.Contains("-"))
                         {
-                            // need to check
-                            tick.Remove(0, 1);
+                            tick = tick.Remove(0, 1);
                             positive = false;
                         }
                         data.in_Price = myFunction.GetTick(price, int.Parse(tick), positive).ToString();
@@ -270,7 +269,8 @@ namespace Stock
 
         private void btn_openExe_Click(object sender, EventArgs e)
         {
-            string path = @"C:\Users\Brumby\Desktop\Project\OrderSystem\OrderSystem\bin\Debug\OrderSystem.exe";
+            //string path = @"C:\Users\Brumby\Desktop\Project\OrderSystem\OrderSystem\bin\Debug\OrderSystem.exe";
+            string path = @"D:\478646資料檔\Desktop\Dev\OrderSystem\OrderSystem\bin\Debug\OrderSystem.exe";
             Process[] processes = Process.GetProcessesByName("OrderSystem");
             if (processes.Length == 0)
             {
