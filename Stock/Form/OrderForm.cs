@@ -256,7 +256,7 @@ namespace Stock
                 MessageBox.Show("沒有資料", "提醒", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (File.Exists(Application.StartupPath + @"\Excel\Order\" + DateTime.Now.ToString("yyyyMMdd") + ".xlsx"))
+            if (File.Exists(Application.StartupPath + @"\Excel\Order\Order" + DateTime.Now.ToString("yyyyMMdd") + ".xlsx"))
             {
                 if (MessageBox.Show("檔名已存在，是否覆蓋", "文件已存在", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     writer.OrderToExcel(DateTime.Now.ToString("yyyyMMdd"), OrderData);
@@ -269,8 +269,8 @@ namespace Stock
 
         private void btn_openExe_Click(object sender, EventArgs e)
         {
-            //string path = @"C:\Users\Brumby\Desktop\Project\OrderSystem\OrderSystem\bin\Debug\OrderSystem.exe";
-            string path = @"D:\478646資料檔\Desktop\Dev\OrderSystem\OrderSystem\bin\Debug\OrderSystem.exe";
+            string path = Application.StartupPath + @"\OrderTool\OrderSystem.exe";
+            //string path = @"D:\478646資料檔\Desktop\Dev\OrderSystem\OrderSystem\bin\Debug\OrderSystem.exe";
             Process[] processes = Process.GetProcessesByName("OrderSystem");
             if (processes.Length == 0)
             {
