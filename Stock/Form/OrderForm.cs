@@ -209,11 +209,11 @@ namespace Stock
                         data.earn_DefinePrice = 1;
                         if (rdb_earnMin.Checked)
                         {
-                            data.earn_DefinePrice_value = myFunction.GetTick(lossEarn[1], int.Parse(txt_loss_c_t.Text.Trim()), true).ToString();
+                            data.earn_DefinePrice_value = myFunction.GetTick(lossEarn[1], int.Parse(txt_earn_c_t.Text.Trim()), true).ToString();
                         }
                         else
                         {
-                            data.earn_DefinePrice_value = myFunction.GetTick(lossEarn[0], int.Parse(txt_loss_c_t.Text.Trim()), false).ToString();
+                            data.earn_DefinePrice_value = myFunction.GetTick(lossEarn[0], int.Parse(txt_earn_c_t.Text.Trim()), false).ToString();
                         }
                     }
                 }
@@ -235,11 +235,11 @@ namespace Stock
                         data.c_MarketPrice = 0;
                         if (ckb_c_loss.Checked)
                         {
-                            data.c_DefinePrice_value = myFunction.GetTick(lossEarn[0], int.Parse(txt_loss_c_t.Text.Trim()), false).ToString();
+                            data.c_DefinePrice_value = myFunction.GetTick(lossEarn[0], int.Parse(txt_clear_c_t.Text.Trim()), false).ToString();
                         }
                         else
                         {
-                            data.c_DefinePrice_value = myFunction.GetTick(lossEarn[1], int.Parse(txt_loss_c_t.Text.Trim()), true).ToString();
+                            data.c_DefinePrice_value = myFunction.GetTick(lossEarn[1], int.Parse(txt_clear_c_t.Text.Trim()), true).ToString();
                         }
                     }
                 }
