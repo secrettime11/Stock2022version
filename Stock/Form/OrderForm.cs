@@ -25,8 +25,8 @@ namespace Stock
             cmb_cleanCondition.SelectedIndex = 0;
 
             cmb_inType.SelectedIndex = 1;
-            cmb_lossType.SelectedIndex = 1;
-            cmb_earnType.SelectedIndex = 1;
+            cmb_lossType.SelectedIndex = 0;
+            cmb_earnType.SelectedIndex = 0;
             cmb_cleanType.SelectedIndex = 1;
             dgv_data.DataSource = myFunction.OrderInitToDGV(inits);
         }
