@@ -44,6 +44,12 @@
             this.rdb_inMax = new Sunny.UI.UIRadioButton();
             this.cmb_inType = new Sunny.UI.UIComboBox();
             this.uiGroupBox2 = new Sunny.UI.UIGroupBox();
+            this.txt_loss_c_t = new System.Windows.Forms.TextBox();
+            this.uiLabel3 = new Sunny.UI.UILabel();
+            this.uiLabel1 = new Sunny.UI.UILabel();
+            this.uiLine3 = new Sunny.UI.UILine();
+            this.uiLine2 = new Sunny.UI.UILine();
+            this.uiLine1 = new Sunny.UI.UILine();
             this.rdb_lossMin = new Sunny.UI.UIRadioButton();
             this.rdb_lossMax = new Sunny.UI.UIRadioButton();
             this.txt_lossTickVal = new System.Windows.Forms.TextBox();
@@ -54,16 +60,26 @@
             this.cmb_lossType = new Sunny.UI.UIComboBox();
             this.cmb_lossCondition = new Sunny.UI.UIComboBox();
             this.uiGroupBox3 = new Sunny.UI.UIGroupBox();
+            this.txt_earn_c_t = new System.Windows.Forms.TextBox();
+            this.uiLabel4 = new Sunny.UI.UILabel();
+            this.uiLabel5 = new Sunny.UI.UILabel();
+            this.uiLine4 = new Sunny.UI.UILine();
+            this.uiLine5 = new Sunny.UI.UILine();
+            this.uiLine6 = new Sunny.UI.UILine();
             this.rdb_earnMin = new Sunny.UI.UIRadioButton();
+            this.cmb_earnType = new Sunny.UI.UIComboBox();
             this.rdb_earnMax = new Sunny.UI.UIRadioButton();
             this.ckb_earn = new Sunny.UI.UICheckBox();
+            this.cmb_earnCondition = new Sunny.UI.UIComboBox();
             this.txt_earnTickVal = new System.Windows.Forms.TextBox();
             this.txt_earnPerVal = new System.Windows.Forms.TextBox();
             this.rdb_earnTick = new System.Windows.Forms.RadioButton();
             this.rdb_earnPercent = new System.Windows.Forms.RadioButton();
-            this.cmb_earnType = new Sunny.UI.UIComboBox();
-            this.cmb_earnCondition = new Sunny.UI.UIComboBox();
             this.uiGroupBox4 = new Sunny.UI.UIGroupBox();
+            this.ckb_c_loss = new Sunny.UI.UICheckBox();
+            this.ckb_timeClear = new Sunny.UI.UICheckBox();
+            this.txt_clear_c_t = new System.Windows.Forms.TextBox();
+            this.uiLabel6 = new Sunny.UI.UILabel();
             this.cmb_Min = new System.Windows.Forms.ComboBox();
             this.cmb_Hr = new System.Windows.Forms.ComboBox();
             this.cmb_cleanType = new Sunny.UI.UIComboBox();
@@ -71,22 +87,6 @@
             this.lbl_total = new Sunny.UI.UILabel();
             this.btn_out = new Sunny.UI.UIButton();
             this.btn_openExe = new Sunny.UI.UIButton();
-            this.uiLine1 = new Sunny.UI.UILine();
-            this.uiLine2 = new Sunny.UI.UILine();
-            this.uiLine3 = new Sunny.UI.UILine();
-            this.uiLabel1 = new Sunny.UI.UILabel();
-            this.uiLabel3 = new Sunny.UI.UILabel();
-            this.txt_loss_c_t = new System.Windows.Forms.TextBox();
-            this.txt_earn_c_t = new System.Windows.Forms.TextBox();
-            this.uiLabel4 = new Sunny.UI.UILabel();
-            this.uiLabel5 = new Sunny.UI.UILabel();
-            this.uiLine4 = new Sunny.UI.UILine();
-            this.uiLine5 = new Sunny.UI.UILine();
-            this.uiLine6 = new Sunny.UI.UILine();
-            this.txt_clear_c_t = new System.Windows.Forms.TextBox();
-            this.uiLabel6 = new Sunny.UI.UILabel();
-            this.ckb_timeClear = new Sunny.UI.UICheckBox();
-            this.ckb_c_loss = new Sunny.UI.UICheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_data)).BeginInit();
             this.uiGroupBox1.SuspendLayout();
             this.uiGroupBox2.SuspendLayout();
@@ -319,6 +319,74 @@
             this.uiGroupBox2.TabIndex = 4;
             this.uiGroupBox2.Text = "停損";
             // 
+            // txt_loss_c_t
+            // 
+            this.txt_loss_c_t.Location = new System.Drawing.Point(146, 137);
+            this.txt_loss_c_t.Name = "txt_loss_c_t";
+            this.txt_loss_c_t.Size = new System.Drawing.Size(43, 25);
+            this.txt_loss_c_t.TabIndex = 23;
+            this.txt_loss_c_t.Text = "0";
+            this.txt_loss_c_t.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // uiLabel3
+            // 
+            this.uiLabel3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLabel3.Location = new System.Drawing.Point(147, 110);
+            this.uiLabel3.Name = "uiLabel3";
+            this.uiLabel3.Size = new System.Drawing.Size(42, 23);
+            this.uiLabel3.Style = Sunny.UI.UIStyle.LightGreen;
+            this.uiLabel3.TabIndex = 22;
+            this.uiLabel3.Text = "Tick";
+            this.uiLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiLabel1
+            // 
+            this.uiLabel1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLabel1.Location = new System.Drawing.Point(17, 140);
+            this.uiLabel1.Name = "uiLabel1";
+            this.uiLabel1.Size = new System.Drawing.Size(42, 23);
+            this.uiLabel1.Style = Sunny.UI.UIStyle.LightGreen;
+            this.uiLabel1.TabIndex = 21;
+            this.uiLabel1.Text = "出清";
+            this.uiLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiLine3
+            // 
+            this.uiLine3.Direction = Sunny.UI.UILine.LineDirection.Vertical;
+            this.uiLine3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
+            this.uiLine3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine3.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
+            this.uiLine3.Location = new System.Drawing.Point(65, 101);
+            this.uiLine3.MinimumSize = new System.Drawing.Size(2, 2);
+            this.uiLine3.Name = "uiLine3";
+            this.uiLine3.Size = new System.Drawing.Size(10, 38);
+            this.uiLine3.Style = Sunny.UI.UIStyle.LightGreen;
+            this.uiLine3.TabIndex = 20;
+            // 
+            // uiLine2
+            // 
+            this.uiLine2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
+            this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine2.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
+            this.uiLine2.Location = new System.Drawing.Point(6, 132);
+            this.uiLine2.MinimumSize = new System.Drawing.Size(2, 2);
+            this.uiLine2.Name = "uiLine2";
+            this.uiLine2.Size = new System.Drawing.Size(69, 13);
+            this.uiLine2.Style = Sunny.UI.UIStyle.LightGreen;
+            this.uiLine2.TabIndex = 19;
+            // 
+            // uiLine1
+            // 
+            this.uiLine1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
+            this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine1.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
+            this.uiLine1.Location = new System.Drawing.Point(65, 95);
+            this.uiLine1.MinimumSize = new System.Drawing.Size(2, 2);
+            this.uiLine1.Name = "uiLine1";
+            this.uiLine1.Size = new System.Drawing.Size(121, 13);
+            this.uiLine1.Style = Sunny.UI.UIStyle.LightGreen;
+            this.uiLine1.TabIndex = 18;
+            // 
             // rdb_lossMin
             // 
             this.rdb_lossMin.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -472,6 +540,74 @@
             this.uiGroupBox3.TabIndex = 5;
             this.uiGroupBox3.Text = "停利";
             // 
+            // txt_earn_c_t
+            // 
+            this.txt_earn_c_t.Location = new System.Drawing.Point(149, 137);
+            this.txt_earn_c_t.Name = "txt_earn_c_t";
+            this.txt_earn_c_t.Size = new System.Drawing.Size(43, 25);
+            this.txt_earn_c_t.TabIndex = 29;
+            this.txt_earn_c_t.Text = "5";
+            this.txt_earn_c_t.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // uiLabel4
+            // 
+            this.uiLabel4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLabel4.Location = new System.Drawing.Point(150, 110);
+            this.uiLabel4.Name = "uiLabel4";
+            this.uiLabel4.Size = new System.Drawing.Size(42, 23);
+            this.uiLabel4.Style = Sunny.UI.UIStyle.LightGreen;
+            this.uiLabel4.TabIndex = 28;
+            this.uiLabel4.Text = "Tick";
+            this.uiLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiLabel5
+            // 
+            this.uiLabel5.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLabel5.Location = new System.Drawing.Point(21, 141);
+            this.uiLabel5.Name = "uiLabel5";
+            this.uiLabel5.Size = new System.Drawing.Size(42, 23);
+            this.uiLabel5.Style = Sunny.UI.UIStyle.LightGreen;
+            this.uiLabel5.TabIndex = 27;
+            this.uiLabel5.Text = "出清";
+            this.uiLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiLine4
+            // 
+            this.uiLine4.Direction = Sunny.UI.UILine.LineDirection.Vertical;
+            this.uiLine4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
+            this.uiLine4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine4.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
+            this.uiLine4.Location = new System.Drawing.Point(67, 99);
+            this.uiLine4.MinimumSize = new System.Drawing.Size(2, 2);
+            this.uiLine4.Name = "uiLine4";
+            this.uiLine4.Size = new System.Drawing.Size(10, 38);
+            this.uiLine4.Style = Sunny.UI.UIStyle.LightGreen;
+            this.uiLine4.TabIndex = 26;
+            // 
+            // uiLine5
+            // 
+            this.uiLine5.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
+            this.uiLine5.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine5.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
+            this.uiLine5.Location = new System.Drawing.Point(8, 130);
+            this.uiLine5.MinimumSize = new System.Drawing.Size(2, 2);
+            this.uiLine5.Name = "uiLine5";
+            this.uiLine5.Size = new System.Drawing.Size(69, 13);
+            this.uiLine5.Style = Sunny.UI.UIStyle.LightGreen;
+            this.uiLine5.TabIndex = 25;
+            // 
+            // uiLine6
+            // 
+            this.uiLine6.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
+            this.uiLine6.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine6.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
+            this.uiLine6.Location = new System.Drawing.Point(67, 93);
+            this.uiLine6.MinimumSize = new System.Drawing.Size(2, 2);
+            this.uiLine6.Name = "uiLine6";
+            this.uiLine6.Size = new System.Drawing.Size(121, 13);
+            this.uiLine6.Style = Sunny.UI.UIStyle.LightGreen;
+            this.uiLine6.TabIndex = 24;
+            // 
             // rdb_earnMin
             // 
             this.rdb_earnMin.Checked = true;
@@ -486,6 +622,25 @@
             this.rdb_earnMin.Style = Sunny.UI.UIStyle.LightGreen;
             this.rdb_earnMin.TabIndex = 15;
             this.rdb_earnMin.Text = "跌停";
+            // 
+            // cmb_earnType
+            // 
+            this.cmb_earnType.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
+            this.cmb_earnType.FillColor = System.Drawing.Color.White;
+            this.cmb_earnType.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.cmb_earnType.Items.AddRange(new object[] {
+            "市價",
+            "限價"});
+            this.cmb_earnType.Location = new System.Drawing.Point(80, 137);
+            this.cmb_earnType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cmb_earnType.MinimumSize = new System.Drawing.Size(63, 0);
+            this.cmb_earnType.Name = "cmb_earnType";
+            this.cmb_earnType.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
+            this.cmb_earnType.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
+            this.cmb_earnType.Size = new System.Drawing.Size(63, 25);
+            this.cmb_earnType.Style = Sunny.UI.UIStyle.LightGreen;
+            this.cmb_earnType.TabIndex = 3;
+            this.cmb_earnType.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // rdb_earnMax
             // 
@@ -515,6 +670,26 @@
             this.ckb_earn.Style = Sunny.UI.UIStyle.LightGreen;
             this.ckb_earn.TabIndex = 10;
             this.ckb_earn.Text = "停利";
+            // 
+            // cmb_earnCondition
+            // 
+            this.cmb_earnCondition.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
+            this.cmb_earnCondition.FillColor = System.Drawing.Color.White;
+            this.cmb_earnCondition.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.cmb_earnCondition.Items.AddRange(new object[] {
+            "ROD",
+            "IOC",
+            "FOK"});
+            this.cmb_earnCondition.Location = new System.Drawing.Point(80, 108);
+            this.cmb_earnCondition.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cmb_earnCondition.MinimumSize = new System.Drawing.Size(63, 0);
+            this.cmb_earnCondition.Name = "cmb_earnCondition";
+            this.cmb_earnCondition.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
+            this.cmb_earnCondition.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
+            this.cmb_earnCondition.Size = new System.Drawing.Size(63, 25);
+            this.cmb_earnCondition.Style = Sunny.UI.UIStyle.LightGreen;
+            this.cmb_earnCondition.TabIndex = 2;
+            this.cmb_earnCondition.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txt_earnTickVal
             // 
@@ -556,45 +731,6 @@
             this.rdb_earnPercent.Text = "%";
             this.rdb_earnPercent.UseVisualStyleBackColor = true;
             // 
-            // cmb_earnType
-            // 
-            this.cmb_earnType.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
-            this.cmb_earnType.FillColor = System.Drawing.Color.White;
-            this.cmb_earnType.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.cmb_earnType.Items.AddRange(new object[] {
-            "市價",
-            "限價"});
-            this.cmb_earnType.Location = new System.Drawing.Point(80, 137);
-            this.cmb_earnType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cmb_earnType.MinimumSize = new System.Drawing.Size(63, 0);
-            this.cmb_earnType.Name = "cmb_earnType";
-            this.cmb_earnType.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
-            this.cmb_earnType.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
-            this.cmb_earnType.Size = new System.Drawing.Size(63, 25);
-            this.cmb_earnType.Style = Sunny.UI.UIStyle.LightGreen;
-            this.cmb_earnType.TabIndex = 3;
-            this.cmb_earnType.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // cmb_earnCondition
-            // 
-            this.cmb_earnCondition.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
-            this.cmb_earnCondition.FillColor = System.Drawing.Color.White;
-            this.cmb_earnCondition.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.cmb_earnCondition.Items.AddRange(new object[] {
-            "ROD",
-            "IOC",
-            "FOK"});
-            this.cmb_earnCondition.Location = new System.Drawing.Point(80, 108);
-            this.cmb_earnCondition.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cmb_earnCondition.MinimumSize = new System.Drawing.Size(63, 0);
-            this.cmb_earnCondition.Name = "cmb_earnCondition";
-            this.cmb_earnCondition.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
-            this.cmb_earnCondition.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
-            this.cmb_earnCondition.Size = new System.Drawing.Size(63, 25);
-            this.cmb_earnCondition.Style = Sunny.UI.UIStyle.LightGreen;
-            this.cmb_earnCondition.TabIndex = 2;
-            this.cmb_earnCondition.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // uiGroupBox4
             // 
             this.uiGroupBox4.Controls.Add(this.ckb_c_loss);
@@ -617,6 +753,56 @@
             this.uiGroupBox4.Style = Sunny.UI.UIStyle.LightGreen;
             this.uiGroupBox4.TabIndex = 5;
             this.uiGroupBox4.Text = "出清";
+            // 
+            // ckb_c_loss
+            // 
+            this.ckb_c_loss.CheckBoxColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
+            this.ckb_c_loss.Checked = true;
+            this.ckb_c_loss.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ckb_c_loss.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.ckb_c_loss.Location = new System.Drawing.Point(4, 137);
+            this.ckb_c_loss.MinimumSize = new System.Drawing.Size(1, 1);
+            this.ckb_c_loss.Name = "ckb_c_loss";
+            this.ckb_c_loss.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
+            this.ckb_c_loss.Size = new System.Drawing.Size(46, 24);
+            this.ckb_c_loss.Style = Sunny.UI.UIStyle.LightGreen;
+            this.ckb_c_loss.TabIndex = 43;
+            this.ckb_c_loss.Text = "空";
+            // 
+            // ckb_timeClear
+            // 
+            this.ckb_timeClear.CheckBoxColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
+            this.ckb_timeClear.Checked = true;
+            this.ckb_timeClear.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ckb_timeClear.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.ckb_timeClear.Location = new System.Drawing.Point(23, 28);
+            this.ckb_timeClear.MinimumSize = new System.Drawing.Size(1, 1);
+            this.ckb_timeClear.Name = "ckb_timeClear";
+            this.ckb_timeClear.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
+            this.ckb_timeClear.Size = new System.Drawing.Size(98, 29);
+            this.ckb_timeClear.Style = Sunny.UI.UIStyle.LightGreen;
+            this.ckb_timeClear.TabIndex = 42;
+            this.ckb_timeClear.Text = "時間出清";
+            // 
+            // txt_clear_c_t
+            // 
+            this.txt_clear_c_t.Location = new System.Drawing.Point(92, 135);
+            this.txt_clear_c_t.Name = "txt_clear_c_t";
+            this.txt_clear_c_t.Size = new System.Drawing.Size(43, 25);
+            this.txt_clear_c_t.TabIndex = 41;
+            this.txt_clear_c_t.Text = "0";
+            this.txt_clear_c_t.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // uiLabel6
+            // 
+            this.uiLabel6.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.uiLabel6.Location = new System.Drawing.Point(51, 137);
+            this.uiLabel6.Name = "uiLabel6";
+            this.uiLabel6.Size = new System.Drawing.Size(38, 23);
+            this.uiLabel6.Style = Sunny.UI.UIStyle.LightGreen;
+            this.uiLabel6.TabIndex = 40;
+            this.uiLabel6.Text = "Tick";
+            this.uiLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // cmb_Min
             // 
@@ -686,7 +872,7 @@
             this.cmb_Min.Name = "cmb_Min";
             this.cmb_Min.Size = new System.Drawing.Size(47, 27);
             this.cmb_Min.TabIndex = 39;
-            this.cmb_Min.Text = "23";
+            this.cmb_Min.Text = "25";
             // 
             // cmb_Hr
             // 
@@ -775,192 +961,6 @@
             this.btn_openExe.TabIndex = 8;
             this.btn_openExe.Text = "下單系統";
             this.btn_openExe.Click += new System.EventHandler(this.btn_openExe_Click);
-            // 
-            // uiLine1
-            // 
-            this.uiLine1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
-            this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine1.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
-            this.uiLine1.Location = new System.Drawing.Point(65, 95);
-            this.uiLine1.MinimumSize = new System.Drawing.Size(2, 2);
-            this.uiLine1.Name = "uiLine1";
-            this.uiLine1.Size = new System.Drawing.Size(121, 13);
-            this.uiLine1.Style = Sunny.UI.UIStyle.LightGreen;
-            this.uiLine1.TabIndex = 18;
-            // 
-            // uiLine2
-            // 
-            this.uiLine2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
-            this.uiLine2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine2.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
-            this.uiLine2.Location = new System.Drawing.Point(6, 132);
-            this.uiLine2.MinimumSize = new System.Drawing.Size(2, 2);
-            this.uiLine2.Name = "uiLine2";
-            this.uiLine2.Size = new System.Drawing.Size(69, 13);
-            this.uiLine2.Style = Sunny.UI.UIStyle.LightGreen;
-            this.uiLine2.TabIndex = 19;
-            // 
-            // uiLine3
-            // 
-            this.uiLine3.Direction = Sunny.UI.UILine.LineDirection.Vertical;
-            this.uiLine3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
-            this.uiLine3.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine3.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
-            this.uiLine3.Location = new System.Drawing.Point(65, 101);
-            this.uiLine3.MinimumSize = new System.Drawing.Size(2, 2);
-            this.uiLine3.Name = "uiLine3";
-            this.uiLine3.Size = new System.Drawing.Size(10, 38);
-            this.uiLine3.Style = Sunny.UI.UIStyle.LightGreen;
-            this.uiLine3.TabIndex = 20;
-            // 
-            // uiLabel1
-            // 
-            this.uiLabel1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLabel1.Location = new System.Drawing.Point(17, 140);
-            this.uiLabel1.Name = "uiLabel1";
-            this.uiLabel1.Size = new System.Drawing.Size(42, 23);
-            this.uiLabel1.Style = Sunny.UI.UIStyle.LightGreen;
-            this.uiLabel1.TabIndex = 21;
-            this.uiLabel1.Text = "出清";
-            this.uiLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // uiLabel3
-            // 
-            this.uiLabel3.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLabel3.Location = new System.Drawing.Point(147, 110);
-            this.uiLabel3.Name = "uiLabel3";
-            this.uiLabel3.Size = new System.Drawing.Size(42, 23);
-            this.uiLabel3.Style = Sunny.UI.UIStyle.LightGreen;
-            this.uiLabel3.TabIndex = 22;
-            this.uiLabel3.Text = "Tick";
-            this.uiLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txt_loss_c_t
-            // 
-            this.txt_loss_c_t.Location = new System.Drawing.Point(146, 137);
-            this.txt_loss_c_t.Name = "txt_loss_c_t";
-            this.txt_loss_c_t.Size = new System.Drawing.Size(43, 25);
-            this.txt_loss_c_t.TabIndex = 23;
-            this.txt_loss_c_t.Text = "0";
-            this.txt_loss_c_t.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txt_earn_c_t
-            // 
-            this.txt_earn_c_t.Location = new System.Drawing.Point(149, 137);
-            this.txt_earn_c_t.Name = "txt_earn_c_t";
-            this.txt_earn_c_t.Size = new System.Drawing.Size(43, 25);
-            this.txt_earn_c_t.TabIndex = 29;
-            this.txt_earn_c_t.Text = "5";
-            this.txt_earn_c_t.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // uiLabel4
-            // 
-            this.uiLabel4.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLabel4.Location = new System.Drawing.Point(150, 110);
-            this.uiLabel4.Name = "uiLabel4";
-            this.uiLabel4.Size = new System.Drawing.Size(42, 23);
-            this.uiLabel4.Style = Sunny.UI.UIStyle.LightGreen;
-            this.uiLabel4.TabIndex = 28;
-            this.uiLabel4.Text = "Tick";
-            this.uiLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // uiLabel5
-            // 
-            this.uiLabel5.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLabel5.Location = new System.Drawing.Point(21, 141);
-            this.uiLabel5.Name = "uiLabel5";
-            this.uiLabel5.Size = new System.Drawing.Size(42, 23);
-            this.uiLabel5.Style = Sunny.UI.UIStyle.LightGreen;
-            this.uiLabel5.TabIndex = 27;
-            this.uiLabel5.Text = "出清";
-            this.uiLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // uiLine4
-            // 
-            this.uiLine4.Direction = Sunny.UI.UILine.LineDirection.Vertical;
-            this.uiLine4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
-            this.uiLine4.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine4.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
-            this.uiLine4.Location = new System.Drawing.Point(67, 99);
-            this.uiLine4.MinimumSize = new System.Drawing.Size(2, 2);
-            this.uiLine4.Name = "uiLine4";
-            this.uiLine4.Size = new System.Drawing.Size(10, 38);
-            this.uiLine4.Style = Sunny.UI.UIStyle.LightGreen;
-            this.uiLine4.TabIndex = 26;
-            // 
-            // uiLine5
-            // 
-            this.uiLine5.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
-            this.uiLine5.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine5.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
-            this.uiLine5.Location = new System.Drawing.Point(8, 130);
-            this.uiLine5.MinimumSize = new System.Drawing.Size(2, 2);
-            this.uiLine5.Name = "uiLine5";
-            this.uiLine5.Size = new System.Drawing.Size(69, 13);
-            this.uiLine5.Style = Sunny.UI.UIStyle.LightGreen;
-            this.uiLine5.TabIndex = 25;
-            // 
-            // uiLine6
-            // 
-            this.uiLine6.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
-            this.uiLine6.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine6.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
-            this.uiLine6.Location = new System.Drawing.Point(67, 93);
-            this.uiLine6.MinimumSize = new System.Drawing.Size(2, 2);
-            this.uiLine6.Name = "uiLine6";
-            this.uiLine6.Size = new System.Drawing.Size(121, 13);
-            this.uiLine6.Style = Sunny.UI.UIStyle.LightGreen;
-            this.uiLine6.TabIndex = 24;
-            // 
-            // txt_clear_c_t
-            // 
-            this.txt_clear_c_t.Location = new System.Drawing.Point(92, 135);
-            this.txt_clear_c_t.Name = "txt_clear_c_t";
-            this.txt_clear_c_t.Size = new System.Drawing.Size(43, 25);
-            this.txt_clear_c_t.TabIndex = 41;
-            this.txt_clear_c_t.Text = "0";
-            this.txt_clear_c_t.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // uiLabel6
-            // 
-            this.uiLabel6.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.uiLabel6.Location = new System.Drawing.Point(51, 137);
-            this.uiLabel6.Name = "uiLabel6";
-            this.uiLabel6.Size = new System.Drawing.Size(38, 23);
-            this.uiLabel6.Style = Sunny.UI.UIStyle.LightGreen;
-            this.uiLabel6.TabIndex = 40;
-            this.uiLabel6.Text = "Tick";
-            this.uiLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // ckb_timeClear
-            // 
-            this.ckb_timeClear.CheckBoxColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
-            this.ckb_timeClear.Checked = true;
-            this.ckb_timeClear.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ckb_timeClear.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.ckb_timeClear.Location = new System.Drawing.Point(23, 28);
-            this.ckb_timeClear.MinimumSize = new System.Drawing.Size(1, 1);
-            this.ckb_timeClear.Name = "ckb_timeClear";
-            this.ckb_timeClear.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.ckb_timeClear.Size = new System.Drawing.Size(98, 29);
-            this.ckb_timeClear.Style = Sunny.UI.UIStyle.LightGreen;
-            this.ckb_timeClear.TabIndex = 42;
-            this.ckb_timeClear.Text = "時間出清";
-            // 
-            // ckb_c_loss
-            // 
-            this.ckb_c_loss.CheckBoxColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
-            this.ckb_c_loss.Checked = true;
-            this.ckb_c_loss.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ckb_c_loss.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.ckb_c_loss.Location = new System.Drawing.Point(4, 137);
-            this.ckb_c_loss.MinimumSize = new System.Drawing.Size(1, 1);
-            this.ckb_c_loss.Name = "ckb_c_loss";
-            this.ckb_c_loss.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.ckb_c_loss.Size = new System.Drawing.Size(46, 24);
-            this.ckb_c_loss.Style = Sunny.UI.UIStyle.LightGreen;
-            this.ckb_c_loss.TabIndex = 43;
-            this.ckb_c_loss.Text = "空";
             // 
             // OrderForm
             // 
