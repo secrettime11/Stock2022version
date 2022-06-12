@@ -66,7 +66,6 @@ namespace Stock
                 Directory.CreateDirectory(Path);
 
             List<Model.MS1.S1SmartOrder> OrderData = new List<Model.MS1.S1SmartOrder>();
-            Console.WriteLine(dgv_data.Rows.Count.ToString());
             // -1 => 最後一行為空
             for (int rows = 0; rows < dgv_data.Rows.Count; rows++)
             {
@@ -85,11 +84,11 @@ namespace Stock
                 {
                     if (rdb_inMax.Checked)
                     {
-                        data.in_Price = myFunction.LookUpDown(price)[0].ToString();
+                        data.in_Price = lossEarn[0].ToString();
                     }
                     else if (rdb_inMin.Checked)
                     {
-                        data.in_Price = myFunction.LookUpDown(price)[1].ToString();
+                        data.in_Price = lossEarn[1].ToString();
                     }
                     else
                     {

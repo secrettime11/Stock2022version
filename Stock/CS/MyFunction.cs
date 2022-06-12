@@ -1100,7 +1100,7 @@ namespace Stock
                 result[0] = fUp;
                 result[1] = fDown;
             }
-            else if (up >= 100 && down >= 100 && up < 1000 && down < 1000)
+            else if (up >= 100 && down >= 100 && up < 500 && down < 500)
             {
                 fUp = ((Math.Floor(((Math.Floor(up / 0.5M) * 0.5M) * 100) * 100)) / 100) / 100;
                 fDown = ((Math.Floor(((Math.Ceiling(down / 0.5M) * 0.5M) * 100) * 100)) / 100) / 100;
@@ -1114,17 +1114,31 @@ namespace Stock
                 result[0] = fUp;
                 result[1] = fDown;
             }
-            else if (up >= 1000 && down <= 1000)
+            else if (up >= 500 && down >= 500 && up < 1000 && down < 1000)
             {
-                fUp = ((Math.Floor(((Math.Floor(up / 5) * 5) * 100) * 100)) / 100) / 100;
-                fDown = ((Math.Floor(((Math.Ceiling(down / 5) * 5) * 100) * 100)) / 100) / 100;
+                fUp = ((Math.Floor(((Math.Floor(up / 1.0M) * 1.0M) * 100) * 100)) / 100) / 100;
+                fDown = ((Math.Floor(((Math.Ceiling(down / 1.0M) * 1.0M) * 100) * 100)) / 100) / 100;
+                result[0] = fUp;
+                result[1] = fDown;
+            }
+            else if (up >= 500 && down < 500)
+            {
+                fUp = ((Math.Floor(((Math.Floor(up / 1.0M) * 1.0M) * 100) * 100)) / 100) / 100;
+                fDown = ((Math.Floor(((Math.Ceiling(down / 0.5M) * 0.5M) * 100) * 100)) / 100) / 100;
                 result[0] = fUp;
                 result[1] = fDown;
             }
             else if (up >= 1000 && down >= 1000)
             {
-                fUp = ((Math.Floor(((Math.Floor(up / 5) * 5) * 100) * 100)) / 100) / 100;
-                fDown = ((Math.Floor(((Math.Ceiling(down / 5) * 5) * 100) * 100)) / 100) / 100;
+                fUp = ((Math.Floor(((Math.Floor(up / 5.0M) * 5.0M) * 100) * 100)) / 100) / 100;
+                fDown = ((Math.Floor(((Math.Ceiling(down / 5.0M) * 5.0M) * 100) * 100)) / 100) / 100;
+                result[0] = fUp;
+                result[1] = fDown;
+            }
+            else if (up >= 1000 && down < 1000)
+            {
+                fUp = ((Math.Floor(((Math.Floor(up / 5.0M) * 5.0M) * 100) * 100)) / 100) / 100;
+                fDown = ((Math.Floor(((Math.Ceiling(down / 1.0M) * 1.0M) * 100) * 100)) / 100) / 100;
                 result[0] = fUp;
                 result[1] = fDown;
             }
@@ -1159,27 +1173,26 @@ namespace Stock
                     else if (LossResult > 100 && LossResult <= 500)
                         LossResult -= 0.5M;
                     else if (LossResult > 500 && LossResult <= 1000)
-                        LossResult -= 1M;
+                        LossResult -= 1.0M;
                     else
-                        LossResult -= 5M;
+                        LossResult -= 5.0M;
                     LossTick--;
                 }
                 EarnResult = UpDown[1];
                 while (EarnTick > 0)
                 {
-
-                    if (EarnResult <= 10M)
+                    if (EarnResult < 10M)
                         EarnResult += 0.01M;
-                    else if (EarnResult > 10M && EarnResult <= 50M)
+                    else if (EarnResult >= 10M && EarnResult < 50M)
                         EarnResult += 0.05M;
-                    else if (EarnResult > 50M && EarnResult < 100M)
+                    else if (EarnResult >=50M && EarnResult < 100M)
                         EarnResult += 0.1M;
-                    else if (EarnResult > 100M && EarnResult <= 500M)
+                    else if (EarnResult >= 100M && EarnResult < 500M)
                         EarnResult += 0.5M;
-                    else if (EarnResult > 500M && EarnResult <= 1000M)
-                        EarnResult += 1M;
+                    else if (EarnResult >= 500M && EarnResult < 1000M)
+                        EarnResult += 1.0M;
                     else
-                        EarnResult += 5M;
+                        EarnResult += 5.0M;
                     EarnTick--;
                 }
                 result[0] = LossResult;
@@ -1190,24 +1203,23 @@ namespace Stock
                 EarnResult = UpDown[0];
                 while (EarnTick > 0)
                 {
-                    if (EarnResult <= 10)
+                    if (EarnResult < 10)
                         EarnResult -= 0.01M;
-                    else if (EarnResult > 10 && EarnResult <= 50)
+                    else if (EarnResult >= 10M && EarnResult < 50M)
                         EarnResult -= 0.05M;
-                    else if (EarnResult > 50 && EarnResult <= 100)
+                    else if (EarnResult >= 50M && EarnResult < 100M)
                         EarnResult -= 0.1M;
-                    else if (EarnResult > 100 && EarnResult <= 500)
+                    else if (EarnResult >= 100M && EarnResult < 500M)
                         EarnResult -= 0.5M;
-                    else if (EarnResult > 500 && EarnResult <= 1000)
-                        EarnResult -= 1;
+                    else if (EarnResult >= 500M && EarnResult < 1000M)
+                        EarnResult -= 1.0M;
                     else
-                        EarnResult -= 5;
+                        EarnResult -= 5.0M;
                     EarnTick--;
                 }
                 LossResult = UpDown[1];
                 while (LossTick > 0)
                 {
-
                     if (LossResult <= 10M)
                         LossResult += 0.01M;
                     else if (LossResult > 10M && LossResult <= 50M)
@@ -1217,9 +1229,9 @@ namespace Stock
                     else if (LossResult > 100M && LossResult <= 500M)
                         LossResult += 0.5M;
                     else if (LossResult > 500M && LossResult <= 1000M)
-                        LossResult += 1;
+                        LossResult += 1.0M;
                     else
-                        LossResult += 5;
+                        LossResult += 5.0M;
                     LossTick--;
                 }
                 result[0] = LossResult;
@@ -1243,16 +1255,18 @@ namespace Stock
                 {
                     if (result <= 10M)
                         result -= 0.01M;
-                    else if (result > 10 && result <= 50)
+                    else if (result > 10M && result <= 50M)
                         result -= 0.05M;
-                    else if (result > 50 && result <= 100)
+                    else if (result > 50M && result <= 100M)
                         result -= 0.1M;
-                    else if (result > 100 && result <= 500)
+                    else if (result > 100M && result <= 500M)
                         result -= 0.5M;
-                    else if (result > 500 && result <= 1000)
-                        result -= 1M;
+                    else if (result > 500M && result <= 1000M)
+                    {
+                        result -= 1.0M;
+                    }
                     else
-                        result -= 5M;
+                        result -= 5.0M;
                     tick--;
                 }
             }
@@ -1260,18 +1274,18 @@ namespace Stock
             {
                 while (tick > 0)
                 {
-                    if (result <= 10M)
+                    if (result < 10M)
                         result += 0.01M;
-                    else if (result > 10 && result <= 50)
+                    else if (result >= 10M && result < 50M)
                         result += 0.05M;
-                    else if (result > 50 && result <= 100)
+                    else if (result >= 50M && result < 100M)
                         result += 0.1M;
-                    else if (result > 100 && result <= 500)
+                    else if (result >= 100M && result < 500M)
                         result += 0.5M;
-                    else if (result > 500 && result <= 1000)
-                        result += 1M;
+                    else if (result >= 500M && result < 1000M)
+                        result += 1.0M;
                     else
-                        result += 5M;
+                        result += 5.0M;
                     tick--;
                 }
             }

@@ -1,0 +1,78 @@
+/// <summary>
+        /// 計算漲跌停 [0] = 漲停 [1] = 跌停
+        /// </summary>
+        /// <param name="Price"></param>
+        /// <returns></returns>
+        public decimal[] LookUpDown(decimal Price)
+        {
+            decimal close = Convert.ToDecimal(Price);
+            decimal up = close * 1.1M;
+            decimal down = close * 0.9M;
+            decimal fUp = 0;
+            decimal fDown = 0;
+            decimal[] result = new decimal[2];
+            if (up < 10 && down < 10)
+            {
+                fUp = ((Math.Floor((Math.Floor(up * 100) * 100))) / 100) / 100;
+                fDown = ((Math.Floor((Math.Ceiling(down * 100) * 100))) / 100) / 100;
+                result[0] = fUp;
+                result[1] = fDown;
+            }
+            else if (up > 10 && down < 10)
+            {
+                fUp = ((Math.Floor(((Math.Floor(up / 0.05M) * 0.05M) * 100) * 100)) / 100) / 100;
+                fDown = ((Math.Floor((Math.Ceiling(down * 100) * 100))) / 100) / 100;
+                result[0] = fUp;
+                result[1] = fDown;
+            }
+            else if (up >= 10 && down >= 10 && up <= 50 && down < 50)
+            {
+                fUp = ((Math.Floor(((Math.Floor(up / 0.05M) * 0.05M) * 100) * 100)) / 100) / 100;
+                fDown = ((Math.Floor(((Math.Ceiling(down / 0.05M) * 0.05M) * 100) * 100)) / 100) / 100;
+                result[0] = fUp;
+                result[1] = fDown;
+            }
+            else if (up >= 50 && down >= 50 && up < 100 && down < 100)
+            {
+                fUp = ((Math.Floor(((Math.Floor(up / 0.1M) * 0.1M) * 100) * 100)) / 100) / 100;
+                fDown = ((Math.Floor(((Math.Ceiling(down / 0.1M) * 0.1M) * 100) * 100)) / 100) / 100;
+                result[0] = fUp;
+                result[1] = fDown;
+            }
+            else if (up >= 50 && down < 50)
+            {
+                fUp = ((Math.Floor(((Math.Floor(up / 0.1M) * 0.1M) * 100) * 100)) / 100) / 100;
+                fDown = (Math.Floor((Math.Ceiling(down / 0.05M) * 0.05M) * 100)) / 100;
+                result[0] = fUp;
+                result[1] = fDown;
+            }
+            else if (up >= 100 && down >= 100 && up < 1000 && down < 1000)
+            {
+                fUp = ((Math.Floor(((Math.Floor(up / 0.5M) * 0.5M) * 100) * 100)) / 100) / 100;
+                fDown = ((Math.Floor(((Math.Ceiling(down / 0.5M) * 0.5M) * 100) * 100)) / 100) / 100;
+                result[0] = fUp;
+                result[1] = fDown;
+            }
+            else if (up >= 100 && down < 100)
+            {
+                fUp = ((Math.Floor(((Math.Floor(up / 0.5M) * 0.5M) * 100) * 100)) / 100) / 100;
+                fDown = ((Math.Floor(((Math.Ceiling(down / 0.1M) * 0.1M) * 100) * 100)) / 100) / 100;
+                result[0] = fUp;
+                result[1] = fDown;
+            }
+            else if (up >= 1000 && down <= 1000)
+            {
+                fUp = ((Math.Floor(((Math.Floor(up / 5) * 5) * 100) * 100)) / 100) / 100;
+                fDown = ((Math.Floor(((Math.Ceiling(down / 5) * 5) * 100) * 100)) / 100) / 100;
+                result[0] = fUp;
+                result[1] = fDown;
+            }
+            else if (up >= 1000 && down >= 1000)
+            {
+                fUp = ((Math.Floor(((Math.Floor(up / 5) * 5) * 100) * 100)) / 100) / 100;
+                fDown = ((Math.Floor(((Math.Ceiling(down / 5) * 5) * 100) * 100)) / 100) / 100;
+                result[0] = fUp;
+                result[1] = fDown;
+            }
+            return result;
+        }

@@ -1817,10 +1817,6 @@ namespace Stock
             }
             base.OnResize(e);
         }
-
-
-
-
         #endregion
     }
 }

@@ -176,6 +176,7 @@
             this.btn_run = new Sunny.UI.UISymbolButton();
             this.btn_pause = new Sunny.UI.UISymbolButton();
             this.uiGroupBox5 = new Sunny.UI.UIGroupBox();
+            this.btn_order = new Sunny.UI.UIButton();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.ud_smLoss = new Sunny.UI.UIIntegerUpDown();
@@ -208,7 +209,6 @@
             this.rdb_InUnder = new Sunny.UI.UIRadioButton();
             this.rdb_InOpen = new Sunny.UI.UIRadioButton();
             this.uiToolTip1 = new Sunny.UI.UIToolTip(this.components);
-            this.btn_order = new Sunny.UI.UIButton();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_result)).BeginInit();
             this.tabC_Strategy.SuspendLayout();
@@ -2365,6 +2365,29 @@
             this.uiGroupBox5.TabIndex = 145;
             this.uiGroupBox5.Text = "選股";
             // 
+            // btn_order
+            // 
+            this.btn_order.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_order.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
+            this.btn_order.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(202)))), ((int)(((byte)(81)))));
+            this.btn_order.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
+            this.btn_order.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
+            this.btn_order.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.btn_order.Location = new System.Drawing.Point(144, 83);
+            this.btn_order.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btn_order.Name = "btn_order";
+            this.btn_order.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
+            this.btn_order.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(202)))), ((int)(((byte)(81)))));
+            this.btn_order.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
+            this.btn_order.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
+            this.btn_order.Size = new System.Drawing.Size(40, 29);
+            this.btn_order.Style = Sunny.UI.UIStyle.Green;
+            this.btn_order.StyleCustomMode = true;
+            this.btn_order.TabIndex = 160;
+            this.btn_order.Text = "下單";
+            this.btn_order.TipsColor = System.Drawing.Color.Gainsboro;
+            this.btn_order.Click += new System.EventHandler(this.btn_order_Click);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -2836,29 +2859,6 @@
             this.uiToolTip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.uiToolTip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.uiToolTip1.OwnerDraw = true;
-            // 
-            // btn_order
-            // 
-            this.btn_order.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_order.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
-            this.btn_order.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(202)))), ((int)(((byte)(81)))));
-            this.btn_order.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
-            this.btn_order.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
-            this.btn_order.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btn_order.Location = new System.Drawing.Point(144, 83);
-            this.btn_order.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btn_order.Name = "btn_order";
-            this.btn_order.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(190)))), ((int)(((byte)(40)))));
-            this.btn_order.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(202)))), ((int)(((byte)(81)))));
-            this.btn_order.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
-            this.btn_order.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(168)))), ((int)(((byte)(35)))));
-            this.btn_order.Size = new System.Drawing.Size(40, 29);
-            this.btn_order.Style = Sunny.UI.UIStyle.Green;
-            this.btn_order.StyleCustomMode = true;
-            this.btn_order.TabIndex = 160;
-            this.btn_order.Text = "下單";
-            this.btn_order.TipsColor = System.Drawing.Color.Gainsboro;
-            this.btn_order.Click += new System.EventHandler(this.btn_order_Click);
             // 
             // MainForm
             // 
