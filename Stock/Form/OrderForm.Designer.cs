@@ -194,7 +194,7 @@
             this.txt_inTickVal.Name = "txt_inTickVal";
             this.txt_inTickVal.Size = new System.Drawing.Size(50, 25);
             this.txt_inTickVal.TabIndex = 10;
-            this.txt_inTickVal.Text = "-3";
+            this.txt_inTickVal.Text = "-10";
             this.txt_inTickVal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // rdb_inTick
@@ -422,7 +422,7 @@
             this.txt_lossTickVal.Name = "txt_lossTickVal";
             this.txt_lossTickVal.Size = new System.Drawing.Size(50, 25);
             this.txt_lossTickVal.TabIndex = 9;
-            this.txt_lossTickVal.Text = "5";
+            this.txt_lossTickVal.Text = "4";
             this.txt_lossTickVal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // ckb_loss
