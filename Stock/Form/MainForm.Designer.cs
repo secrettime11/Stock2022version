@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.capitalDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -204,11 +204,11 @@
             this.rdb_proDaytradeYes = new Sunny.UI.UIRadioButton();
             this.uiRadioButtonGroup11 = new Sunny.UI.UIRadioButtonGroup();
             this.uiLabel9 = new Sunny.UI.UILabel();
-            this.ud_InTick = new Sunny.UI.UIIntegerUpDown();
             this.rdb_InUpper = new Sunny.UI.UIRadioButton();
             this.rdb_InUnder = new Sunny.UI.UIRadioButton();
             this.rdb_InOpen = new Sunny.UI.UIRadioButton();
             this.uiToolTip1 = new Sunny.UI.UIToolTip(this.components);
+            this.ud_InTick = new Sunny.UI.UIIntegerUpDown();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_result)).BeginInit();
             this.tabC_Strategy.SuspendLayout();
@@ -344,42 +344,42 @@
             // dgv_result
             // 
             this.dgv_result.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.dgv_result.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            this.dgv_result.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgv_result.BackgroundColor = System.Drawing.Color.DimGray;
             this.dgv_result.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_result.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("微软雅黑", 12F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_result.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgv_result.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("微软雅黑", 12F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_result.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("微软雅黑", 12F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_result.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgv_result.EnableHeadersVisualStyles = false;
             this.dgv_result.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.dgv_result.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.dgv_result.Location = new System.Drawing.Point(687, 167);
             this.dgv_result.Name = "dgv_result";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 12F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_result.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            this.dgv_result.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("微软雅黑", 12F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_result.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
+            this.dgv_result.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dgv_result.RowTemplate.Height = 29;
             this.dgv_result.SelectedIndex = -1;
             this.dgv_result.ShowGridLine = true;
@@ -2766,8 +2766,8 @@
             // 
             // uiRadioButtonGroup11
             // 
-            this.uiRadioButtonGroup11.Controls.Add(this.uiLabel9);
             this.uiRadioButtonGroup11.Controls.Add(this.ud_InTick);
+            this.uiRadioButtonGroup11.Controls.Add(this.uiLabel9);
             this.uiRadioButtonGroup11.Controls.Add(this.rdb_InUpper);
             this.uiRadioButtonGroup11.Controls.Add(this.rdb_InUnder);
             this.uiRadioButtonGroup11.Controls.Add(this.rdb_InOpen);
@@ -2795,21 +2795,6 @@
             this.uiLabel9.TabIndex = 165;
             this.uiLabel9.Text = "tick";
             this.uiLabel9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // ud_InTick
-            // 
-            this.ud_InTick.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.ud_InTick.Location = new System.Drawing.Point(96, 92);
-            this.ud_InTick.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ud_InTick.Maximum = 100;
-            this.ud_InTick.Minimum = -100;
-            this.ud_InTick.MinimumSize = new System.Drawing.Size(100, 0);
-            this.ud_InTick.Name = "ud_InTick";
-            this.ud_InTick.Size = new System.Drawing.Size(100, 29);
-            this.ud_InTick.Style = Sunny.UI.UIStyle.Custom;
-            this.ud_InTick.TabIndex = 128;
-            this.ud_InTick.Text = "_uiIntegerUpDown1";
-            this.ud_InTick.Value = 10;
             // 
             // rdb_InUpper
             // 
@@ -2859,6 +2844,21 @@
             this.uiToolTip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.uiToolTip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.uiToolTip1.OwnerDraw = true;
+            // 
+            // ud_InTick
+            // 
+            this.ud_InTick.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.ud_InTick.Location = new System.Drawing.Point(97, 92);
+            this.ud_InTick.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ud_InTick.Maximum = 100;
+            this.ud_InTick.Minimum = -100;
+            this.ud_InTick.MinimumSize = new System.Drawing.Size(100, 0);
+            this.ud_InTick.Name = "ud_InTick";
+            this.ud_InTick.Size = new System.Drawing.Size(100, 29);
+            this.ud_InTick.Style = Sunny.UI.UIStyle.Custom;
+            this.ud_InTick.TabIndex = 166;
+            this.ud_InTick.Text = "_uiIntegerUpDown1";
+            this.ud_InTick.Value = 10;
             // 
             // MainForm
             // 
@@ -3064,7 +3064,6 @@
         private Sunny.UI.UIRadioButton rdb_InUnder;
         private Sunny.UI.UIRadioButton rdb_InOpen;
         private Sunny.UI.UILabel uiLabel9;
-        private Sunny.UI.UIIntegerUpDown ud_InTick;
         private Sunny.UI.UIToolTip uiToolTip1;
         private Sunny.UI.UICheckBox ckcb_highStopLoss;
         private Sunny.UI.UICheckBoxGroup uiCheckBoxGroup4;
@@ -3106,6 +3105,7 @@
         private Sunny.UI.UILine uiLine12;
         private Sunny.UI.UICheckBox ckcb_S1UpredK;
         private Sunny.UI.UIButton btn_order;
+        private Sunny.UI.UIIntegerUpDown ud_InTick;
     }
 }
 

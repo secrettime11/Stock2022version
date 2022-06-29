@@ -52,7 +52,6 @@ namespace Stock
             InitializeComponent();
             // 策略預設
             cb_Strategy.SelectedIndex = 0;
-
             //socket.SConnect();
         }
 
