@@ -63,11 +63,16 @@ namespace Stock
             myFunction.DataTableCheckExist();
 
             // Set initial date
-            dp_start.Value = myFunction.GetOpenDay(DateTime.Today.ToShortDateString(), -1);
-            dp_end.Value = myFunction.GetOpenDay(DateTime.Today.ToShortDateString(), -1);
+            int minusDate = -1;
+            if (DateTime.Now.Hour < 18)
+                minusDate = -2;
+            dp_start.Value = myFunction.GetOpenDay(DateTime.Today.ToShortDateString(), minusDate);
+            dp_end.Value = myFunction.GetOpenDay(DateTime.Today.ToShortDateString(), minusDate);
+            dp_pickDate.Value = myFunction.GetOpenDay(DateTime.Today.ToShortDateString(), minusDate + 1);
+            
             //dp_start.Value = Convert.ToDateTime("2016-01-01");
             //dp_end.Value = Convert.ToDateTime("2022-02-08");
-            dp_pickDate.Value = myFunction.GetOpenDay(DateTime.Today.ToShortDateString(), 0);
+
             IniController();
             TipMessage();
         }

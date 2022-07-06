@@ -271,7 +271,6 @@ namespace Stock
                         result = result.AddDays(cal);
                 }
             }
-
             return DateTime.Parse(result.ToString("yyyy-MM-dd"));
         }
         /// <summary>
