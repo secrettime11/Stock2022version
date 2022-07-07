@@ -50,6 +50,8 @@
             this.dgv_result = new Sunny.UI.UIDataGridView();
             this.tabC_Strategy = new Sunny.UI.UITabControlMenu();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.uiLine13 = new Sunny.UI.UILine();
+            this.btn_manualparse = new Sunny.UI.UISymbolButton();
             this.ckcb_parse = new System.Windows.Forms.CheckBox();
             this.uiLine12 = new Sunny.UI.UILine();
             this.txt_c2 = new Sunny.UI.UITextBox();
@@ -203,12 +205,13 @@
             this.rdb_proDaytradeNo = new Sunny.UI.UIRadioButton();
             this.rdb_proDaytradeYes = new Sunny.UI.UIRadioButton();
             this.uiRadioButtonGroup11 = new Sunny.UI.UIRadioButtonGroup();
+            this.ud_InTick = new Sunny.UI.UIIntegerUpDown();
             this.uiLabel9 = new Sunny.UI.UILabel();
             this.rdb_InUpper = new Sunny.UI.UIRadioButton();
             this.rdb_InUnder = new Sunny.UI.UIRadioButton();
             this.rdb_InOpen = new Sunny.UI.UIRadioButton();
             this.uiToolTip1 = new Sunny.UI.UIToolTip(this.components);
-            this.ud_InTick = new Sunny.UI.UIIntegerUpDown();
+            this.開發測試ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_result)).BeginInit();
             this.tabC_Strategy.SuspendLayout();
@@ -257,7 +260,8 @@
             this.BlogToolStripMenuItem,
             this.QueryToolStripMenuItem,
             this.analyzeTableToolStripMenuItem,
-            this.setIniToolStripMenuItem});
+            this.setIniToolStripMenuItem,
+            this.開發測試ToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(1302, 24);
@@ -418,6 +422,8 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage1.Controls.Add(this.uiLine13);
+            this.tabPage1.Controls.Add(this.btn_manualparse);
             this.tabPage1.Controls.Add(this.ckcb_parse);
             this.tabPage1.Controls.Add(this.uiLine12);
             this.tabPage1.Controls.Add(this.txt_c2);
@@ -444,13 +450,57 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "公用變數";
             // 
+            // uiLine13
+            // 
+            this.uiLine13.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(244)))));
+            this.uiLine13.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine13.ForeColor = System.Drawing.Color.Red;
+            this.uiLine13.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.uiLine13.Location = new System.Drawing.Point(36, 566);
+            this.uiLine13.MinimumSize = new System.Drawing.Size(2, 2);
+            this.uiLine13.Name = "uiLine13";
+            this.uiLine13.Size = new System.Drawing.Size(140, 29);
+            this.uiLine13.Style = Sunny.UI.UIStyle.Custom;
+            this.uiLine13.TabIndex = 149;
+            this.uiLine13.Text = "手動爬資料";
+            // 
+            // btn_manualparse
+            // 
+            this.btn_manualparse.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_manualparse.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(230)))), ((int)(((byte)(243)))));
+            this.btn_manualparse.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(226)))), ((int)(((byte)(137)))));
+            this.btn_manualparse.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(228)))), ((int)(((byte)(137)))));
+            this.btn_manualparse.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(228)))), ((int)(((byte)(137)))));
+            this.btn_manualparse.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.btn_manualparse.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
+            this.btn_manualparse.ForeHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
+            this.btn_manualparse.ForePressColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
+            this.btn_manualparse.ForeSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
+            this.btn_manualparse.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_manualparse.Location = new System.Drawing.Point(57, 599);
+            this.btn_manualparse.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btn_manualparse.Name = "btn_manualparse";
+            this.btn_manualparse.Padding = new System.Windows.Forms.Padding(5, 0, 10, 0);
+            this.btn_manualparse.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(192)))), ((int)(((byte)(211)))));
+            this.btn_manualparse.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(201)))), ((int)(((byte)(88)))));
+            this.btn_manualparse.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(118)))), ((int)(((byte)(43)))));
+            this.btn_manualparse.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(118)))), ((int)(((byte)(43)))));
+            this.btn_manualparse.Size = new System.Drawing.Size(100, 29);
+            this.btn_manualparse.Style = Sunny.UI.UIStyle.Office2010Blue;
+            this.btn_manualparse.StyleCustomMode = true;
+            this.btn_manualparse.Symbol = 61950;
+            this.btn_manualparse.TabIndex = 148;
+            this.btn_manualparse.Text = "爬取資料";
+            this.btn_manualparse.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_manualparse.Click += new System.EventHandler(this.btn_manualparse_Click);
+            // 
             // ckcb_parse
             // 
             this.ckcb_parse.AutoSize = true;
             this.ckcb_parse.Checked = true;
             this.ckcb_parse.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ckcb_parse.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.ckcb_parse.Location = new System.Drawing.Point(77, 559);
+            this.ckcb_parse.Location = new System.Drawing.Point(77, 544);
             this.ckcb_parse.Name = "ckcb_parse";
             this.ckcb_parse.Size = new System.Drawing.Size(56, 23);
             this.ckcb_parse.TabIndex = 147;
@@ -463,7 +513,7 @@
             this.uiLine12.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.uiLine12.ForeColor = System.Drawing.Color.Red;
             this.uiLine12.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.uiLine12.Location = new System.Drawing.Point(34, 519);
+            this.uiLine12.Location = new System.Drawing.Point(34, 511);
             this.uiLine12.MinimumSize = new System.Drawing.Size(2, 2);
             this.uiLine12.Name = "uiLine12";
             this.uiLine12.Size = new System.Drawing.Size(140, 29);
@@ -2785,6 +2835,21 @@
             this.uiRadioButtonGroup11.TabIndex = 129;
             this.uiRadioButtonGroup11.Text = "進場價格";
             // 
+            // ud_InTick
+            // 
+            this.ud_InTick.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.ud_InTick.Location = new System.Drawing.Point(97, 92);
+            this.ud_InTick.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ud_InTick.Maximum = 100;
+            this.ud_InTick.Minimum = -100;
+            this.ud_InTick.MinimumSize = new System.Drawing.Size(100, 0);
+            this.ud_InTick.Name = "ud_InTick";
+            this.ud_InTick.Size = new System.Drawing.Size(100, 29);
+            this.ud_InTick.Style = Sunny.UI.UIStyle.Custom;
+            this.ud_InTick.TabIndex = 166;
+            this.ud_InTick.Text = "_uiIntegerUpDown1";
+            this.ud_InTick.Value = 10;
+            // 
             // uiLabel9
             // 
             this.uiLabel9.Font = new System.Drawing.Font("微软雅黑", 10F);
@@ -2845,20 +2910,12 @@
             this.uiToolTip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.uiToolTip1.OwnerDraw = true;
             // 
-            // ud_InTick
+            // 開發測試ToolStripMenuItem
             // 
-            this.ud_InTick.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.ud_InTick.Location = new System.Drawing.Point(97, 92);
-            this.ud_InTick.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ud_InTick.Maximum = 100;
-            this.ud_InTick.Minimum = -100;
-            this.ud_InTick.MinimumSize = new System.Drawing.Size(100, 0);
-            this.ud_InTick.Name = "ud_InTick";
-            this.ud_InTick.Size = new System.Drawing.Size(100, 29);
-            this.ud_InTick.Style = Sunny.UI.UIStyle.Custom;
-            this.ud_InTick.TabIndex = 166;
-            this.ud_InTick.Text = "_uiIntegerUpDown1";
-            this.ud_InTick.Value = 10;
+            this.開發測試ToolStripMenuItem.Name = "開發測試ToolStripMenuItem";
+            this.開發測試ToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.開發測試ToolStripMenuItem.Text = "開發測試";
+            this.開發測試ToolStripMenuItem.Click += new System.EventHandler(this.開發測試ToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -3106,6 +3163,9 @@
         private Sunny.UI.UICheckBox ckcb_S1UpredK;
         private Sunny.UI.UIButton btn_order;
         private Sunny.UI.UIIntegerUpDown ud_InTick;
+        private Sunny.UI.UILine uiLine13;
+        private Sunny.UI.UISymbolButton btn_manualparse;
+        private System.Windows.Forms.ToolStripMenuItem 開發測試ToolStripMenuItem;
     }
 }
 

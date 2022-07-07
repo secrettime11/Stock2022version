@@ -27,7 +27,6 @@ namespace Stock
         SQliteDb SQlite = new SQliteDb();
         StockDB db = new StockDB();
         ParseData parseData = new ParseData();
-        SocketServer socket = new SocketServer();
 
         public List<Model.MS1.Result> S1FinalResult = new List<Model.MS1.Result>();
         public List<Model.MS1.S2Result> S2FinalResult = new List<Model.MS1.S2Result>();
@@ -50,9 +49,8 @@ namespace Stock
         public MainForm()
         {
             InitializeComponent();
-            // 策略預設
+            // 預設策略
             cb_Strategy.SelectedIndex = 0;
-            //socket.SConnect();
         }
 
         #region 控制項事件
@@ -60,7 +58,7 @@ namespace Stock
         #region Form
         private void MainForm_Load(object sender, EventArgs e)
         {
-            myFunction.DataTableCheckExist();
+            myFunction.CheckDataTableExist();
 
             // Set initial date
             int minusDate = -1;
@@ -81,7 +79,7 @@ namespace Stock
             if (!ckcb_parse.Checked)
             {
                 dataReady = true;
-                lb_status.Text = "Ready to go";
+                lb_status.Text = "資料擷取完成";
                 lb_status.ForeColor = Color.Green;
             }
             else
@@ -95,9 +93,10 @@ namespace Stock
             if (!dataReady)
             {
 
-                if (MessageBox.Show("資料爬取中，若強制關閉可能導致資料庫錯誤，您確認退出嗎?", "渣男關心您", MessageBoxButtons.YesNoCancel) == DialogResult.Yes)
+                if (MessageBox.Show("資料爬取中，若強制關閉可能導致資料庫錯誤，您確認退出嗎?", "警告", MessageBoxButtons.YesNoCancel) == DialogResult.Yes)
                 {
-                    Dispose(); Application.Exit();
+                    Dispose();
+                    Application.Exit();
                 }
                 else
                 {
@@ -110,8 +109,6 @@ namespace Stock
         #region Button
         private void btn_run_Click(object sender, EventArgs e)
         {
-            if (!dataGetReady())
-                return;
             IsPick = false;
             Pause = false;
             lb_status.ForeColor = Color.Orange;
@@ -145,12 +142,6 @@ namespace Stock
         }
         private void btn_pick_Click(object sender, EventArgs e)
         {
-            if (!dataGetReady())
-                return;
-            if (cb_Strategy.SelectedIndex != 0)
-            {
-                MessageBox.Show("Not allowed !");
-            }
             IsPick = true;
             lb_status.ForeColor = Color.Orange;
             Thread Run = new Thread(Mission);
@@ -218,6 +209,12 @@ namespace Stock
             OrderForm orderForm = new OrderForm(temp);
             orderForm.Show();
         }
+        private void btn_manualparse_Click(object sender, EventArgs e)
+        {
+            dataReady = false;
+            Thread getData = new Thread(ParseData);
+            getData.Start();
+        }
         #endregion
 
         #region Others
@@ -253,7 +250,6 @@ namespace Stock
                 ckcb_redK.Checked = false;
             }
         }
-
         private void capitalDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //ListedFunction.WriteCapitalToSQL();
@@ -504,7 +500,7 @@ namespace Stock
 
                 this.Invoke((MethodInvoker)delegate ()
                 {
-                    lb_status.Text = $"完成";
+                    lb_status.Text = "完成";
                     lb_status.ForeColor = Color.DarkGreen;
                     Console.WriteLine("Finish");
                 });
@@ -1511,14 +1507,17 @@ namespace Stock
         /// <returns></returns>
         private bool FoolProof(Args args)
         {
-
+            if (!dataReady)
+            {
+                MessageBox.Show("資料爬取中，請稍後再試...", "提醒");
+                return false;
+            }
             if (!IsPick)
             {
                 if (cb_Strategy.SelectedIndex == 0)
                 {
                     if (!ckcb_redK.Checked || !ckcb_S1UpredK.Checked)
                     {
-
                         if (!ckcb_s1FlUp.Checked)
                         {
                             if (!ckcb_S1UpredK.Checked)
@@ -1555,6 +1554,12 @@ namespace Stock
             }
             else
             {
+                if (cb_Strategy.SelectedIndex != 0)
+                {
+                    MessageBox.Show("當前不支援該策略選股。","警告");
+                    return false;
+                }
+
                 int versus = DateTime.Compare(DateTime.Parse(args.PickDate), DateTime.Parse(DateTime.Now.ToShortDateString()));
                 if (versus > 0)
                 {
@@ -1650,21 +1655,9 @@ namespace Stock
             if (F == null)
                 parseData.BuySellExcuted(Date, "櫃");
         }
+       
         /// <summary>
-        /// 資料取得完畢
-        /// </summary>
-        /// <returns></returns>
-        private bool dataGetReady()
-        {
-            if (!dataReady)
-            {
-                MessageBox.Show("資料爬取中，請稍後再試...", "提醒");
-                return false;
-            }
-            return true;
-        }
-        /// <summary>
-        /// 初始化控制項
+        /// 載入初始化控制項
         /// </summary>
         private void IniController()
         {
@@ -1683,7 +1676,6 @@ namespace Stock
                 ud_avgDays.Value = int.Parse(SettingConfig.getitemvalue("ud_avgDays"));
                 ud_testDays.Value = int.Parse(SettingConfig.getitemvalue("ud_testDays"));
                 ckcb_parse.Checked = bool.Parse(SettingConfig.getitemvalue("ckcb_parse"));
-
                 #endregion
 
                 #region 獲利計算模組
@@ -1789,8 +1781,7 @@ namespace Stock
         #endregion
 
         #region 窗體自適應
-        // 初始窗體大小
-        private System.Drawing.Size m_szInit;
+        private Size m_szInit;
         private Dictionary<Control, Rectangle> m_dicSize = new Dictionary<Control, Rectangle>();
         protected override void OnLoad(EventArgs e)
         {
@@ -1821,6 +1812,12 @@ namespace Stock
             }
             base.OnResize(e);
         }
+
         #endregion
+
+        private void 開發測試ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine(Convert.ToDateTime("2021/05/05").ToString("yyyyMMdd"));
+        }
     }
 }

@@ -26,7 +26,6 @@ namespace Stock
             string[] start = startDate.Split('-');
             string[] end = endDate.Split('-');
             List<string> DatesResult = new List<string>();
-
             for (DateTime dt = new DateTime(Convert.ToInt32(start[0]), Convert.ToInt32(start[1]), Convert.ToInt32(start[2])); dt <= new DateTime(Convert.ToInt32(end[0]), Convert.ToInt32(end[1]), Convert.ToInt32(end[2])); dt = dt.AddDays(1))
             {
                 // Get day of week
@@ -73,9 +72,8 @@ namespace Stock
                     }
                 }
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                //Stock_Form.Log.Debug($"GetDateNoWeekend:{exception}");
             }
 
             return AllDays;
@@ -84,7 +82,7 @@ namespace Stock
         /// <summary>
         /// Check data table exist
         /// </summary>
-        public void DataTableCheckExist()
+        public void CheckDataTableExist()
         {
             SQliteDb SQlite = new SQliteDb();
             Dictionary<string, List<string>> TableList = new Dictionary<string, List<string>>
@@ -136,7 +134,7 @@ namespace Stock
         {
             string[] dateSplit = date.Trim().Split('/');
             string year = (Convert.ToInt32(dateSplit[0]) - 1911).ToString();
-            string returnDate = "";
+            string returnDate = string.Empty;
 
             if (Slash)
                 returnDate = $"{year}/{dateSplit[1]}/{dateSplit[2]}";
@@ -153,8 +151,11 @@ namespace Stock
         /// <returns></returns>
         public string VidsAddSlash(string date)
         {
-            string newDate = date.Substring(0, 4) + "/" + date.Substring(4, 2) + "/" + date.Substring(6, 2);
-            return newDate;
+            Console.WriteLine(date.Length);
+            string result = String.Empty;
+            if (date.Length == 8)
+                result = date.Substring(0, 4) + "/" + date.Substring(4, 2) + "/" + date.Substring(6, 2);
+            return result;
         }
 
         /// <summary>
@@ -178,8 +179,7 @@ namespace Stock
         /// <returns>20200101</returns>
         public string VidsDumpSlash(string date)
         {
-            string[] newDate = date.Split('/');
-            return $"{newDate[0]}{newDate[1]}{newDate[2]}";
+            return Convert.ToDateTime(date).ToString("yyyyMMdd");
         }
         /// <summary>
         /// Get yesterday
@@ -207,24 +207,6 @@ namespace Stock
 
             return Yesterday.ToString("yyyyMMdd");
         }
-
-        /// <summary>
-        /// Find table node in html
-        /// </summary>
-        /// <param name="node"></param>
-        /// <returns></returns>
-        public HtmlNode FindTable(HtmlNode node)
-        {
-            if (node.ParentNode.Name.Equals("table", StringComparison.OrdinalIgnoreCase))
-            {
-                return node.ParentNode;
-            }
-            else
-            {
-                return FindTable(node.ParentNode);
-            }
-        }
-
         /// <summary>
         /// Get tomorrow date
         /// </summary>
@@ -274,19 +256,35 @@ namespace Stock
             return DateTime.Parse(result.ToString("yyyy-MM-dd"));
         }
         /// <summary>
-        /// 取得五日
+        /// Find table node in html
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        public HtmlNode FindTable(HtmlNode node)
+        {
+            if (node.ParentNode.Name.Equals("table", StringComparison.OrdinalIgnoreCase))
+            {
+                return node.ParentNode;
+            }
+            else
+            {
+                return FindTable(node.ParentNode);
+            }
+        }
+
+        /// <summary>
+        /// 取得前幾日
         /// </summary>
         /// <param name="date">2020/12/09</param>
         /// <param name="avgDay">取得總共前幾日</param>
         /// <returns></returns>
-        public List<string> GetAveragePriceDate(string date, string avgDay)
+        public List<string> GetAveragePriceDate(string date, int avgDay)
         {
             List<string> AllDays = new List<string>();
-            int avgDays = Convert.ToInt32(avgDay);
             try
             {
                 int dayCount = 0;
-                while (dayCount < avgDays)
+                while (dayCount < avgDay)
                 {
                     string week = Convert.ToDateTime(date).DayOfWeek.ToString();
                     if (!Market.CloseDay.Contains(VidsDumpSlash(date)))
@@ -314,9 +312,8 @@ namespace Stock
                     }
                 }
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                //Stock_Form.Log.Debug($"GetAveragePriceDate:{exception}");
             }
 
             return AllDays;
@@ -521,7 +518,7 @@ namespace Stock
                         }
                     }
                 }
-                catch (Exception Exception) { }
+                catch (Exception) { }
 
 
             }
@@ -625,11 +622,18 @@ namespace Stock
                         }
                     }
                 }
-                catch (Exception Exception) { }
+                catch (Exception) { }
             }
             return result;
         }
 
+        public void LProfitCal(bool Listed)
+        {
+            if (Listed == true)
+            {
+
+            }
+        }
         public List<string> LProfitCal(Args args, string yclose, Listed info, string Day, decimal[] LossEarn, int InCondition, bool ProfitLoss, string PreMax)
         {
             List<string> result = new List<string>();
@@ -787,7 +791,6 @@ namespace Stock
                                         per = (SUM / (Close * 1000)) * 100;
                                         result.Add("一般");
                                         result.Add(((((Open - Close) / Close) * 100) - per).ToString("F3"));
-
                                     }
                                 }
 
@@ -838,7 +841,7 @@ namespace Stock
                         }
                     }
                 }
-                catch (Exception Exception) { }
+                catch (Exception) { }
             }
             return result;
         }
@@ -858,6 +861,7 @@ namespace Stock
                     string date = $"{Day.Substring(0, 4)}-{Day.Substring(4, 2)}-{Day.Substring(6, 2)}";
                     decimal SUM = 0;
                     decimal per = 0;
+                    // 進場與否
                     bool In = true;
                     if (ProfitLoss)
                     {
@@ -1184,7 +1188,7 @@ namespace Stock
                         EarnResult += 0.01M;
                     else if (EarnResult >= 10M && EarnResult < 50M)
                         EarnResult += 0.05M;
-                    else if (EarnResult >=50M && EarnResult < 100M)
+                    else if (EarnResult >= 50M && EarnResult < 100M)
                         EarnResult += 0.1M;
                     else if (EarnResult >= 100M && EarnResult < 500M)
                         EarnResult += 0.5M;
@@ -1244,7 +1248,7 @@ namespace Stock
         /// <param name="price">價位</param>
         /// <param name="tick">tick</param>
         /// <param name="plus">+=true -=flase</param>
-        /// <returns></returns>
+        /// <returns></returns> 
         public decimal GetTick(decimal price, int tick, bool plus)
         {
             decimal result = price;

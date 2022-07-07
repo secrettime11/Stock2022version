@@ -37,7 +37,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>icons8_crocodile.ico</ApplicationIcon>
+    <ApplicationIcon>icons8_horseback_riding.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
@@ -244,6 +244,7 @@
   <ItemGroup>
     <Content Include="icons8_crocodile.ico" />
     <Content Include="icons8_get_a_discount_1.ico" />
+    <Content Include="icons8_horseback_riding.ico" />
     <Content Include="LinqToDB.Templates\CopyMe.SQLite.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CopyMe.SQLite1.generated.cs</LastGenOutput>
