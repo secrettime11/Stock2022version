@@ -9,7 +9,7 @@ namespace StockUnitTest
         [TestMethod]
         public void DateTest()
         {
-
+            SolarToVids("2022/10/12",false);
         }
         public string SolarToVids(string date, bool Slash)
         {

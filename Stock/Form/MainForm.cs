@@ -555,6 +555,7 @@ namespace Stock
                     decimal SetClose = Convert.ToDecimal(args.ClosePrice);
                     bool Pass = false;
 
+                    // 紅K
                     if (ckcb_redK.Checked)
                     {
                         if (args.s1UpDown != "None")
@@ -610,7 +611,6 @@ namespace Stock
                 }
                 catch (Exception) { }
             }
-            Console.WriteLine($"C:{DateTime.Now}");
             List<Model.MS1.Second> Second = new List<Model.MS1.Second>();
             int counter = 0;
             // 最高價
@@ -653,7 +653,6 @@ namespace Stock
                     bool[] Check = new bool[] { true, true, true, true, true };
 
                     double highPercent = 0;
-
 
                     if (HighT <= (double)Max)
                     {
@@ -729,7 +728,6 @@ namespace Stock
                             counter++;
                         }
                     }
-                    Console.WriteLine($"D:{DateTime.Now}");
                 }
                 catch (Exception ex)
                 {

@@ -626,14 +626,6 @@ namespace Stock
             }
             return result;
         }
-
-        public void LProfitCal(bool Listed)
-        {
-            if (Listed == true)
-            {
-
-            }
-        }
         public List<string> LProfitCal(Args args, string yclose, Listed info, string Day, decimal[] LossEarn, int InCondition, bool ProfitLoss, string PreMax)
         {
             List<string> result = new List<string>();
