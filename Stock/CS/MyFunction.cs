@@ -204,7 +204,6 @@ namespace Stock
                         Yesterday = Yesterday.AddDays(-1);
                 }
             }
-
             return Yesterday.ToString("yyyyMMdd");
         }
         /// <summary>
@@ -232,28 +231,65 @@ namespace Stock
             }
             return Tomorrow.ToString("yyyyMMdd");
         }
-        public DateTime GetOpenDay(string date, int cal)
+        /// <summary>
+        /// 取上次回測日期
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public DateTime GetLasrBacktestDay(string date)
         {
-            DateTime result = Convert.ToDateTime(date).AddDays(cal);
-            // Date pick
-            if (cal == 0)
-                cal = -1;
-
+            DateTime Yesterday = Convert.ToDateTime(date).AddDays(-1);
+            Console.WriteLine(Yesterday);
             while (true)
             {
-                string week = result.DayOfWeek.ToString();
+                string week = Yesterday.DayOfWeek.ToString();
 
-                if (Market.OpenWeekend.Contains(result.ToString("yyyyMMdd")))
+                if (Market.OpenWeekend.Contains(Yesterday.ToString("yyyyMMdd")))
                     break;
                 else
                 {
-                    if (week != "Saturday" && week != "Sunday" && !Market.CloseDay.Contains(result.ToString("yyyyMMdd")))
+                    if (week != "Saturday" && week != "Sunday" && !Market.CloseDay.Contains(Yesterday.ToString("yyyyMMdd")))
                         break;
                     else
-                        result = result.AddDays(cal);
+                        Yesterday = Yesterday.AddDays(-1);
                 }
             }
-            return DateTime.Parse(result.ToString("yyyy-MM-dd"));
+            return DateTime.Parse(Yesterday.ToString("yyyy-MM-dd"));
+        }
+        public DateTime GetPickDay(string date)
+        {
+            DateTime Today = Convert.ToDateTime(date);
+            while (true)
+            {
+                string week = Today.DayOfWeek.ToString();
+                if (Market.OpenWeekend.Contains(Today.ToString("yyyyMMdd")))
+                    break;
+                else
+                {
+                    if (week != "Saturday" && week != "Sunday" && !Market.CloseDay.Contains(Today.ToString("yyyyMMdd")))
+                        break;
+                    else
+                        Today = Today.AddDays(1);
+                }
+            }
+            return DateTime.Parse(Today.ToString("yyyy-MM-dd"));
+            //DateTime Yesterday = Convert.ToDateTime(date).AddDays(-1);
+
+            //while (true)
+            //{
+            //    string week = Yesterday.DayOfWeek.ToString();
+
+            //    if (Market.OpenWeekend.Contains(Yesterday.ToString("yyyyMMdd")))
+            //        break;
+            //    else
+            //    {
+            //        if (week != "Saturday" && week != "Sunday" && !Market.CloseDay.Contains(Yesterday.ToString("yyyyMMdd")))
+            //            break;
+            //        else
+            //            Yesterday = Yesterday.AddDays(-1);
+            //    }
+            //}
+            //return DateTime.Parse(Yesterday.ToString("yyyy-MM-dd"));
         }
         /// <summary>
         /// Find table node in html

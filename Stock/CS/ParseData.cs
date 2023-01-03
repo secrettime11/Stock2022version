@@ -26,10 +26,10 @@ namespace Stock
                 Dictionary<string, string> CapitalDic = new Dictionary<string, string>();
                 string CapitalYear = (Convert.ToInt32(Day.Substring(0, 4)) - 1912).ToString();
 
-                //if (CapitalYear == "110")
-                //{
-                //    CapitalYear = (Convert.ToInt32(Day.Substring(0, 4)) - 1913).ToString();
-                //}
+                if (CapitalYear == "111")
+                {
+                    CapitalYear = (Convert.ToInt32(Day.Substring(0, 4)) - 1913).ToString();
+                }
 
                 var CapitalInfo = db.Capitals.Where(p => p.Date == CapitalYear).ToList();
                 foreach (var item in CapitalInfo)

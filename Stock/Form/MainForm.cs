@@ -60,14 +60,11 @@ namespace Stock
         {
             myFunction.CheckDataTableExist();
 
-            // Set initial date
-            int minusDate = -1;
-            if (DateTime.Now.Hour < 18)
-                minusDate = -2;
-            dp_start.Value = myFunction.GetOpenDay(DateTime.Today.ToShortDateString(), minusDate);
-            dp_end.Value = myFunction.GetOpenDay(DateTime.Today.ToShortDateString(), minusDate);
-            dp_pickDate.Value = myFunction.GetOpenDay(DateTime.Today.ToShortDateString(), minusDate + 1);
-            
+            string Date = DateTime.Today.ToString("yyyy/MM/dd");
+            dp_start.Value = myFunction.GetLasrBacktestDay(Date);
+            dp_end.Value = myFunction.GetLasrBacktestDay(Date);
+            dp_pickDate.Value = myFunction.GetPickDay(Date);
+
             //dp_start.Value = Convert.ToDateTime("2016-01-01");
             //dp_end.Value = Convert.ToDateTime("2022-02-08");
 
@@ -443,6 +440,7 @@ namespace Stock
                                     lb_status.Text = Day;
                                 });
                                 args.DaysOneRun = new List<string>();
+                                Console.WriteLine($"AAA{Day}");
                                 S1(args, Day, IsPick);
                             }
                         }
@@ -529,7 +527,7 @@ namespace Stock
                     where o.Date == myFunction.VidsDumpSlash(Day)
                     select new { o.Id, o.Type, o.TurnoverRate, o.Close, o.High, o.Open, o.Low, o.UpDown, o.DealPrice }
                 ).OrderByDescending(m => Convert.ToDouble(m.TurnoverRate)).Take(Convert.ToInt32(args.TurnoverDic["Top"])).ToList();
-
+           
             // 以成交值排行
             if (ckcb_dealpriceOrder.Checked)
                 data = data.OrderByDescending(x => Int64.Parse(x.DealPrice, NumberStyles.AllowThousands)).ToList();
@@ -753,6 +751,7 @@ namespace Stock
                     {
                         if (IsPick == false)
                         {
+                            Console.WriteLine($"FFF:{myFunction.GetTomorrow(Day)} / {Day}");
                             var info = db.Listeds.Where(p => p.Date == myFunction.GetTomorrow(Day) && p.Id == item.Id).FirstOrDefault();
                             var yinfo = db.Listeds.Where(p => p.Date == myFunction.VidsDumpSlash(Day) && p.Id == item.Id).FirstOrDefault();
                             var yyinfo = db.Listeds.Where(p => p.Date == myFunction.GetYesterday(Day) && p.Id == item.Id).FirstOrDefault();
@@ -1554,7 +1553,7 @@ namespace Stock
             {
                 if (cb_Strategy.SelectedIndex != 0)
                 {
-                    MessageBox.Show("當前不支援該策略選股。","警告");
+                    MessageBox.Show("當前不支援該策略選股。", "警告");
                     return false;
                 }
 
@@ -1653,7 +1652,7 @@ namespace Stock
             if (F == null)
                 parseData.BuySellExcuted(Date, "櫃");
         }
-       
+
         /// <summary>
         /// 載入初始化控制項
         /// </summary>
