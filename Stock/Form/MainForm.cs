@@ -440,7 +440,6 @@ namespace Stock
                                     lb_status.Text = Day;
                                 });
                                 args.DaysOneRun = new List<string>();
-                                Console.WriteLine($"AAA{Day}");
                                 S1(args, Day, IsPick);
                             }
                         }
@@ -500,7 +499,6 @@ namespace Stock
                 {
                     lb_status.Text = "完成";
                     lb_status.ForeColor = Color.DarkGreen;
-                    Console.WriteLine("Finish");
                 });
             }
         }
@@ -751,7 +749,6 @@ namespace Stock
                     {
                         if (IsPick == false)
                         {
-                            Console.WriteLine($"FFF:{myFunction.GetTomorrow(Day)} / {Day}");
                             var info = db.Listeds.Where(p => p.Date == myFunction.GetTomorrow(Day) && p.Id == item.Id).FirstOrDefault();
                             var yinfo = db.Listeds.Where(p => p.Date == myFunction.VidsDumpSlash(Day) && p.Id == item.Id).FirstOrDefault();
                             var yyinfo = db.Listeds.Where(p => p.Date == myFunction.GetYesterday(Day) && p.Id == item.Id).FirstOrDefault();
@@ -940,7 +937,6 @@ namespace Stock
                 catch (Exception)
                 { }
             }
-            Console.WriteLine($"E:{DateTime.Now}");
             // Add empty row on datagridview
             S1FinalResult.Add(new Model.MS1.Result());
         }
@@ -1814,7 +1810,6 @@ namespace Stock
 
         private void 開發測試ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(Convert.ToDateTime("2021/05/05").ToString("yyyyMMdd"));
         }
     }
 }

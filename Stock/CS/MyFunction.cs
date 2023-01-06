@@ -239,7 +239,6 @@ namespace Stock
         public DateTime GetLasrBacktestDay(string date)
         {
             DateTime Yesterday = Convert.ToDateTime(date).AddDays(-1);
-            Console.WriteLine(Yesterday);
             while (true)
             {
                 string week = Yesterday.DayOfWeek.ToString();
@@ -254,6 +253,10 @@ namespace Stock
                         Yesterday = Yesterday.AddDays(-1);
                 }
             }
+
+            if (DateTime.Now.Hour <= 18)
+                Yesterday = Yesterday.AddDays(-1);
+            
             return DateTime.Parse(Yesterday.ToString("yyyy-MM-dd"));
         }
         public DateTime GetPickDay(string date)
@@ -272,24 +275,10 @@ namespace Stock
                         Today = Today.AddDays(1);
                 }
             }
+            if (DateTime.Now.Hour <= 18)
+                Today = Today.AddDays(-1);
+            
             return DateTime.Parse(Today.ToString("yyyy-MM-dd"));
-            //DateTime Yesterday = Convert.ToDateTime(date).AddDays(-1);
-
-            //while (true)
-            //{
-            //    string week = Yesterday.DayOfWeek.ToString();
-
-            //    if (Market.OpenWeekend.Contains(Yesterday.ToString("yyyyMMdd")))
-            //        break;
-            //    else
-            //    {
-            //        if (week != "Saturday" && week != "Sunday" && !Market.CloseDay.Contains(Yesterday.ToString("yyyyMMdd")))
-            //            break;
-            //        else
-            //            Yesterday = Yesterday.AddDays(-1);
-            //    }
-            //}
-            //return DateTime.Parse(Yesterday.ToString("yyyy-MM-dd"));
         }
         /// <summary>
         /// Find table node in html
