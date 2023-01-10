@@ -181,31 +181,7 @@ namespace Stock
         {
             return Convert.ToDateTime(date).ToString("yyyyMMdd");
         }
-        /// <summary>
-        /// Get yesterday
-        /// </summary>
-        /// <param name="date">2020/01/01</param>
-        /// <returns></returns>
-        public string GetYesterday(string date)
-        {
-            DateTime Yesterday = Convert.ToDateTime(date).AddDays(-1);
-
-            while (true)
-            {
-                string week = Yesterday.DayOfWeek.ToString();
-
-                if (Market.OpenWeekend.Contains(Yesterday.ToString("yyyyMMdd")))
-                    break;
-                else
-                {
-                    if (week != "Saturday" && week != "Sunday" && !Market.CloseDay.Contains(Yesterday.ToString("yyyyMMdd")))
-                        break;
-                    else
-                        Yesterday = Yesterday.AddDays(-1);
-                }
-            }
-            return Yesterday.ToString("yyyyMMdd");
-        }
+        
         /// <summary>
         /// Get tomorrow date
         /// </summary>
@@ -232,33 +208,58 @@ namespace Stock
             return Tomorrow.ToString("yyyyMMdd");
         }
         /// <summary>
+        /// Get yesterday
+        /// </summary>
+        /// <param name="date">2020/01/01</param>
+        /// <returns></returns>
+        public string GetYesterday(string date)
+        {
+            DateTime Yesterday = Convert.ToDateTime(date).AddDays(-1);
+            Yesterday = FindYesterday(Yesterday);
+            return Yesterday.ToString("yyyyMMdd");
+        }
+        /// <summary>
         /// 取上次回測日期
         /// </summary>
         /// <param name="date"></param>
         /// <returns></returns>
-        public DateTime GetLasrBacktestDay(string date)
+        public DateTime GetLastBacktestDay(string date)
         {
             DateTime Yesterday = Convert.ToDateTime(date).AddDays(-1);
+            Yesterday = FindYesterday(Yesterday);
+
+            if (DateTime.Now.Hour <= 18)
+            {
+                Yesterday = Yesterday.AddDays(-1);
+                Yesterday = FindYesterday(Yesterday);
+            }
+
+            return DateTime.Parse(Yesterday.ToString("yyyy-MM-dd"));
+        }
+        /// <summary>
+        /// 取昨日函數
+        /// </summary>
+        /// <param name="date">DateTime</param>
+        /// <returns></returns>
+        public DateTime FindYesterday(DateTime date) 
+        {
             while (true)
             {
-                string week = Yesterday.DayOfWeek.ToString();
+                string week = date.DayOfWeek.ToString();
 
-                if (Market.OpenWeekend.Contains(Yesterday.ToString("yyyyMMdd")))
+                if (Market.OpenWeekend.Contains(date.ToString("yyyyMMdd")))
                     break;
                 else
                 {
-                    if (week != "Saturday" && week != "Sunday" && !Market.CloseDay.Contains(Yesterday.ToString("yyyyMMdd")))
+                    if (week != "Saturday" && week != "Sunday" && !Market.CloseDay.Contains(date.ToString("yyyyMMdd")))
                         break;
                     else
-                        Yesterday = Yesterday.AddDays(-1);
+                        date = date.AddDays(-1);
                 }
             }
-
-            if (DateTime.Now.Hour <= 18)
-                Yesterday = Yesterday.AddDays(-1);
-            
-            return DateTime.Parse(Yesterday.ToString("yyyy-MM-dd"));
+            return date;
         }
+
         public DateTime GetPickDay(string date)
         {
             DateTime Today = Convert.ToDateTime(date);
@@ -277,7 +278,7 @@ namespace Stock
             }
             if (DateTime.Now.Hour <= 18)
                 Today = Today.AddDays(-1);
-            
+
             return DateTime.Parse(Today.ToString("yyyy-MM-dd"));
         }
         /// <summary>

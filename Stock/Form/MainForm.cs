@@ -61,8 +61,8 @@ namespace Stock
             myFunction.CheckDataTableExist();
 
             string Date = DateTime.Today.ToString("yyyy/MM/dd");
-            dp_start.Value = myFunction.GetLasrBacktestDay(Date);
-            dp_end.Value = myFunction.GetLasrBacktestDay(Date);
+            dp_start.Value = myFunction.GetLastBacktestDay(Date);
+            dp_end.Value = myFunction.GetLastBacktestDay(Date);
             dp_pickDate.Value = myFunction.GetPickDay(Date);
 
             //dp_start.Value = Convert.ToDateTime("2016-01-01");
