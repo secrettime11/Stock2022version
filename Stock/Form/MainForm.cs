@@ -525,7 +525,7 @@ namespace Stock
                     where o.Date == myFunction.VidsDumpSlash(Day)
                     select new { o.Id, o.Type, o.TurnoverRate, o.Close, o.High, o.Open, o.Low, o.UpDown, o.DealPrice }
                 ).OrderByDescending(m => Convert.ToDouble(m.TurnoverRate)).Take(Convert.ToInt32(args.TurnoverDic["Top"])).ToList();
-           
+
             // 以成交值排行
             if (ckcb_dealpriceOrder.Checked)
                 data = data.OrderByDescending(x => Int64.Parse(x.DealPrice, NumberStyles.AllowThousands)).ToList();
@@ -616,11 +616,19 @@ namespace Stock
                 object Max = new object();
                 try
                 {
+                    var temp = db.Listeds.Where(p=>p.Id == item.Id).OrderByDescending(p => Int64.Parse(p.High, NumberStyles.AllowThousands)).ToList();
+                    foreach (var xx in temp)
+                    {
+                        Console.WriteLine(xx);
+                    }
                     // 買賣超
                     string BuySell = string.Empty;
                     if (item.Type == "市")
                     {
-                        Max = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => Convert.ToDouble(p.High));
+                        Max = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => double.Parse(p.High, NumberStyles.AllowCurrencySymbol));
+
+                        //Max = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => Convert.ToDouble(p.High));
+
                         if (args.s1HighType)
                             Max = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => Convert.ToDouble(p.Close));
 
@@ -649,6 +657,7 @@ namespace Stock
                     bool[] Check = new bool[] { true, true, true, true, true };
 
                     double highPercent = 0;
+                    Console.WriteLine($"A---{item.Id}_{HighT}_{(double)Max}");
 
                     if (HighT <= (double)Max)
                     {
@@ -709,6 +718,7 @@ namespace Stock
 
                         if (!Check.Contains(false))
                         {
+
                             Info.Id = item.Id;
                             Info.Type = item.Type;
                             Info.Close = item.Close;
