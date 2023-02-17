@@ -616,11 +616,11 @@ namespace Stock
                 object Max = new object();
                 try
                 {
-                    var temp = db.Listeds.Where(p=>p.Id == item.Id).OrderByDescending(p => Int64.Parse(p.High, NumberStyles.AllowThousands)).ToList();
-                    foreach (var xx in temp)
-                    {
-                        Console.WriteLine(xx);
-                    }
+                    //var temp = db.Listeds.Where(p=>p.Id == item.Id).OrderByDescending(p => Int64.Parse(p.High, NumberStyles.AllowThousands)).ToList();
+                    //foreach (var xx in temp)
+                    //{
+                    //    Console.WriteLine(xx);
+                    //}
                     // 買賣超
                     string BuySell = string.Empty;
                     if (item.Type == "市")
