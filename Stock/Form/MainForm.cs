@@ -625,9 +625,9 @@ namespace Stock
                     string BuySell = string.Empty;
                     if (item.Type == "市")
                     {
-                        Max = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => double.Parse(p.High, NumberStyles.AllowCurrencySymbol));
+                        //Max = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => double.Parse(p.High, NumberStyles.AllowCurrencySymbol));
 
-                        //Max = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => Convert.ToDouble(p.High));
+                        Max = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => Convert.ToDouble(p.High));
 
                         if (args.s1HighType)
                             Max = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => Convert.ToDouble(p.Close));
