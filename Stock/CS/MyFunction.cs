@@ -151,7 +151,6 @@ namespace Stock
         /// <returns></returns>
         public string VidsAddSlash(string date)
         {
-            Console.WriteLine(date.Length);
             string result = String.Empty;
             if (date.Length == 8)
                 result = date.Substring(0, 4) + "/" + date.Substring(4, 2) + "/" + date.Substring(6, 2);

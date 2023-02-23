@@ -63,8 +63,8 @@ namespace Stock
             string Date = DateTime.Today.ToString("yyyy/MM/dd");
             dp_start.Value = myFunction.GetLastBacktestDay(Date);
             dp_end.Value = myFunction.GetLastBacktestDay(Date);
-            dp_pickDate.Value = myFunction.GetPickDay(Date);
-
+            //dp_pickDate.Value = myFunction.GetPickDay(Date);
+            dp_pickDate.Value = Convert.ToDateTime("2023-02-16");
             //dp_start.Value = Convert.ToDateTime("2016-01-01");
             //dp_end.Value = Convert.ToDateTime("2022-02-08");
 
@@ -609,6 +609,7 @@ namespace Stock
             }
             List<Model.MS1.Second> Second = new List<Model.MS1.Second>();
             int counter = 0;
+           
             // 最高價
             foreach (var item in First)
             {
@@ -616,18 +617,21 @@ namespace Stock
                 object Max = new object();
                 try
                 {
-                    //var temp = db.Listeds.Where(p=>p.Id == item.Id).OrderByDescending(p => Int64.Parse(p.High, NumberStyles.AllowThousands)).ToList();
-                    //foreach (var xx in temp)
-                    //{
-                    //    Console.WriteLine(xx);
-                    //}
+
                     // 買賣超
                     string BuySell = string.Empty;
                     if (item.Type == "市")
                     {
-                        //Max = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => double.Parse(p.High, NumberStyles.AllowCurrencySymbol));
-
-                        Max = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => Convert.ToDouble(p.High));
+                        //Max = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => double.Parse(p.High, NumberStyles.AllowDecimalPoint));
+                        var temp = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Select(p => p.High);
+                        List<double> highList = new List<double>();
+                        foreach (var tempHigh in temp)
+                        {
+                            highList.Add(double.Parse(tempHigh));
+                        }
+                        
+                        Max = data.Max();
+                        //Max = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => Convert.ToDouble(p.High));
 
                         if (args.s1HighType)
                             Max = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => Convert.ToDouble(p.Close));
@@ -657,7 +661,6 @@ namespace Stock
                     bool[] Check = new bool[] { true, true, true, true, true };
 
                     double highPercent = 0;
-                    Console.WriteLine($"A---{item.Id}_{HighT}_{(double)Max}");
 
                     if (HighT <= (double)Max)
                     {
@@ -1820,6 +1823,7 @@ namespace Stock
 
         private void 開發測試ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
         }
     }
 }
