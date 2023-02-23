@@ -632,7 +632,7 @@ namespace Stock
                         
                         Max = data.Max();
 
-                        Max = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => Convert.ToDouble(p.High));
+                        //Max = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => Convert.ToDouble(p.High));
 
                         if (args.s1HighType)
                             Max = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => Convert.ToDouble(p.Close));
