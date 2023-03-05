@@ -630,7 +630,7 @@ namespace Stock
                             highList.Add(double.Parse(tempHigh));
                         }
                         
-                        Max = data.Max();
+                        Max = highList.Max();
 
                         //Max = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => Convert.ToDouble(p.High));
 
