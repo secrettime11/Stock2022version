@@ -63,8 +63,8 @@ namespace Stock
             string Date = DateTime.Today.ToString("yyyy/MM/dd");
             dp_start.Value = myFunction.GetLastBacktestDay(Date);
             dp_end.Value = myFunction.GetLastBacktestDay(Date);
-            //dp_pickDate.Value = myFunction.GetPickDay(Date);
-            dp_pickDate.Value = Convert.ToDateTime("2023-02-16");
+            dp_pickDate.Value = myFunction.GetPickDay(Date);
+            //dp_pickDate.Value = Convert.ToDateTime("2023-02-16");
             //dp_start.Value = Convert.ToDateTime("2016-01-01");
             //dp_end.Value = Convert.ToDateTime("2022-02-08");
 
@@ -76,7 +76,7 @@ namespace Stock
             if (!ckcb_parse.Checked)
             {
                 dataReady = true;
-                lb_status.Text = "資料擷取完成";
+                lb_status.Text = "---";
                 lb_status.ForeColor = Color.Green;
             }
             else
@@ -617,33 +617,50 @@ namespace Stock
                 object Max = new object();
                 try
                 {
-
                     // 買賣超
                     string BuySell = string.Empty;
                     if (item.Type == "市")
                     {
-                        //Max = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => double.Parse(p.High, NumberStyles.AllowDecimalPoint));
+                       
+                        //if (args.s1HighType)
+                        //{
+                        //    Max = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => Convert.ToDouble(p.Close));
+                        //}
+                        //Max = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => Convert.ToDouble(p.High));
+
+
                         var temp = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Select(p => p.High);
+                        if (args.s1HighType)
+                        {
+                            temp = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Select(p => p.Close);
+                        }
                         List<double> highList = new List<double>();
                         foreach (var tempHigh in temp)
                         {
                             highList.Add(double.Parse(tempHigh));
                         }
-                        
                         Max = highList.Max();
-
-                        //Max = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => Convert.ToDouble(p.High));
-
-                        if (args.s1HighType)
-                            Max = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => Convert.ToDouble(p.Close));
 
                         BuySell = db.ListedBuySells.Where(p => p.Id == item.Id && p.Date == myFunction.VidsDumpSlash(Day)).FirstOrDefault().MBuySell;
                     }
                     else if (item.Type == "櫃")
                     {
-                        Max = db.Otcs.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => Convert.ToDouble(p.High));
+                        //Max = db.Otcs.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => Convert.ToDouble(p.High));
+                        //if (args.s1HighType)
+                        //    Max = db.Otcs.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => Convert.ToDouble(p.Close));
+
+                        var temp = db.Otcs.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Select(p => p.High);
                         if (args.s1HighType)
-                            Max = db.Otcs.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => Convert.ToDouble(p.Close));
+                        {
+                            temp = db.Otcs.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Select(p => p.Close);
+                        }
+
+                        List<double> highList = new List<double>();
+                        foreach (var tempHigh in temp)
+                        {
+                            highList.Add(double.Parse(tempHigh));
+                        }
+                        Max = highList.Max();
 
                         BuySell = db.OTCBuySells.Where(p => p.Id == item.Id && p.Date == myFunction.VidsDumpSlash(Day)).FirstOrDefault().MBuySell;
                     }
