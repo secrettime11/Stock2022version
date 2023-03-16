@@ -76,7 +76,7 @@ namespace Stock
             if (!ckcb_parse.Checked)
             {
                 dataReady = true;
-                lb_status.Text = "資料擷取完成";
+                lb_status.Text = "---";
                 lb_status.ForeColor = Color.Green;
             }
             else
