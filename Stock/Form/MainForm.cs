@@ -32,7 +32,6 @@ namespace Stock
         public List<Model.MS1.S2Result> S2FinalResult = new List<Model.MS1.S2Result>();
         public List<Model.MS1.S3Result> S3FinalResult = new List<Model.MS1.S3Result>();
         DataTable OutputTable = new DataTable();
-        //u.4ck5
         /// <summary>
         /// 選股 true 回測 false
         /// </summary>
