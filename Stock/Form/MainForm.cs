@@ -1843,5 +1843,17 @@ namespace Stock
         {
             
         }
+
+        private void DeleteAndReloadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //if (MessageBox.Show("確定要清除重載嗎?", "溫馨提醒", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            //{
+
+            //}
+            //else
+            //{
+            //    return;
+            //}
+        }
     }
 }
