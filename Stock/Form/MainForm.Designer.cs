@@ -212,6 +212,7 @@
             this.rdb_InUnder = new Sunny.UI.UIRadioButton();
             this.rdb_InOpen = new Sunny.UI.UIRadioButton();
             this.uiToolTip1 = new Sunny.UI.UIToolTip(this.components);
+            this.DeleteAndReloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_result)).BeginInit();
             this.tabC_Strategy.SuspendLayout();
@@ -261,7 +262,8 @@
             this.QueryToolStripMenuItem,
             this.analyzeTableToolStripMenuItem,
             this.setIniToolStripMenuItem,
-            this.開發測試ToolStripMenuItem});
+            this.開發測試ToolStripMenuItem,
+            this.DeleteAndReloadToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(1302, 24);
@@ -2917,6 +2919,13 @@
             this.uiToolTip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.uiToolTip1.OwnerDraw = true;
             // 
+            // DeleteAndReloadToolStripMenuItem
+            // 
+            this.DeleteAndReloadToolStripMenuItem.Name = "DeleteAndReloadToolStripMenuItem";
+            this.DeleteAndReloadToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.DeleteAndReloadToolStripMenuItem.Text = "RELOAD";
+            this.DeleteAndReloadToolStripMenuItem.Click += new System.EventHandler(this.DeleteAndReloadToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -3166,6 +3175,7 @@
         private Sunny.UI.UILine uiLine13;
         private Sunny.UI.UISymbolButton btn_manualparse;
         private System.Windows.Forms.ToolStripMenuItem 開發測試ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DeleteAndReloadToolStripMenuItem;
     }
 }
 

@@ -32,7 +32,6 @@ namespace Stock
         public List<Model.MS1.S2Result> S2FinalResult = new List<Model.MS1.S2Result>();
         public List<Model.MS1.S3Result> S3FinalResult = new List<Model.MS1.S3Result>();
         DataTable OutputTable = new DataTable();
-
         /// <summary>
         /// 選股 true 回測 false
         /// </summary>
@@ -1114,11 +1113,6 @@ namespace Stock
             // Add empty row on datagridview
             S2FinalResult.Add(new Model.MS1.S2Result());
         }
-        /// <summary>
-        /// 策略三
-        /// </summary>
-        /// <param name="args"></param>
-        /// <param name="Day"></param>
         private void S3(Args args, string Day)
         {
             // 單次回測所有前高比對日期
@@ -1377,6 +1371,11 @@ namespace Stock
             // Add empty row on datagridview
             S3FinalResult.Add(new Model.MS1.S3Result());
         }
+        /// <summary>
+        /// 策略三
+        /// </summary>
+        /// <param name="args"></param>
+        /// <param name="Day"></param>
         /// <summary>
         /// 初始化公用變數
         /// </summary>
@@ -1842,6 +1841,13 @@ namespace Stock
         private void 開發測試ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void DeleteAndReloadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            DeleteReloadRForm deleteReloadRForm = new DeleteReloadRForm();
+            deleteReloadRForm.Show();
         }
     }
 }
