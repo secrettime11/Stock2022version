@@ -58,7 +58,7 @@ namespace Stock
         private void MainForm_Load(object sender, EventArgs e)
         {
             myFunction.CheckDataTableExist();
-
+             
             string Date = DateTime.Today.ToString("yyyy/MM/dd");
             dp_start.Value = myFunction.GetLastBacktestDay(Date);
             dp_end.Value = myFunction.GetLastBacktestDay(Date);
@@ -1846,7 +1846,7 @@ namespace Stock
         private void DeleteAndReloadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
-            DeleteReloadRForm deleteReloadRForm = new DeleteReloadRForm();
+            DeleteReloadForm deleteReloadRForm = new DeleteReloadForm();
             deleteReloadRForm.Show();
         }
     }

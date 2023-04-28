@@ -138,11 +138,11 @@
     <Compile Include="CS\SocketServer.cs" />
     <Compile Include="CS\XlsReader.cs" />
     <Compile Include="CS\xmlOperation.cs" />
-    <Compile Include="Form\DeleteReloadRForm.cs">
+    <Compile Include="Form\DeleteReloadForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\DeleteReloadRForm.Designer.cs">
-      <DependentUpon>DeleteReloadRForm.cs</DependentUpon>
+    <Compile Include="Form\DeleteReloadForm.Designer.cs">
+      <DependentUpon>DeleteReloadForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\AnalyzeForm.cs">
       <SubType>Form</SubType>
@@ -195,8 +195,8 @@
     <EmbeddedResource Include="Form\AnalyzeForm.resx">
       <DependentUpon>AnalyzeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\DeleteReloadRForm.resx">
-      <DependentUpon>DeleteReloadRForm.cs</DependentUpon>
+    <EmbeddedResource Include="Form\DeleteReloadForm.resx">
+      <DependentUpon>DeleteReloadForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
