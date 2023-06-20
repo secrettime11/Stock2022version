@@ -16,7 +16,7 @@ namespace Stock
     public class MyFunction
     {
         /// <summary>
-        /// Total backtest dates
+        /// 區間所有開盤日期
         /// </summary>
         /// <param name="startDate">2020-01-01</param>
         /// <param name="endDate">2020-01-31</param>
@@ -127,7 +127,7 @@ namespace Stock
         /// <summary>
         /// Vids to solar
         /// </summary>
-        /// <param name="date">Date(2020/08/22)</param>
+        /// <param name="date">2020/08/22</param>
         /// <param name="Slash">Slash</param>
         /// <returns></returns>
         public string VidsToSolar(string date, bool Slash)
@@ -1311,7 +1311,6 @@ namespace Stock
             }
             return result;
         }
-
         public DataTable S2ListToDGV(List<Model.MS1.S2Result> result)
         {
             DataTable dataTable = new DataTable();
@@ -1416,7 +1415,6 @@ namespace Stock
             }
             return dataTable;
         }
-
         public DataTable OrderInitToDGV(List<Model.MS1.OrderInit> result)
         {
             DataTable dataTable = new DataTable();
@@ -1444,36 +1442,6 @@ namespace Stock
     public class ListedFunction
     {
         MyFunction myFunction = new MyFunction();
-
-        /// <summary>
-        /// Read Listed alert data write into SQLite
-        /// </summary>
-        /// <param name="date">日期</param>
-        public bool WriteListedAlertToSQL(string date)
-        {
-            List<string> Data = new List<string>();
-            // 爬取資料
-            var AlertIndfo = ParseListedAlert(date);
-            if (AlertIndfo != null)
-            {
-                foreach (var item in AlertIndfo)
-                {
-                    Data.Add(date + "_" + "市_" + item.Key + "_" + item.Value);
-                }
-
-                // 寫入SQLite
-                SQliteDb sQlite = new SQliteDb();
-                string insertString = "";
-                if (sQlite.DataAdd(FilePath.DB_saveDir, "ListedAlert", Header.ListedAlert_header, Data, insertString))
-                {
-                    Console.WriteLine($"{date} ListedAlert 新增成功!");
-                    return true;
-                }
-            }
-
-            //Stock_Form.Log.Debug($"{date}:上市當沖標的取得失敗!");
-            return false;
-        }
 
         /// <summary>
         /// Parse Listed alert data
@@ -1617,6 +1585,35 @@ namespace Stock
             }
 
             return null;
+        }
+        /// <summary>
+        /// Read Listed alert data write into SQLite
+        /// </summary>
+        /// <param name="date">日期</param>
+        public bool WriteListedAlertToSQL(string date)
+        {
+            List<string> Data = new List<string>();
+            // 爬取資料
+            var AlertIndfo = ParseListedAlert(date);
+            if (AlertIndfo != null)
+            {
+                foreach (var item in AlertIndfo)
+                {
+                    Data.Add(date + "_" + "市_" + item.Key + "_" + item.Value);
+                }
+
+                // 寫入SQLite
+                SQliteDb sQlite = new SQliteDb();
+                string insertString = "";
+                if (sQlite.DataAdd(FilePath.DB_saveDir, "ListedAlert", Header.ListedAlert_header, Data, insertString))
+                {
+                    Console.WriteLine($"{date} ListedAlert 新增成功!");
+                    return true;
+                }
+            }
+
+            //Stock_Form.Log.Debug($"{date}:上市當沖標的取得失敗!");
+            return false;
         }
 
         /// <summary>
