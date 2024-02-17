@@ -1546,7 +1546,8 @@ namespace Stock
             {
                 Dictionary<string, string> Major = new Dictionary<string, string>();
                 HtmlWeb webClient = new HtmlWeb();
-                var doc = webClient.Load($"https://www.twse.com.tw/fund/T86?response=html&date={date}&selectType=ALLBUT0999");
+                //var doc = webClient.Load($"https://www.twse.com.tw/fund/T86?response=html&date={date}&selectType=ALLBUT0999");
+                var doc = webClient.Load($"https://www.twse.com.tw/rwd/zh/fund/T86?date={date}&selectType=ALLBUT0999&response=html");
                 var table = doc.DocumentNode.SelectSingleNode("/html/body//div[contains(text(),'三大法人買賣超日報')]");
                 if (table != null)
                 {

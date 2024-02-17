@@ -27,7 +27,6 @@ namespace Stock
         SQliteDb SQlite = new SQliteDb();
         StockDB db = new StockDB();
         ParseData parseData = new ParseData();
-
         public List<Model.MS1.Result> S1FinalResult = new List<Model.MS1.Result>();
         public List<Model.MS1.S2Result> S2FinalResult = new List<Model.MS1.S2Result>();
         public List<Model.MS1.S3Result> S3FinalResult = new List<Model.MS1.S3Result>();
@@ -1626,10 +1625,11 @@ namespace Stock
         /// </summary>
         private void ParseData()
         {
-            List<string> All = myFunction.GetEachTestDates(DateTime.Now.AddDays(1).ToString("yyyy/MM/dd"), "30");
+            string crawlDays = txt_crawlDays.Text.Trim();
+            List<string> All = myFunction.GetEachTestDates(DateTime.Now.AddDays(1).ToString("yyyy/MM/dd"), crawlDays);
             if (Convert.ToInt32(DateTime.Now.ToString("HH")) < 18)
             {
-                All = myFunction.GetEachTestDates(DateTime.Now.ToString("yyyy/MM/dd"), "30");
+                All = myFunction.GetEachTestDates(DateTime.Now.ToString("yyyy/MM/dd"), crawlDays);
             }
             foreach (var Date in All)
             {
@@ -1638,7 +1638,7 @@ namespace Stock
                     lb_status.Text = Date;
                     lb_status.ForeColor = Color.DarkRed;
                 });
-
+                
                 dataClaw(Date);
             }
             this.Invoke((MethodInvoker)delegate ()

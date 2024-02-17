@@ -32,57 +32,56 @@ namespace Stock
         private void btn_search_Click(object sender, EventArgs e)
         {
             // 日期區間
-            var alldays = myFunction.GetAllTestDate(dp_start.Text.Trim(), dp_end.Text.Trim());
-
+            var alldaysTmp = myFunction.GetAllTestDate(dp_start.Text.Trim(), dp_end.Text.Trim());
+            var alldays = (alldaysTmp.Select(item => myFunction.VidsDumpSlash(item))).ToList();
             using (var db = new DataModels.StockDB())
             {
                 var query =
-                    (from c in db.Capitals
+                    (from c in db.Listeds
                      where alldays.Contains(c.Date)
                      select c).ToList();
-                List<Model.Capital> data = new List<Model.Capital>();
+                List<Model.ListedAlert> data = new List<Model.ListedAlert>();
                 foreach (var item in query)
                 {
-                    Model.Capital temp = new Model.Capital();
+                    Model.ListedAlert temp = new Model.ListedAlert();
                     temp.Date = item.Date;
-                    temp.Id = Convert.ToInt32(item.Id);
+                    //temp.Id = Convert.ToInt32(item.Id);
                     temp.Name = item.Name;
-                    temp.FirstCapital = item.FirstCapital;
-                    temp.NowCapital = item.NowCapital;
+                    //temp.FirstCapital = item.FirstCapital;
+                    //temp.NowCapital = item.NowCapital;
                     data.Add(temp);
                 }
-                //DataTable OutputTable = ToView(data);
+                Console.WriteLine(data.Count.ToString());
+                DataTable OutputTable = ToView(data);
                 this.Invoke((MethodInvoker)delegate
                 {
-                    //dgv_employee.DataSource = OutputTable;
+                    dgv_dataset.DataSource = OutputTable;
                 });
             }
         }
 
-        //public DataTable ToView(List<Model.Capital> result)
-        //{
-        //    DataTable dataTable = new DataTable();
-        //    if (result.Count > 0)
-        //    {
-        //        // Add column
-        //        foreach (var item in Args.Capital_header)
-        //            dataTable.Columns.Add(item);
+        public DataTable ToView(List<Model.ListedAlert> data)
+        {
+            DataTable dataTable = new DataTable();
+            if (data.Count > 0)
+            {
+                // Add column
+                foreach (var item in Header.Capital_header)
+                    dataTable.Columns.Add(item);
 
-        //        int rowC = 0;
-        //        foreach (var item in result)
-        //        {
-        //            dataTable.Rows.Add();
-        //            dataTable.Rows[rowC][0] = item.Id;
-        //            dataTable.Rows[rowC][1] = item.Name;
-        //            dataTable.Rows[rowC][2] = item.Team;
-        //            dataTable.Rows[rowC][3] = item.Title;
-        //            dataTable.Rows[rowC][4] = item.PCId;
-        //            dataTable.Rows[rowC][5] = item.Ip;
-        //            dataTable.Rows[rowC][6] = item.Extension;
-        //            rowC++;
-        //        }
-        //    }
-        //    return dataTable;
-        //}
+                int rowC = 0;
+                foreach (var item in data)
+                {
+                    dataTable.Rows.Add();
+                    dataTable.Rows[rowC][0] = item.Date;
+                    //dataTable.Rows[rowC][1] = item.Id;
+                    dataTable.Rows[rowC][2] = item.Name;
+                    //dataTable.Rows[rowC][3] = item.FirstCapital;
+                    //dataTable.Rows[rowC][4] = item.NowCapital;
+                    rowC++;
+                }
+            }
+            return dataTable;
+        }
     }
 }

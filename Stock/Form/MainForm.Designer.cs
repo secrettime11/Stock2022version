@@ -48,6 +48,7 @@
             this.analyzeTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setIniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.開發測試ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeleteAndReloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dgv_result = new Sunny.UI.UIDataGridView();
             this.tabC_Strategy = new Sunny.UI.UITabControlMenu();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -212,7 +213,7 @@
             this.rdb_InUnder = new Sunny.UI.UIRadioButton();
             this.rdb_InOpen = new Sunny.UI.UIRadioButton();
             this.uiToolTip1 = new Sunny.UI.UIToolTip(this.components);
-            this.DeleteAndReloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.txt_crawlDays = new Sunny.UI.UITextBox();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_result)).BeginInit();
             this.tabC_Strategy.SuspendLayout();
@@ -354,6 +355,13 @@
             this.開發測試ToolStripMenuItem.Text = "開發測試";
             this.開發測試ToolStripMenuItem.Click += new System.EventHandler(this.開發測試ToolStripMenuItem_Click);
             // 
+            // DeleteAndReloadToolStripMenuItem
+            // 
+            this.DeleteAndReloadToolStripMenuItem.Name = "DeleteAndReloadToolStripMenuItem";
+            this.DeleteAndReloadToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.DeleteAndReloadToolStripMenuItem.Text = "RELOAD";
+            this.DeleteAndReloadToolStripMenuItem.Click += new System.EventHandler(this.DeleteAndReloadToolStripMenuItem_Click);
+            // 
             // dgv_result
             // 
             this.dgv_result.AllowUserToAddRows = false;
@@ -431,6 +439,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage1.Controls.Add(this.txt_crawlDays);
             this.tabPage1.Controls.Add(this.uiLine13);
             this.tabPage1.Controls.Add(this.btn_manualparse);
             this.tabPage1.Controls.Add(this.ckcb_parse);
@@ -486,7 +495,7 @@
             this.btn_manualparse.ForePressColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
             this.btn_manualparse.ForeSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
             this.btn_manualparse.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_manualparse.Location = new System.Drawing.Point(57, 599);
+            this.btn_manualparse.Location = new System.Drawing.Point(89, 600);
             this.btn_manualparse.MinimumSize = new System.Drawing.Size(1, 1);
             this.btn_manualparse.Name = "btn_manualparse";
             this.btn_manualparse.Padding = new System.Windows.Forms.Padding(5, 0, 10, 0);
@@ -494,7 +503,7 @@
             this.btn_manualparse.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(201)))), ((int)(((byte)(88)))));
             this.btn_manualparse.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(118)))), ((int)(((byte)(43)))));
             this.btn_manualparse.RectSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(118)))), ((int)(((byte)(43)))));
-            this.btn_manualparse.Size = new System.Drawing.Size(100, 29);
+            this.btn_manualparse.Size = new System.Drawing.Size(98, 29);
             this.btn_manualparse.Style = Sunny.UI.UIStyle.Office2010Blue;
             this.btn_manualparse.StyleCustomMode = true;
             this.btn_manualparse.Symbol = 61950;
@@ -2919,12 +2928,24 @@
             this.uiToolTip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.uiToolTip1.OwnerDraw = true;
             // 
-            // DeleteAndReloadToolStripMenuItem
+            // txt_crawlDays
             // 
-            this.DeleteAndReloadToolStripMenuItem.Name = "DeleteAndReloadToolStripMenuItem";
-            this.DeleteAndReloadToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
-            this.DeleteAndReloadToolStripMenuItem.Text = "RELOAD";
-            this.DeleteAndReloadToolStripMenuItem.Click += new System.EventHandler(this.DeleteAndReloadToolStripMenuItem_Click);
+            this.txt_crawlDays.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txt_crawlDays.DoubleValue = 30D;
+            this.txt_crawlDays.FillColor = System.Drawing.Color.White;
+            this.txt_crawlDays.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.txt_crawlDays.IntValue = 30;
+            this.txt_crawlDays.Location = new System.Drawing.Point(36, 600);
+            this.txt_crawlDays.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_crawlDays.Maximum = 2147483647D;
+            this.txt_crawlDays.Minimum = -2147483648D;
+            this.txt_crawlDays.MinimumSize = new System.Drawing.Size(1, 1);
+            this.txt_crawlDays.Name = "txt_crawlDays";
+            this.txt_crawlDays.Padding = new System.Windows.Forms.Padding(5);
+            this.txt_crawlDays.Size = new System.Drawing.Size(46, 29);
+            this.txt_crawlDays.Style = Sunny.UI.UIStyle.Custom;
+            this.txt_crawlDays.TabIndex = 150;
+            this.txt_crawlDays.Text = "30";
             // 
             // MainForm
             // 
@@ -3176,6 +3197,7 @@
         private Sunny.UI.UISymbolButton btn_manualparse;
         private System.Windows.Forms.ToolStripMenuItem 開發測試ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DeleteAndReloadToolStripMenuItem;
+        private Sunny.UI.UITextBox txt_crawlDays;
     }
 }
 
