@@ -247,7 +247,7 @@ namespace Stock
         }
         private void capitalDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //ListedFunction.WriteCapitalToSQL();
+            ListedFunction.WriteCapitalToSQL();
         }
         private void databaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
