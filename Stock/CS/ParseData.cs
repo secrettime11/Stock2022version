@@ -27,6 +27,7 @@ namespace Stock
                 Dictionary<string, string> CapitalDic = new Dictionary<string, string>();
                 string CapitalYear = (Convert.ToInt32(Day.Substring(0, 4)) - 1912).ToString();
 
+                /* 尚未取得年度資本額時使用 */
                 //if (CapitalYear == "112")
                 //{
                 //    CapitalYear = (Convert.ToInt32(Day.Substring(0, 4)) - 1913).ToString();
