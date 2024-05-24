@@ -1,0 +1,13 @@
+-----------------------------------------------------------------
+[22440] 2022/06/01 23:36:18.263 CALL SKOrderLib_ReadCertByID(M122743970)
+[22440] 2022/06/01 23:36:18.334 OrderSendSign result:0
+[22440] 2022/06/01 23:36:21.506 (SendStockStrategyDayTrade)_Account:91310215477,StockNo:5706,OrderType:0,BuySell:1,Qty:1,OrderPrice:72.5,OrderPriceCond:0,OrderPriceType:2,TPflag:1,RDTPType:0,TPPercent:,TPTrigger:65.6,TPMarketPriceType:1,TPOrderPrice:,TPOrderCond:0,SLFlag:1,RDOSLType:0,SLPercent:,SPTrigger:79.5,RDSLMarketPriceType:1,SLOrderPrice:,SLOrderCond:0,ClearAllFlag:1,ClearCancelTime:1323,ClearAllOrderPrice:,ClearAllPriceType:1,ClearOrderCond:0,FinalClearFlag:0, MITFlag:0, MITDir: 0, MITTrigger:0, MITDeal:0
+[22440] 2022/06/01 23:36:21.506 SendStockStrategyOrder_DayTrade : Accoun-TS:91310215477, StockNo:5706,OrderType:0,BuySell:1,Qty:1,OrderPrice:72.5,OrderPriceCond:0,OrderPriceType:2,TPflag:1,RDTPType:0,TPPercent:,TPTrigger:65.6,TPMarketPriceType:1,TPOrderPrice:, TPCond:0,SLFlag:1,RDOSLType:0,SLPercent:,SPTrigger:79.5,RDSLMarketPriceType:1,SLOrderPrice:,STCond:0,ClearAllFlag:1,ClearCancelTime:1323,ClearAllOrderPrice:,ClearAllPriceType:1,FinalClearFlag:0, ClearCond:0, MITFlag:0, MITDir: 0, MITTrigger:0, MITDeal:0
+[22440] 2022/06/01 23:36:21.783 同步-委託 result:000,20220601,預約單已送出, 條件單號：3540235, 交易日:20220602
+[22440] 2022/06/01 23:37:04.232 『SendStockOrder』 Account:91310215477,StockNo:3434,Prime:0,Flag:0,BuySell:0,Price:40,Qty:1,TradeType:0,SpecTradeType:2)
+[22440] 2022/06/01 23:37:04.232 SendStockOrder : 0122440233704232&=y&=TS91310215477&=3434&=B00RTN&=40&=1
+[22440] 2022/06/01 23:37:04.233 下單獨立後驗
+[22440] 2022/06/01 23:37:04.238 CertWorker 驗章ID：M122743970
+[22440] 2022/06/01 23:37:04.258 CertWorker 下單驗章完成
+[22440] 2022/06/01 23:37:04.507 同步-委託:M005 0001 預約單委託完成，請查詢委託狀況。[4106011290829]
+[22440] 2022/06/01 23:37:41.308 -----------------------------------------------------------------

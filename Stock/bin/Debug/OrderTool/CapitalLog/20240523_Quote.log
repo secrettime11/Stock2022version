@@ -1,0 +1,22 @@
+-----------------------------------------------------------------
+[14624] 2024/05/23 16:04:50.626 >> Host srvsolace-tpa.capital.com.tw
+[14624] 2024/05/23 16:05:06.991 SKQuoteLib_EnterMonitor IP¡Gsrvsolace-tpa.capital.com.tw
+[14624] 2024/05/23 16:05:07.073 OnSessionConnect¡ACode: 3001, Error Code:0.
+[14624] 2024/05/23 16:05:07.093 SKQuoteLib_EnterMonitorLONG starting
+[14624] 2024/05/23 16:05:07.097 OnConnection ( 3001 , 0 ) 
+[14624] 2024/05/23 16:05:07.443 Market Info is OK!
+[14624] 2024/05/23 16:05:07.535 Catalog info is OK!
+[14624] 2024/05/23 16:05:09.013 OnConnection ( 3003 , 0 ) 
+[14624] 2024/05/23 16:05:13.023 SKQuoteLib_RequestStocks (-1 , TX00,MTX00,6005)
+[14624] 2024/05/23 16:05:13.023 Divide StockNo {TX00}
+[14624] 2024/05/23 16:05:13.024 Stock Is Not Exist 
+[14624] 2024/05/23 16:05:13.024 Divide StockNo {MTX00}
+[14624] 2024/05/23 16:05:13.024 Stock Is Not Exist 
+[14624] 2024/05/23 16:05:13.024 Divide StockNo {6005}
+[14624] 2024/05/23 16:05:13.024 Add Basket MarketNo¡G0 StockIdx¡G30192
+[14624] 2024/05/23 16:05:13.024 Return PageNo¡G 1 
+[14624] 2024/05/23 16:05:20.109 SKQuoteLib_RequestStocks (1 , 2330)
+[14624] 2024/05/23 16:05:20.109 Divide StockNo {2330}
+[14624] 2024/05/23 16:05:20.109 Add Basket MarketNo¡G0 StockIdx¡G29688
+[14624] 2024/05/23 16:05:20.109 Return PageNo¡G 1 
+[14624] 2024/05/23 16:06:32.300 -----------------------------------------------------------------

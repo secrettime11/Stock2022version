@@ -1,0 +1,10 @@
+-----------------------------------------------------------------
+[20936] 2024/05/23 16:02:33.796 CALL SKOrderLib_ReadCertByID(M122743970)
+[20936] 2024/05/23 16:02:34.018 OrderSendSign result:0
+[20936] 2024/05/23 16:02:37.900 -----------------------------------------------------------------
+[17312] 2024/05/23 16:07:03.745 CALL SKOrderLib_ReadCertByID(M122743970)
+[17312] 2024/05/23 16:07:03.993 OrderSendSign result:0
+[17312] 2024/05/23 16:07:14.738 (SendStockStrategyDayTrade)_Account:91310215477,StockNo:6229,OrderType:0,BuySell:1,Qty:1,OrderPrice:41.45,OrderPriceCond:0,OrderPriceType:2,TPflag:1,RDTPType:0,TPPercent:,TPTrigger:37.8,TPMarketPriceType:1,TPOrderPrice:,TPOrderCond:0,SLFlag:1,RDOSLType:0,SLPercent:,SPTrigger:45.85,RDSLMarketPriceType:1,SLOrderPrice:,SLOrderCond:0,ClearAllFlag:1,ClearCancelTime:1325,ClearAllOrderPrice:46.1,ClearAllPriceType:2,ClearOrderCond:0,FinalClearFlag:0, MITFlag:0, MITDir: 0, MITTrigger:0, MITDeal:0
+[17312] 2024/05/23 16:07:14.739 SendStockStrategyOrder_DayTrade : Accoun-TS:91310215477, StockNo:6229,OrderType:0,BuySell:1,Qty:1,OrderPrice:41.45,OrderPriceCond:0,OrderPriceType:2,TPflag:1,RDTPType:0,TPPercent:,TPTrigger:37.8,TPMarketPriceType:1,TPOrderPrice:, TPCond:0,SLFlag:1,RDOSLType:0,SLPercent:,SPTrigger:45.85,RDSLMarketPriceType:1,SLOrderPrice:,STCond:0,ClearAllFlag:1,ClearCancelTime:1325,ClearAllOrderPrice:46.1,ClearAllPriceType:2,FinalClearFlag:0, ClearCond:0, MITFlag:0, MITDir: 0, MITTrigger:0, MITDeal:0
+[17312] 2024/05/23 16:07:15.359 同步-委託 result:000,20240523,預約單已送出, 條件單號：12477772, 交易日:20240524
+[17312] 2024/05/23 16:09:08.595 -----------------------------------------------------------------

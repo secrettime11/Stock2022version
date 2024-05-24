@@ -1,0 +1,19 @@
+-----------------------------------------------------------------
+[7740] 2022/06/13 22:20:24.023 OnSessionConnect，Code: 3001, Error Code:0.
+[7740] 2022/06/13 22:24:02.545 OnSessionConnect，Code: 3001, Error Code:0.
+[7740] 2022/06/13 22:24:39.702 -----------------------------------------------------------------
+[18792] 2023/08/02 13:47:47.835 OnSessionConnect，Code: 3001, Error Code:0.
+[18792] 2023/08/02 13:49:05.741 OnSessionDisconnect，Code: 3033, Error code: 0
+[18792] 2023/08/02 13:49:05.742 Solace QuoteServer Disconnect:Session down(1); subCode: SOLCLIENT_SUBCODE_COMMUNICATION_ERROR(14),response code: 0, reason:TCP: Could not read from socket 3608, error = Connection reset by peer (10054)
+[18792] 2023/08/02 13:49:05.743 Solace QuoteServer Disconnect_SESSION_EVENT_DOWN_ERROR
+[18792] 2023/08/02 13:51:47.650 OnSessionConnect，Code: 3001, Error Code:0.
+[18792] 2023/08/02 13:52:31.096 -----------------------------------------------------------------
+[18564] 2023/08/02 13:52:59.197 OnSessionConnect，Code: 3001, Error Code:0.
+[18564] 2023/08/02 14:36:16.667 OnSessionDisconnect，Code: 3033, Error code: 0
+[18564] 2023/08/02 14:36:16.667 Solace QuoteServer Disconnect:Session down(1); subCode: SOLCLIENT_SUBCODE_COMMUNICATION_ERROR(14),response code: 0, reason:TCP: Could not read from socket 3256, error = Connection reset by peer (10054)
+[18564] 2023/08/02 14:36:16.668 Solace QuoteServer Disconnect_SESSION_EVENT_DOWN_ERROR
+[18564] 2023/08/02 17:12:56.296 -----------------------------------------------------------------
+[22224] 2024/05/23 14:58:27.859  請先於 Center 進行登入。
+[22224] 2024/05/23 15:16:51.836 -----------------------------------------------------------------
+[14624] 2024/05/23 16:05:07.075 OnSessionConnect，Code: 3001, Error Code:0.
+[14624] 2024/05/23 16:06:32.305 -----------------------------------------------------------------

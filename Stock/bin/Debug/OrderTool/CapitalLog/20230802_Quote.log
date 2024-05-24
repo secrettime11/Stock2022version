@@ -1,0 +1,201 @@
+-----------------------------------------------------------------
+[18792] 2023/08/02 13:47:25.163 >> Host srvsolace-tpa.capital.com.tw
+[18792] 2023/08/02 13:47:47.710 SKQuoteLib_EnterMonitor IP¡Gsrvsolace-tpa.capital.com.tw
+[18792] 2023/08/02 13:47:47.834 OnSessionConnect¡ACode: 3001, Error Code:0.
+[18792] 2023/08/02 13:47:47.862 SKQuoteLib_EnterMonitorLONG starting
+[18792] 2023/08/02 13:47:47.871 OnConnection ( 3001 , 0 ) 
+[18792] 2023/08/02 13:47:48.264 Market Info is OK!
+[18792] 2023/08/02 13:47:48.344 Catalog info is OK!
+[18792] 2023/08/02 13:47:49.866 OnConnection ( 3003 , 0 ) 
+[18792] 2023/08/02 13:47:53.917 SKQuoteLib_RequestStocks (-1 , 2330)
+[18792] 2023/08/02 13:47:53.917 Divide StockNo {2330}
+[18792] 2023/08/02 13:47:53.918 Add Basket MarketNo¡G0 StockIdx¡G27265
+[18792] 2023/08/02 13:47:53.918 Return PageNo¡G 1 
+[18792] 2023/08/02 13:48:25.043 SKQuoteLib_EnterMonitorLONG starting
+[18792] 2023/08/02 13:48:26.597 SKQuoteLib_RequestStocks (1 , 6895)
+[18792] 2023/08/02 13:48:26.597 Divide StockNo {6895}
+[18792] 2023/08/02 13:48:26.597 Add Basket MarketNo¡G4 StockIdx¡G238
+[18792] 2023/08/02 13:48:26.597 Return PageNo¡G 1 
+[18792] 2023/08/02 13:49:05.741 OnSessionDisconnect¡ACode: 3033, Error code: 0
+[18792] 2023/08/02 13:49:05.744 OnConnection ( 3033 , 0 ) 
+[18792] 2023/08/02 13:51:47.650 OnSessionConnect¡ACode: 3001, Error Code:0.
+[18792] 2023/08/02 13:51:47.651 SKQuoteLib_EnterMonitorLONG starting
+[18792] 2023/08/02 13:51:47.657 OnConnection ( 3001 , 0 ) 
+[18792] 2023/08/02 13:52:20.131 Please Connect SKQuoteLib_EnterMonitorLONG first.
+[18792] 2023/08/02 13:52:20.157 Please Connect SKQuoteLib_EnterMonitorLONG first.
+[18792] 2023/08/02 13:52:20.157 Please Connect SKQuoteLib_EnterMonitorLONG first.
+[18792] 2023/08/02 13:52:20.157 Please Connect SKQuoteLib_EnterMonitorLONG first.
+[18792] 2023/08/02 13:52:20.157 Please Connect SKQuoteLib_EnterMonitor first.
+[18792] 2023/08/02 13:52:31.088 -----------------------------------------------------------------
+[18564] 2023/08/02 13:52:43.020 >> Host srvsolace-tpa.capital.com.tw
+[18564] 2023/08/02 13:52:59.030 SKQuoteLib_EnterMonitor IP¡Gsrvsolace-tpa.capital.com.tw
+[18564] 2023/08/02 13:52:59.197 OnSessionConnect¡ACode: 3001, Error Code:0.
+[18564] 2023/08/02 13:52:59.221 SKQuoteLib_EnterMonitorLONG starting
+[18564] 2023/08/02 13:52:59.229 OnConnection ( 3001 , 0 ) 
+[18564] 2023/08/02 13:52:59.676 Market Info is OK!
+[18564] 2023/08/02 13:52:59.781 Catalog info is OK!
+[18564] 2023/08/02 13:53:01.059 OnConnection ( 3003 , 0 ) 
+[18564] 2023/08/02 13:53:14.617 SKQuoteLib_EnterMonitorLONG starting
+[18564] 2023/08/02 13:53:18.973 SKQuoteLib_EnterMonitorLONG starting
+[18564] 2023/08/02 13:53:23.400 SKQuoteLib_RequestStocks (-1 , TX00,MTX00,6005)
+[18564] 2023/08/02 13:53:23.400 Divide StockNo {TX00}
+[18564] 2023/08/02 13:53:23.400 Stock Is Not Exist 
+[18564] 2023/08/02 13:53:23.400 Divide StockNo {MTX00}
+[18564] 2023/08/02 13:53:23.400 Stock Is Not Exist 
+[18564] 2023/08/02 13:53:23.400 Divide StockNo {6005}
+[18564] 2023/08/02 13:53:23.400 Add Basket MarketNo¡G0 StockIdx¡G27765
+[18564] 2023/08/02 13:53:23.400 Return PageNo¡G 1 
+[18564] 2023/08/02 13:53:25.867 SKQuoteLib_RequestStocks (1 , 4931,5272,2482,2359)
+[18564] 2023/08/02 13:53:25.867 Divide StockNo {4931}
+[18564] 2023/08/02 13:53:25.867 Add Basket MarketNo¡G1 StockIdx¡G614
+[18564] 2023/08/02 13:53:25.867 Divide StockNo {5272}
+[18564] 2023/08/02 13:53:25.867 Add Basket MarketNo¡G1 StockIdx¡G667
+[18564] 2023/08/02 13:53:25.867 Divide StockNo {2482}
+[18564] 2023/08/02 13:53:25.867 Add Basket MarketNo¡G0 StockIdx¡G27374
+[18564] 2023/08/02 13:53:25.867 Divide StockNo {2359}
+[18564] 2023/08/02 13:53:25.867 Add Basket MarketNo¡G0 StockIdx¡G27286
+[18564] 2023/08/02 13:53:25.867 Return PageNo¡G 1 
+[18564] 2023/08/02 13:53:59.258 SKQuoteLib_RequestStocks (1 , 4931,5272,2482,2359,4543,5353,3234,3094)
+[18564] 2023/08/02 13:53:59.258 Divide StockNo {4931}
+[18564] 2023/08/02 13:53:59.258 Add Basket MarketNo¡G1 StockIdx¡G614
+[18564] 2023/08/02 13:53:59.258 Divide StockNo {5272}
+[18564] 2023/08/02 13:53:59.258 Add Basket MarketNo¡G1 StockIdx¡G667
+[18564] 2023/08/02 13:53:59.258 Divide StockNo {2482}
+[18564] 2023/08/02 13:53:59.258 Add Basket MarketNo¡G0 StockIdx¡G27374
+[18564] 2023/08/02 13:53:59.258 Divide StockNo {2359}
+[18564] 2023/08/02 13:53:59.259 Add Basket MarketNo¡G0 StockIdx¡G27286
+[18564] 2023/08/02 13:53:59.259 Divide StockNo {4543}
+[18564] 2023/08/02 13:53:59.259 Add Basket MarketNo¡G1 StockIdx¡G550
+[18564] 2023/08/02 13:53:59.259 Divide StockNo {5353}
+[18564] 2023/08/02 13:53:59.259 Add Basket MarketNo¡G1 StockIdx¡G696
+[18564] 2023/08/02 13:53:59.259 Divide StockNo {3234}
+[18564] 2023/08/02 13:53:59.259 Add Basket MarketNo¡G1 StockIdx¡G290
+[18564] 2023/08/02 13:53:59.259 Divide StockNo {3094}
+[18564] 2023/08/02 13:53:59.259 Add Basket MarketNo¡G0 StockIdx¡G27571
+[18564] 2023/08/02 13:53:59.259 Return PageNo¡G 1 
+[18564] 2023/08/02 13:54:28.695 SKQuoteLib_EnterMonitorLONG starting
+[18564] 2023/08/02 13:54:29.851 SKQuoteLib_EnterMonitorLONG starting
+[18564] 2023/08/02 13:54:31.241 SKQuoteLib_RequestStocks (1 , 4931,5272,2482,2359,4543,5353,3234,3094,2303)
+[18564] 2023/08/02 13:54:31.241 Divide StockNo {4931}
+[18564] 2023/08/02 13:54:31.241 Add Basket MarketNo¡G1 StockIdx¡G614
+[18564] 2023/08/02 13:54:31.241 Divide StockNo {5272}
+[18564] 2023/08/02 13:54:31.241 Add Basket MarketNo¡G1 StockIdx¡G667
+[18564] 2023/08/02 13:54:31.241 Divide StockNo {2482}
+[18564] 2023/08/02 13:54:31.241 Add Basket MarketNo¡G0 StockIdx¡G27374
+[18564] 2023/08/02 13:54:31.241 Divide StockNo {2359}
+[18564] 2023/08/02 13:54:31.241 Add Basket MarketNo¡G0 StockIdx¡G27286
+[18564] 2023/08/02 13:54:31.241 Divide StockNo {4543}
+[18564] 2023/08/02 13:54:31.241 Add Basket MarketNo¡G1 StockIdx¡G550
+[18564] 2023/08/02 13:54:31.241 Divide StockNo {5353}
+[18564] 2023/08/02 13:54:31.241 Add Basket MarketNo¡G1 StockIdx¡G696
+[18564] 2023/08/02 13:54:31.241 Divide StockNo {3234}
+[18564] 2023/08/02 13:54:31.241 Add Basket MarketNo¡G1 StockIdx¡G290
+[18564] 2023/08/02 13:54:31.241 Divide StockNo {3094}
+[18564] 2023/08/02 13:54:31.241 Add Basket MarketNo¡G0 StockIdx¡G27571
+[18564] 2023/08/02 13:54:31.241 Divide StockNo {2303}
+[18564] 2023/08/02 13:54:31.241 Add Basket MarketNo¡G0 StockIdx¡G27251
+[18564] 2023/08/02 13:54:31.241 Return PageNo¡G 1 
+[18564] 2023/08/02 13:54:35.021 SKQuoteLib_RequestStocks (12 , 4931,5272,2482,2359,4543,5353,3234,3094,2303)
+[18564] 2023/08/02 13:54:35.021 Divide StockNo {4931}
+[18564] 2023/08/02 13:54:35.021 Add Basket MarketNo¡G1 StockIdx¡G614
+[18564] 2023/08/02 13:54:35.021 Divide StockNo {5272}
+[18564] 2023/08/02 13:54:35.021 Add Basket MarketNo¡G1 StockIdx¡G667
+[18564] 2023/08/02 13:54:35.021 Divide StockNo {2482}
+[18564] 2023/08/02 13:54:35.021 Add Basket MarketNo¡G0 StockIdx¡G27374
+[18564] 2023/08/02 13:54:35.021 Divide StockNo {2359}
+[18564] 2023/08/02 13:54:35.021 Add Basket MarketNo¡G0 StockIdx¡G27286
+[18564] 2023/08/02 13:54:35.021 Divide StockNo {4543}
+[18564] 2023/08/02 13:54:35.021 Add Basket MarketNo¡G1 StockIdx¡G550
+[18564] 2023/08/02 13:54:35.021 Divide StockNo {5353}
+[18564] 2023/08/02 13:54:35.021 Add Basket MarketNo¡G1 StockIdx¡G696
+[18564] 2023/08/02 13:54:35.021 Divide StockNo {3234}
+[18564] 2023/08/02 13:54:35.021 Add Basket MarketNo¡G1 StockIdx¡G290
+[18564] 2023/08/02 13:54:35.021 Divide StockNo {3094}
+[18564] 2023/08/02 13:54:35.021 Add Basket MarketNo¡G0 StockIdx¡G27571
+[18564] 2023/08/02 13:54:35.021 Divide StockNo {2303}
+[18564] 2023/08/02 13:54:35.021 Add Basket MarketNo¡G0 StockIdx¡G27251
+[18564] 2023/08/02 13:54:38.540 SKQuoteLib_RequestStocks (12 , 4931,5272,2482,2359,4543,5353,3234,3094,2303)
+[18564] 2023/08/02 13:54:38.540 Divide StockNo {4931}
+[18564] 2023/08/02 13:54:38.540 Add Basket MarketNo¡G1 StockIdx¡G614
+[18564] 2023/08/02 13:54:38.540 Divide StockNo {5272}
+[18564] 2023/08/02 13:54:38.540 Add Basket MarketNo¡G1 StockIdx¡G667
+[18564] 2023/08/02 13:54:38.540 Divide StockNo {2482}
+[18564] 2023/08/02 13:54:38.540 Add Basket MarketNo¡G0 StockIdx¡G27374
+[18564] 2023/08/02 13:54:38.540 Divide StockNo {2359}
+[18564] 2023/08/02 13:54:38.540 Add Basket MarketNo¡G0 StockIdx¡G27286
+[18564] 2023/08/02 13:54:38.540 Divide StockNo {4543}
+[18564] 2023/08/02 13:54:38.540 Add Basket MarketNo¡G1 StockIdx¡G550
+[18564] 2023/08/02 13:54:38.540 Divide StockNo {5353}
+[18564] 2023/08/02 13:54:38.540 Add Basket MarketNo¡G1 StockIdx¡G696
+[18564] 2023/08/02 13:54:38.540 Divide StockNo {3234}
+[18564] 2023/08/02 13:54:38.540 Add Basket MarketNo¡G1 StockIdx¡G290
+[18564] 2023/08/02 13:54:38.540 Divide StockNo {3094}
+[18564] 2023/08/02 13:54:38.540 Add Basket MarketNo¡G0 StockIdx¡G27571
+[18564] 2023/08/02 13:54:38.540 Divide StockNo {2303}
+[18564] 2023/08/02 13:54:38.540 Add Basket MarketNo¡G0 StockIdx¡G27251
+[18564] 2023/08/02 13:54:49.124 SKQuoteLib_RequestStocks (1 , 4931,5272,2482,2359,4543,5353,3234,3094,2303)
+[18564] 2023/08/02 13:54:49.124 Divide StockNo {4931}
+[18564] 2023/08/02 13:54:49.124 Add Basket MarketNo¡G1 StockIdx¡G614
+[18564] 2023/08/02 13:54:49.124 Divide StockNo {5272}
+[18564] 2023/08/02 13:54:49.124 Add Basket MarketNo¡G1 StockIdx¡G667
+[18564] 2023/08/02 13:54:49.124 Divide StockNo {2482}
+[18564] 2023/08/02 13:54:49.124 Add Basket MarketNo¡G0 StockIdx¡G27374
+[18564] 2023/08/02 13:54:49.124 Divide StockNo {2359}
+[18564] 2023/08/02 13:54:49.124 Add Basket MarketNo¡G0 StockIdx¡G27286
+[18564] 2023/08/02 13:54:49.124 Divide StockNo {4543}
+[18564] 2023/08/02 13:54:49.124 Add Basket MarketNo¡G1 StockIdx¡G550
+[18564] 2023/08/02 13:54:49.124 Divide StockNo {5353}
+[18564] 2023/08/02 13:54:49.124 Add Basket MarketNo¡G1 StockIdx¡G696
+[18564] 2023/08/02 13:54:49.124 Divide StockNo {3234}
+[18564] 2023/08/02 13:54:49.124 Add Basket MarketNo¡G1 StockIdx¡G290
+[18564] 2023/08/02 13:54:49.124 Divide StockNo {3094}
+[18564] 2023/08/02 13:54:49.124 Add Basket MarketNo¡G0 StockIdx¡G27571
+[18564] 2023/08/02 13:54:49.124 Divide StockNo {2303}
+[18564] 2023/08/02 13:54:49.124 Add Basket MarketNo¡G0 StockIdx¡G27251
+[18564] 2023/08/02 13:54:49.124 Return PageNo¡G 1 
+[18564] 2023/08/02 13:54:56.195 SKQuoteLib_RequestStocks (1 , 4931,5272,2482,2359,4543,5353,3234,3094,2303)
+[18564] 2023/08/02 13:54:56.195 Divide StockNo {4931}
+[18564] 2023/08/02 13:54:56.195 Add Basket MarketNo¡G1 StockIdx¡G614
+[18564] 2023/08/02 13:54:56.195 Divide StockNo {5272}
+[18564] 2023/08/02 13:54:56.195 Add Basket MarketNo¡G1 StockIdx¡G667
+[18564] 2023/08/02 13:54:56.195 Divide StockNo {2482}
+[18564] 2023/08/02 13:54:56.195 Add Basket MarketNo¡G0 StockIdx¡G27374
+[18564] 2023/08/02 13:54:56.195 Divide StockNo {2359}
+[18564] 2023/08/02 13:54:56.195 Add Basket MarketNo¡G0 StockIdx¡G27286
+[18564] 2023/08/02 13:54:56.195 Divide StockNo {4543}
+[18564] 2023/08/02 13:54:56.195 Add Basket MarketNo¡G1 StockIdx¡G550
+[18564] 2023/08/02 13:54:56.195 Divide StockNo {5353}
+[18564] 2023/08/02 13:54:56.195 Add Basket MarketNo¡G1 StockIdx¡G696
+[18564] 2023/08/02 13:54:56.195 Divide StockNo {3234}
+[18564] 2023/08/02 13:54:56.195 Add Basket MarketNo¡G1 StockIdx¡G290
+[18564] 2023/08/02 13:54:56.195 Divide StockNo {3094}
+[18564] 2023/08/02 13:54:56.195 Add Basket MarketNo¡G0 StockIdx¡G27571
+[18564] 2023/08/02 13:54:56.195 Divide StockNo {2303}
+[18564] 2023/08/02 13:54:56.195 Add Basket MarketNo¡G0 StockIdx¡G27251
+[18564] 2023/08/02 13:54:56.195 Return PageNo¡G 1 
+[18564] 2023/08/02 13:55:18.812 SKQuoteLib_EnterMonitorLONG starting
+[18564] 2023/08/02 13:55:20.473 SKQuoteLib_RequestStocks (1 , 4931,5272,2482,2359,4543,5353,3234,3094,2303,2030)
+[18564] 2023/08/02 13:55:20.473 Divide StockNo {4931}
+[18564] 2023/08/02 13:55:20.473 Add Basket MarketNo¡G1 StockIdx¡G614
+[18564] 2023/08/02 13:55:20.473 Divide StockNo {5272}
+[18564] 2023/08/02 13:55:20.473 Add Basket MarketNo¡G1 StockIdx¡G667
+[18564] 2023/08/02 13:55:20.473 Divide StockNo {2482}
+[18564] 2023/08/02 13:55:20.473 Add Basket MarketNo¡G0 StockIdx¡G27374
+[18564] 2023/08/02 13:55:20.473 Divide StockNo {2359}
+[18564] 2023/08/02 13:55:20.473 Add Basket MarketNo¡G0 StockIdx¡G27286
+[18564] 2023/08/02 13:55:20.473 Divide StockNo {4543}
+[18564] 2023/08/02 13:55:20.473 Add Basket MarketNo¡G1 StockIdx¡G550
+[18564] 2023/08/02 13:55:20.473 Divide StockNo {5353}
+[18564] 2023/08/02 13:55:20.473 Add Basket MarketNo¡G1 StockIdx¡G696
+[18564] 2023/08/02 13:55:20.473 Divide StockNo {3234}
+[18564] 2023/08/02 13:55:20.473 Add Basket MarketNo¡G1 StockIdx¡G290
+[18564] 2023/08/02 13:55:20.473 Divide StockNo {3094}
+[18564] 2023/08/02 13:55:20.473 Add Basket MarketNo¡G0 StockIdx¡G27571
+[18564] 2023/08/02 13:55:20.473 Divide StockNo {2303}
+[18564] 2023/08/02 13:55:20.473 Add Basket MarketNo¡G0 StockIdx¡G27251
+[18564] 2023/08/02 13:55:20.473 Divide StockNo {2030}
+[18564] 2023/08/02 13:55:20.473 Add Basket MarketNo¡G0 StockIdx¡G27212
+[18564] 2023/08/02 13:55:20.473 Return PageNo¡G 1 
+[18564] 2023/08/02 14:36:16.667 OnSessionDisconnect¡ACode: 3033, Error code: 0
+[18564] 2023/08/02 14:36:16.667 OnConnection ( 3033 , 0 ) 
+[18564] 2023/08/02 17:12:56.295 -----------------------------------------------------------------

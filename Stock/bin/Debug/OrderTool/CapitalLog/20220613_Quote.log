@@ -1,0 +1,15 @@
+-----------------------------------------------------------------
+[7740] 2022/06/13 22:20:08.204 >> Host srvsolace-tpa.capital.com.tw
+[7740] 2022/06/13 22:20:23.981 SKQuoteLib_EnterMonitor IP¡Gsrvsolace-tpa.capital.com.tw
+[7740] 2022/06/13 22:20:24.022 OnSessionConnect¡ACode: 3001, Error Code:0.
+[7740] 2022/06/13 22:20:24.028 SKQuoteLib_EnterMonitorLONG starting
+[7740] 2022/06/13 22:20:24.038 OnConnection ( 3001 , 0 ) 
+[7740] 2022/06/13 22:20:48.485 Please Connect SKQuoteLib_EnterMonitorLONG first.
+[7740] 2022/06/13 22:20:48.495 Please Connect SKQuoteLib_EnterMonitorLONG first.
+[7740] 2022/06/13 22:20:48.495 Please Connect SKQuoteLib_EnterMonitorLONG first.
+[7740] 2022/06/13 22:20:48.495 Please Connect SKQuoteLib_EnterMonitorLONG first.
+[7740] 2022/06/13 22:20:48.496 Please Connect SKQuoteLib_EnterMonitor first.
+[7740] 2022/06/13 22:24:02.545 OnSessionConnect¡ACode: 3001, Error Code:0.
+[7740] 2022/06/13 22:24:02.546 SKQuoteLib_EnterMonitorLONG starting
+[7740] 2022/06/13 22:24:02.550 OnConnection ( 3001 , 0 ) 
+[7740] 2022/06/13 22:24:39.701 -----------------------------------------------------------------
