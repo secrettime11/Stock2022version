@@ -147,6 +147,10 @@ namespace Stock
         /// </summary>
         public string s3turnovertValue { get; set; }
         #endregion
+
+        #region S4
+        public string s4turnovertValue { get; set; }
+        #endregion
     }
 
     public class Market

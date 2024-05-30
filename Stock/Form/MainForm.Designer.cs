@@ -52,6 +52,7 @@
             this.dgv_result = new Sunny.UI.UIDataGridView();
             this.tabC_Strategy = new Sunny.UI.UITabControlMenu();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.txt_crawlDays = new Sunny.UI.UITextBox();
             this.uiLine13 = new Sunny.UI.UILine();
             this.btn_manualparse = new Sunny.UI.UISymbolButton();
             this.ckcb_parse = new System.Windows.Forms.CheckBox();
@@ -141,6 +142,7 @@
             this.uiSymbolLabel5 = new Sunny.UI.UISymbolLabel();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.uiLine14 = new Sunny.UI.UILine();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.tabPage11 = new System.Windows.Forms.TabPage();
@@ -213,7 +215,12 @@
             this.rdb_InUnder = new Sunny.UI.UIRadioButton();
             this.rdb_InOpen = new Sunny.UI.UIRadioButton();
             this.uiToolTip1 = new Sunny.UI.UIToolTip(this.components);
-            this.txt_crawlDays = new Sunny.UI.UITextBox();
+            this.txt_highLowGap = new Sunny.UI.UITextBox();
+            this.uiLine15 = new Sunny.UI.UILine();
+            this.txt_priceGap = new Sunny.UI.UITextBox();
+            this.uiCheckBoxGroup5 = new Sunny.UI.UICheckBoxGroup();
+            this.uiRadioButton1 = new Sunny.UI.UIRadioButton();
+            this.ud_S4Turnoverrate = new Sunny.UI.UIIntegerUpDown();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_result)).BeginInit();
             this.tabC_Strategy.SuspendLayout();
@@ -234,6 +241,7 @@
             this.uiCheckBoxGroup3.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.uiCheckBoxGroup4.SuspendLayout();
+            this.tabPage8.SuspendLayout();
             this.tabPage13.SuspendLayout();
             this.uiRadioButtonGroup2.SuspendLayout();
             this.uiGroupBox1.SuspendLayout();
@@ -246,6 +254,7 @@
             this.uiRadioButtonGroup9.SuspendLayout();
             this.uiRadioButtonGroup10.SuspendLayout();
             this.uiRadioButtonGroup11.SuspendLayout();
+            this.uiCheckBoxGroup5.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -467,6 +476,25 @@
             this.tabPage1.Size = new System.Drawing.Size(209, 643);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "公用變數";
+            // 
+            // txt_crawlDays
+            // 
+            this.txt_crawlDays.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txt_crawlDays.DoubleValue = 30D;
+            this.txt_crawlDays.FillColor = System.Drawing.Color.White;
+            this.txt_crawlDays.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.txt_crawlDays.IntValue = 30;
+            this.txt_crawlDays.Location = new System.Drawing.Point(36, 600);
+            this.txt_crawlDays.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_crawlDays.Maximum = 2147483647D;
+            this.txt_crawlDays.Minimum = -2147483648D;
+            this.txt_crawlDays.MinimumSize = new System.Drawing.Size(1, 1);
+            this.txt_crawlDays.Name = "txt_crawlDays";
+            this.txt_crawlDays.Padding = new System.Windows.Forms.Padding(5);
+            this.txt_crawlDays.Size = new System.Drawing.Size(46, 29);
+            this.txt_crawlDays.Style = Sunny.UI.UIStyle.Custom;
+            this.txt_crawlDays.TabIndex = 150;
+            this.txt_crawlDays.Text = "30";
             // 
             // uiLine13
             // 
@@ -1804,12 +1832,31 @@
             // 
             // tabPage8
             // 
+            this.tabPage8.Controls.Add(this.uiCheckBoxGroup5);
+            this.tabPage8.Controls.Add(this.txt_priceGap);
+            this.tabPage8.Controls.Add(this.uiLine15);
+            this.tabPage8.Controls.Add(this.txt_highLowGap);
+            this.tabPage8.Controls.Add(this.uiLine14);
             this.tabPage8.Location = new System.Drawing.Point(201, 0);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Size = new System.Drawing.Size(209, 643);
             this.tabPage8.TabIndex = 7;
             this.tabPage8.Text = "策略四";
             this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // uiLine14
+            // 
+            this.uiLine14.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(244)))));
+            this.uiLine14.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine14.ForeColor = System.Drawing.Color.Red;
+            this.uiLine14.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.uiLine14.Location = new System.Drawing.Point(32, 160);
+            this.uiLine14.MinimumSize = new System.Drawing.Size(2, 2);
+            this.uiLine14.Name = "uiLine14";
+            this.uiLine14.Size = new System.Drawing.Size(140, 29);
+            this.uiLine14.Style = Sunny.UI.UIStyle.Custom;
+            this.uiLine14.TabIndex = 131;
+            this.uiLine14.Text = "高低差(%)";
             // 
             // tabPage9
             // 
@@ -2339,7 +2386,8 @@
             this.cb_Strategy.Items.AddRange(new object[] {
             "策略一",
             "策略二",
-            "策略三"});
+            "策略三",
+            "策略四"});
             this.cb_Strategy.Location = new System.Drawing.Point(8, 27);
             this.cb_Strategy.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cb_Strategy.MinimumSize = new System.Drawing.Size(63, 0);
@@ -2928,24 +2976,107 @@
             this.uiToolTip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.uiToolTip1.OwnerDraw = true;
             // 
-            // txt_crawlDays
+            // txt_highLowGap
             // 
-            this.txt_crawlDays.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txt_crawlDays.DoubleValue = 30D;
-            this.txt_crawlDays.FillColor = System.Drawing.Color.White;
-            this.txt_crawlDays.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.txt_crawlDays.IntValue = 30;
-            this.txt_crawlDays.Location = new System.Drawing.Point(36, 600);
-            this.txt_crawlDays.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txt_crawlDays.Maximum = 2147483647D;
-            this.txt_crawlDays.Minimum = -2147483648D;
-            this.txt_crawlDays.MinimumSize = new System.Drawing.Size(1, 1);
-            this.txt_crawlDays.Name = "txt_crawlDays";
-            this.txt_crawlDays.Padding = new System.Windows.Forms.Padding(5);
-            this.txt_crawlDays.Size = new System.Drawing.Size(46, 29);
-            this.txt_crawlDays.Style = Sunny.UI.UIStyle.Custom;
-            this.txt_crawlDays.TabIndex = 150;
-            this.txt_crawlDays.Text = "30";
+            this.txt_highLowGap.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txt_highLowGap.DoubleValue = 20D;
+            this.txt_highLowGap.FillColor = System.Drawing.Color.White;
+            this.txt_highLowGap.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.txt_highLowGap.IntValue = 20;
+            this.txt_highLowGap.Location = new System.Drawing.Point(85, 204);
+            this.txt_highLowGap.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_highLowGap.Maximum = 2147483647D;
+            this.txt_highLowGap.Minimum = -2147483648D;
+            this.txt_highLowGap.MinimumSize = new System.Drawing.Size(1, 1);
+            this.txt_highLowGap.Name = "txt_highLowGap";
+            this.txt_highLowGap.Padding = new System.Windows.Forms.Padding(5);
+            this.txt_highLowGap.Size = new System.Drawing.Size(32, 29);
+            this.txt_highLowGap.Style = Sunny.UI.UIStyle.Custom;
+            this.txt_highLowGap.TabIndex = 132;
+            this.txt_highLowGap.Text = "20";
+            // 
+            // uiLine15
+            // 
+            this.uiLine15.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(244)))));
+            this.uiLine15.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiLine15.ForeColor = System.Drawing.Color.Red;
+            this.uiLine15.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.uiLine15.Location = new System.Drawing.Point(32, 256);
+            this.uiLine15.MinimumSize = new System.Drawing.Size(2, 2);
+            this.uiLine15.Name = "uiLine15";
+            this.uiLine15.Size = new System.Drawing.Size(140, 29);
+            this.uiLine15.Style = Sunny.UI.UIStyle.Custom;
+            this.uiLine15.TabIndex = 133;
+            this.uiLine15.Text = "股價差(%)";
+            // 
+            // txt_priceGap
+            // 
+            this.txt_priceGap.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txt_priceGap.DoubleValue = 5D;
+            this.txt_priceGap.FillColor = System.Drawing.Color.White;
+            this.txt_priceGap.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.txt_priceGap.IntValue = 5;
+            this.txt_priceGap.Location = new System.Drawing.Point(85, 302);
+            this.txt_priceGap.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_priceGap.Maximum = 2147483647D;
+            this.txt_priceGap.Minimum = -2147483648D;
+            this.txt_priceGap.MinimumSize = new System.Drawing.Size(1, 1);
+            this.txt_priceGap.Name = "txt_priceGap";
+            this.txt_priceGap.Padding = new System.Windows.Forms.Padding(5);
+            this.txt_priceGap.Size = new System.Drawing.Size(32, 29);
+            this.txt_priceGap.Style = Sunny.UI.UIStyle.Custom;
+            this.txt_priceGap.TabIndex = 133;
+            this.txt_priceGap.Text = "5";
+            // 
+            // uiCheckBoxGroup5
+            // 
+            this.uiCheckBoxGroup5.Controls.Add(this.uiRadioButton1);
+            this.uiCheckBoxGroup5.Controls.Add(this.ud_S4Turnoverrate);
+            this.uiCheckBoxGroup5.FillColor = System.Drawing.Color.WhiteSmoke;
+            this.uiCheckBoxGroup5.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiCheckBoxGroup5.ForeColor = System.Drawing.Color.Red;
+            this.uiCheckBoxGroup5.Location = new System.Drawing.Point(4, 40);
+            this.uiCheckBoxGroup5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiCheckBoxGroup5.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiCheckBoxGroup5.Name = "uiCheckBoxGroup5";
+            this.uiCheckBoxGroup5.Padding = new System.Windows.Forms.Padding(0, 32, 0, 0);
+            this.uiCheckBoxGroup5.RectColor = System.Drawing.Color.Black;
+            this.uiCheckBoxGroup5.SelectedIndexes = ((System.Collections.Generic.List<int>)(resources.GetObject("uiCheckBoxGroup5.SelectedIndexes")));
+            this.uiCheckBoxGroup5.Size = new System.Drawing.Size(201, 79);
+            this.uiCheckBoxGroup5.Style = Sunny.UI.UIStyle.Custom;
+            this.uiCheckBoxGroup5.TabIndex = 136;
+            this.uiCheckBoxGroup5.Text = "周轉率";
+            // 
+            // uiRadioButton1
+            // 
+            this.uiRadioButton1.BackColor = System.Drawing.Color.Transparent;
+            this.uiRadioButton1.Checked = true;
+            this.uiRadioButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiRadioButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.uiRadioButton1.Location = new System.Drawing.Point(18, 33);
+            this.uiRadioButton1.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiRadioButton1.Name = "uiRadioButton1";
+            this.uiRadioButton1.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
+            this.uiRadioButton1.Size = new System.Drawing.Size(52, 29);
+            this.uiRadioButton1.Style = Sunny.UI.UIStyle.Custom;
+            this.uiRadioButton1.TabIndex = 4;
+            this.uiRadioButton1.Text = "前";
+            // 
+            // ud_S4Turnoverrate
+            // 
+            this.ud_S4Turnoverrate.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.ud_S4Turnoverrate.Location = new System.Drawing.Point(77, 31);
+            this.ud_S4Turnoverrate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ud_S4Turnoverrate.Maximum = 100;
+            this.ud_S4Turnoverrate.Minimum = -100;
+            this.ud_S4Turnoverrate.MinimumSize = new System.Drawing.Size(100, 0);
+            this.ud_S4Turnoverrate.Name = "ud_S4Turnoverrate";
+            this.ud_S4Turnoverrate.Size = new System.Drawing.Size(100, 29);
+            this.ud_S4Turnoverrate.Step = 10;
+            this.ud_S4Turnoverrate.Style = Sunny.UI.UIStyle.Custom;
+            this.ud_S4Turnoverrate.TabIndex = 124;
+            this.ud_S4Turnoverrate.Text = "_uiIntegerUpDown1";
+            this.ud_S4Turnoverrate.Value = 100;
             // 
             // MainForm
             // 
@@ -2999,6 +3130,7 @@
             this.uiCheckBoxGroup3.ResumeLayout(false);
             this.tabPage6.ResumeLayout(false);
             this.uiCheckBoxGroup4.ResumeLayout(false);
+            this.tabPage8.ResumeLayout(false);
             this.tabPage13.ResumeLayout(false);
             this.uiRadioButtonGroup2.ResumeLayout(false);
             this.uiGroupBox1.ResumeLayout(false);
@@ -3012,6 +3144,7 @@
             this.uiRadioButtonGroup9.ResumeLayout(false);
             this.uiRadioButtonGroup10.ResumeLayout(false);
             this.uiRadioButtonGroup11.ResumeLayout(false);
+            this.uiCheckBoxGroup5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3198,6 +3331,13 @@
         private System.Windows.Forms.ToolStripMenuItem 開發測試ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DeleteAndReloadToolStripMenuItem;
         private Sunny.UI.UITextBox txt_crawlDays;
+        private Sunny.UI.UILine uiLine14;
+        private Sunny.UI.UITextBox txt_priceGap;
+        private Sunny.UI.UILine uiLine15;
+        private Sunny.UI.UITextBox txt_highLowGap;
+        private Sunny.UI.UICheckBoxGroup uiCheckBoxGroup5;
+        private Sunny.UI.UIRadioButton uiRadioButton1;
+        private Sunny.UI.UIIntegerUpDown ud_S4Turnoverrate;
     }
 }
 

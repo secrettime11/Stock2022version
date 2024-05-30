@@ -141,6 +141,51 @@ namespace Stock.Model
             public string highPercent { get; set; }
             public string BuySell { get; set; }
         }
+        public class S4Second
+        {
+            public string Id { get; set; }
+            public string Type { get; set; }
+            public string Close { get; set; }
+            public string Open { get; set; }
+            public string High { get; set; }
+            public string Low { get; set; }
+            public string DealPrice { get; set; }
+            public string PreMax { get; set; }
+            public string BuySell { get; set; }
+
+        }
+        public class S4Result
+        {
+            public string Date { get; set; }
+            public string Type { get; set; }
+            public string Id { get; set; }
+            public string Name { get; set; }
+            public string Close { get; set; }
+            public string Open { get; set; }
+            public string High { get; set; }
+            public string Low { get; set; }
+            public string TurnoverRate { get; set; }
+            public string OpenT { get; set; }
+            public string HighT { get; set; }
+            public string LowT { get; set; }
+            public string CloseT { get; set; }
+            public string DealPrice { get; set; }
+            public string Status { get; set; }
+            public string Profit { get; set; }
+            public string Average { get; set; }
+            public string Order { get; set; }
+
+            public string yOpen { get; set; }
+            public string yHigh { get; set; }
+            public string yLow { get; set; }
+            public string yClose { get; set; }
+            public string yDealprice { get; set; }
+            public string RedLight { get; set; }
+            public string HighVolume { get; set; }
+            public string highPercent { get; set; }
+            public string BuySell { get; set; }
+        }
+
         public class OrderInit 
         {
             public string Id { get; set; }

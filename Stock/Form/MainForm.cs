@@ -48,7 +48,7 @@ namespace Stock
         {
             InitializeComponent();
             // 預設策略
-            cb_Strategy.SelectedIndex = 0;
+            cb_Strategy.SelectedIndex = 3;
         }
 
         #region 控制項事件
@@ -57,7 +57,7 @@ namespace Stock
         private void MainForm_Load(object sender, EventArgs e)
         {
             myFunction.CheckDataTableExist();
-             
+
             string Date = DateTime.Today.ToString("yyyy/MM/dd");
             dp_start.Value = myFunction.GetLastBacktestDay(Date);
             dp_end.Value = myFunction.GetLastBacktestDay(Date);
@@ -492,7 +492,28 @@ namespace Stock
                         dgv_result.DataSource = OutputTable;
                     });
                 }
-
+                // Strategy four
+                else if (cb_Strategy.SelectedIndex == 3)
+                {
+                    S4Initial(args);
+                    foreach (var Day in args.BacktestDates)
+                    {
+                        if (!Pause)
+                        {
+                            this.Invoke((MethodInvoker)delegate ()
+                            {
+                                lb_status.Text = Day;
+                            });
+                            args.DaysOneRun = new List<string>();
+                            S4(args, Day);
+                        }
+                    }
+                    OutputTable = myFunction.S3ListToDGV(S3FinalResult, false);
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        dgv_result.DataSource = OutputTable;
+                    });
+                }
                 this.Invoke((MethodInvoker)delegate ()
                 {
                     lb_status.Text = "完成";
@@ -607,7 +628,7 @@ namespace Stock
             }
             List<Model.MS1.Second> Second = new List<Model.MS1.Second>();
             int counter = 0;
-           
+
             // 最高價
             foreach (var item in First)
             {
@@ -619,7 +640,7 @@ namespace Stock
                     string BuySell = string.Empty;
                     if (item.Type == "市")
                     {
-                       
+
                         //if (args.s1HighType)
                         //{
                         //    Max = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => Convert.ToDouble(p.Close));
@@ -1112,6 +1133,14 @@ namespace Stock
             // Add empty row on datagridview
             S2FinalResult.Add(new Model.MS1.S2Result());
         }
+        /// <summary>
+        /// 策略三
+        /// </summary>
+        /// <param name="args"></param>
+        /// <param name="Day"></param>
+        /// <summary>
+        /// 初始化公用變數
+        /// </summary>
         private void S3(Args args, string Day)
         {
             // 單次回測所有前高比對日期
@@ -1370,14 +1399,257 @@ namespace Stock
             // Add empty row on datagridview
             S3FinalResult.Add(new Model.MS1.S3Result());
         }
+
         /// <summary>
-        /// 策略三
+        /// 策略四(波段)
         /// </summary>
         /// <param name="args"></param>
         /// <param name="Day"></param>
-        /// <summary>
-        /// 初始化公用變數
-        /// </summary>
+        private void S4(Args args, string Day)
+        {
+            // 單次回測所有比對日期 (扣除一周內)
+            args.DaysOneRun = myFunction.GetEachTestDates(Day, (Convert.ToInt32(args.totalTestDays)).ToString());
+            string[] OneRunDates = args.DaysOneRun.ToArray();
+
+            // 所有個股今日數據
+            //var data = (
+            //        from c in db.Listeds
+            //        where c.Date == myFunction.VidsDumpSlash(Day) && c.TurnoverRate != "N" && c.TurnoverRate != null
+            //        select new { c.Id, c.Type, c.Close, c.High, c.Open, c.Low, c.UpDown, c.DealPrice }
+            //    ).Union
+            //    (
+            //        from o in db.Otcs
+            //        where o.Date == myFunction.VidsDumpSlash(Day) && o.TurnoverRate != "N" && o.TurnoverRate != null
+            //        select new { o.Id, o.Type, o.Close, o.High, o.Open, o.Low, o.UpDown, o.DealPrice }
+            //    ).ToList();
+
+
+            /* 待測日周轉前x */
+            var data = (
+                   from c in db.Listeds
+                   where c.Date == myFunction.VidsDumpSlash(Day) && c.TurnoverRate != "N" && c.TurnoverRate != null
+                   select new { c.Id, c.Type, c.Name, c.TurnoverRate, c.Close, c.High, c.Open, c.Low, c.UpDown, c.DealPrice }
+               ).Union
+               (
+                   from o in db.Otcs
+                   where o.Date == myFunction.VidsDumpSlash(Day) && o.TurnoverRate != "N" && o.TurnoverRate != null
+                   select new { o.Id, o.Type, o.Name, o.TurnoverRate, o.Close, o.High, o.Open, o.Low, o.UpDown, o.DealPrice }
+               ).OrderByDescending(m => Convert.ToDouble(m.TurnoverRate)).Take(Convert.ToInt32(args.s4turnovertValue)).ToList();
+
+            List<Model.MS1.S4Second> S4Second = new List<Model.MS1.S4Second>();
+
+            // 高低差 ? %
+            foreach (var item in data)
+            {
+                Model.MS1.S4Second Info = new Model.MS1.S4Second();
+                object Max = new object();
+                object Min = new object();
+                object HighDeal = new object();
+                try
+                {
+                    if (item.Type == "市")
+                    {
+                        Max = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => Convert.ToDouble(p.High));
+                        Min = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Min(p => Convert.ToDouble(p.Low));
+                        HighDeal = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => Convert.ToDouble(p.DealPrice));
+                    }
+                    else if (item.Type == "櫃")
+                    {
+                        Max = db.Otcs.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => Convert.ToDouble(p.High));
+                        Min = db.Otcs.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Min(p => Convert.ToDouble(p.Low));
+                        HighDeal = db.Otcs.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => Convert.ToDouble(p.DealPrice));
+                    }
+
+                    // 今日高低及收盤價
+                    double HighToday = Convert.ToDouble(item.High);
+                    double LowToday = Convert.ToDouble(item.Low);
+                    double CloseToday = Convert.ToDouble(item.Low);
+                    double DealpriceToday = Convert.ToDouble(item.DealPrice);
+                    double A = (((double)Max - (double)Min) / (double)Max) * 100;
+                    double B = ((double)HighDeal / 10);
+                    double C = ((double)Min * 1.05);
+                    Console.WriteLine(item.Id);
+                    if (A > 20 && DealpriceToday < B && CloseToday < C)
+                    {
+                        Info.Id = item.Id;
+                        Info.Type = item.Type;
+                        Info.Close = item.Close;
+                        Info.Open = item.Open;
+                        Info.High = item.High;
+                        Info.Low = item.Low;
+                        S4Second.Add(Info);
+                        Console.WriteLine(Day + item.Id);
+                    }
+                }
+                catch (Exception)
+                { }
+            }
+            Console.WriteLine("Done");
+
+            // 結果
+            int OrderC = 1;
+            double total = 0;
+
+            //foreach (var item in S4Second)
+            //{
+            //    Model.MS1.S4Result temp = new Model.MS1.S4Result();
+            //    try
+            //    {
+            //        if (item.Type == "市")
+            //        {
+
+            //            if (IsPick == false)
+            //            {
+            //                var info = db.Listeds.Where(p => p.Date == myFunction.GetTomorrow(Day) && p.Id == item.Id).FirstOrDefault();
+            //                var yinfo = db.Listeds.Where(p => p.Date == myFunction.VidsDumpSlash(Day) && p.Id == item.Id).FirstOrDefault();
+            //                var yyinfo = db.Listeds.Where(p => p.Date == myFunction.GetYesterday(Day) && p.Id == item.Id).FirstOrDefault();
+            //                temp.Date = myFunction.VidsDumpSlash(Day);
+            //                temp.Type = info.Type;
+            //                temp.Id = info.Id;
+            //                temp.Name = info.Name;
+            //                temp.Close = item.Close;
+            //                temp.Open = item.Open;
+            //                temp.High = item.High;
+            //                temp.Low = item.Low;
+            //                temp.OpenT = info.Open;
+            //                temp.HighT = info.High;
+            //                temp.LowT = info.Low;
+            //                temp.CloseT = info.Close;
+            //                temp.DealPrice = info.DealPrice;
+
+            //                decimal[] LossEarn = myFunction.LookUpTick(Convert.ToDecimal(temp.Close), args.LossTick, args.EarnTick, args.ProfitLoss);
+            //                var profit = myFunction.LProfitCal(args, temp.Close, info, myFunction.VidsDumpSlash(Day), LossEarn, args.InCondition, args.ProfitLoss, item.PreMax);
+            //                temp.Status = profit[0];
+            //                temp.Profit = profit[1];
+            //                total += Convert.ToDouble(temp.Profit);
+            //                if (OrderC == S4Second.Count)
+            //                    temp.Average = (total / S4Second.Count).ToString("F3");
+            //                else
+            //                    temp.Average = "*";
+
+            //                temp.yOpen = yinfo.Open;
+            //                temp.yHigh = yinfo.High;
+            //                temp.yLow = yinfo.Low;
+            //                temp.yClose = yinfo.Close;
+            //                temp.yDealprice = yinfo.DealPrice;
+            //                if (myFunction.LookUpDown(Convert.ToDecimal(yyinfo.Close))[0] == Convert.ToDecimal(yinfo.Close))
+            //                    temp.RedLight = "Yes";
+            //                else
+            //                    temp.RedLight = "No";
+
+            //                temp.HighVolume = item.HighVolume;
+            //                temp.highPercent = item.HighPercent;
+            //                temp.BuySell = item.BuySell;
+
+            //            }
+            //            else
+            //            {
+            //                var info = db.Listeds.Where(p => p.Date == myFunction.VidsDumpSlash(Day) && p.Id == item.Id).FirstOrDefault();
+            //                var yinfo = db.Listeds.Where(p => p.Date == myFunction.GetYesterday(Day) && p.Id == item.Id).FirstOrDefault();
+            //                temp.Date = info.Date;
+            //                temp.Type = info.Type;
+            //                temp.Id = info.Id;
+            //                temp.Name = info.Name;
+            //                temp.Close = info.Close;
+            //                temp.Open = info.Open;
+            //                temp.High = info.High;
+            //                temp.Low = info.Low;
+            //                temp.TurnoverRate = info.TurnoverRate;
+            //                temp.OpenT = info.Open;
+            //                temp.HighT = info.High;
+            //                temp.LowT = info.Low;
+            //                temp.CloseT = info.Close;
+            //                temp.DealPrice = info.DealPrice;
+            //                temp.yClose = yinfo.Close;
+            //                temp.HighVolume = item.HighVolume;
+            //                temp.highPercent = item.HighPercent;
+            //                temp.BuySell = item.BuySell;
+            //            }
+            //            temp.Order = OrderC.ToString();
+            //        }
+            //        else if (item.Type == "櫃")
+            //        {
+
+            //            if (IsPick == false)
+            //            {
+            //                var info = db.Otcs.Where(p => p.Date == myFunction.GetTomorrow(Day) && p.Id == item.Id).FirstOrDefault();
+            //                var yinfo = db.Otcs.Where(p => p.Date == myFunction.VidsDumpSlash(Day) && p.Id == item.Id).FirstOrDefault();
+            //                var yyinfo = db.Otcs.Where(p => p.Date == myFunction.GetYesterday(Day) && p.Id == item.Id).FirstOrDefault();
+            //                temp.Date = myFunction.VidsDumpSlash(Day);
+            //                temp.Type = info.Type;
+            //                temp.Id = info.Id;
+            //                temp.Name = info.Name;
+            //                temp.Close = item.Close;
+            //                temp.Open = item.Open;
+            //                temp.High = item.High;
+            //                temp.Low = item.Low;
+            //                temp.TurnoverRate = item.TurnoverRate;
+            //                temp.OpenT = info.Open;
+            //                temp.HighT = info.High;
+            //                temp.LowT = info.Low;
+            //                temp.CloseT = info.Close;
+            //                temp.DealPrice = info.DealPrice;
+            //                decimal[] LossEarn = myFunction.LookUpTick(Convert.ToDecimal(temp.Close), args.LossTick, args.EarnTick, args.ProfitLoss);
+            //                var profit = myFunction.OProfitCal(args, temp.Close, info, myFunction.VidsDumpSlash(Day), LossEarn, args.InCondition, args.ProfitLoss, item.PreMax);
+            //                temp.Status = profit[0];
+            //                temp.Profit = profit[1];
+            //                total += Convert.ToDouble(temp.Profit);
+
+            //                if (OrderC == S3Second.Count)
+            //                    temp.Average = (total / S3Second.Count).ToString("F3");
+            //                else
+            //                    temp.Average = "*";
+
+            //                temp.yOpen = yinfo.Open;
+            //                temp.yHigh = yinfo.High;
+            //                temp.yLow = yinfo.Low;
+            //                temp.yClose = yinfo.Close;
+            //                temp.yDealprice = yinfo.DealPrice;
+            //                if (myFunction.LookUpDown(Convert.ToDecimal(yyinfo.Close))[0] == Convert.ToDecimal(yinfo.Close))
+            //                    temp.RedLight = "Yes";
+            //                else
+            //                    temp.RedLight = "No";
+            //                temp.HighVolume = item.HighVolume;
+            //                temp.highPercent = item.HighPercent;
+            //                temp.BuySell = item.BuySell;
+            //            }
+            //            else
+            //            {
+            //                var info = db.Otcs.Where(p => p.Date == myFunction.VidsDumpSlash(Day) && p.Id == item.Id).FirstOrDefault();
+            //                var yinfo = db.Otcs.Where(p => p.Date == myFunction.GetYesterday(Day) && p.Id == item.Id).FirstOrDefault();
+            //                temp.Date = info.Date;
+            //                temp.Type = info.Type;
+            //                temp.Id = info.Id;
+            //                temp.Name = info.Name;
+            //                temp.Close = info.Close;
+            //                temp.Open = info.Open;
+            //                temp.High = info.High;
+            //                temp.Low = info.Low;
+            //                temp.TurnoverRate = info.TurnoverRate;
+            //                temp.OpenT = info.Open;
+            //                temp.HighT = info.High;
+            //                temp.LowT = info.Low;
+            //                temp.CloseT = info.Close;
+            //                temp.DealPrice = info.DealPrice;
+            //                temp.yClose = yinfo.Close;
+            //                temp.HighVolume = item.HighVolume;
+            //                temp.highPercent = item.HighPercent;
+            //                temp.BuySell = item.BuySell;
+            //            }
+            //            temp.Order = OrderC.ToString();
+            //        }
+
+            //        S3FinalResult.Add(temp);
+            //        OrderC++;
+            //    }
+            //    catch (Exception)
+            //    { }
+            //}
+
+            // Add empty row on datagridview
+            S3FinalResult.Add(new Model.MS1.S3Result());
+
+        }
         private void InitialArgs(Args args)
         {
             // Save data
@@ -1523,6 +1795,14 @@ namespace Stock
                 args.s3turnovertValue = ud_S3Turnoverrate.Value.ToString();
         }
         /// <summary>
+        /// S4參數初始化
+        /// </summary>
+        /// <param name="args"></param>
+        public void S4Initial(Args args)
+        {
+            args.s4turnovertValue = ud_S4Turnoverrate.Value.ToString();
+        }
+        /// <summary>
         /// 防呆
         /// </summary>
         /// <param name="args"></param>
@@ -1638,7 +1918,7 @@ namespace Stock
                     lb_status.Text = Date;
                     lb_status.ForeColor = Color.DarkRed;
                 });
-                
+
                 dataClaw(Date);
             }
             this.Invoke((MethodInvoker)delegate ()
@@ -1840,14 +2120,20 @@ namespace Stock
 
         private void 開發測試ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            object HighDeal = db.Otcs.Where(p => p.Id == "4543" && p.Date == "20240409").Max(p => Convert.ToDecimal(p.DealPrice));
+            Console.WriteLine(Convert.ToDecimal(HighDeal));
         }
 
         private void DeleteAndReloadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
             DeleteReloadForm deleteReloadRForm = new DeleteReloadForm();
             deleteReloadRForm.Show();
+        }
+
+        private void uiIntegerUpDown1_ValueChanged(object sender, int value)
+        {
+
         }
     }
 }
