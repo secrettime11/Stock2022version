@@ -1411,19 +1411,6 @@ namespace Stock
             args.DaysOneRun = myFunction.GetEachTestDates(Day, (Convert.ToInt32(args.totalTestDays)).ToString());
             string[] OneRunDates = args.DaysOneRun.ToArray();
 
-            // 所有個股今日數據
-            //var data = (
-            //        from c in db.Listeds
-            //        where c.Date == myFunction.VidsDumpSlash(Day) && c.TurnoverRate != "N" && c.TurnoverRate != null
-            //        select new { c.Id, c.Type, c.Close, c.High, c.Open, c.Low, c.UpDown, c.DealPrice }
-            //    ).Union
-            //    (
-            //        from o in db.Otcs
-            //        where o.Date == myFunction.VidsDumpSlash(Day) && o.TurnoverRate != "N" && o.TurnoverRate != null
-            //        select new { o.Id, o.Type, o.Close, o.High, o.Open, o.Low, o.UpDown, o.DealPrice }
-            //    ).ToList();
-
-
             /* 待測日周轉前x */
             var data = (
                    from c in db.Listeds
@@ -1451,25 +1438,25 @@ namespace Stock
                     {
                         Max = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => Convert.ToDouble(p.High));
                         Min = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Min(p => Convert.ToDouble(p.Low));
-                        HighDeal = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => Convert.ToDouble(p.DealPrice));
+                        HighDeal = db.Listeds.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => p.DealPrice.Replace(",", "").Trim());
                     }
                     else if (item.Type == "櫃")
                     {
                         Max = db.Otcs.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => Convert.ToDouble(p.High));
                         Min = db.Otcs.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Min(p => Convert.ToDouble(p.Low));
-                        HighDeal = db.Otcs.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => Convert.ToDouble(p.DealPrice));
+                        HighDeal = db.Otcs.Where(p => p.Id == item.Id && OneRunDates.Contains(p.Date)).Max(p => p.DealPrice.Replace(",", "").Trim());
                     }
-
+                    
                     // 今日高低及收盤價
                     double HighToday = Convert.ToDouble(item.High);
                     double LowToday = Convert.ToDouble(item.Low);
                     double CloseToday = Convert.ToDouble(item.Low);
                     double DealpriceToday = Convert.ToDouble(item.DealPrice);
                     double A = (((double)Max - (double)Min) / (double)Max) * 100;
-                    double B = ((double)HighDeal / 10);
+                    double B = (Convert.ToDouble(HighDeal) / 10);
                     double C = ((double)Min * 1.05);
-                    Console.WriteLine(item.Id);
-                    if (A > 20 && DealpriceToday < B && CloseToday < C)
+                    
+                    if (A > 20 /*&& DealpriceToday < B*/ && CloseToday < C)
                     {
                         Info.Id = item.Id;
                         Info.Type = item.Type;
@@ -2120,7 +2107,8 @@ namespace Stock
 
         private void 開發測試ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            object HighDeal = db.Otcs.Where(p => p.Id == "4543" && p.Date == "20240409").Max(p => Convert.ToDecimal(p.DealPrice));
+            object HighDeal = db.Otcs.Where(p => p.Id == "4543" && p.Date == "20240409").Max(p => p.DealPrice.Replace(",", "").Trim());
+            
             Console.WriteLine(Convert.ToDecimal(HighDeal));
         }
 
